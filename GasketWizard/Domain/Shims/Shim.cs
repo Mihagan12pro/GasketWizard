@@ -1,5 +1,8 @@
-﻿namespace GasketWizard.Domain.Shims
+﻿using System.ComponentModel;
+
+namespace GasketWizard.Domain.Shims
 {
+    [DisplayName("Шайба")]
     public class Shim : PartBase
     {
         /// <summary>

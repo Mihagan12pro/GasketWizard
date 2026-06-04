@@ -1,4 +1,5 @@
 ﻿using GasketWizard.Commands;
+using GasketWizard.Domain.Shims;
 using Microsoft.Win32;
 using System;
 using System.Runtime.InteropServices;
@@ -24,6 +25,7 @@ namespace GasketWizard
                     break;
                 case 2:
                     WizardForm wizardForm = new WizardForm();
+                    wizardForm.SetParameters(Resource.shim, new Shim());
                     wizardForm.ShowDialog();
                     break;
             }

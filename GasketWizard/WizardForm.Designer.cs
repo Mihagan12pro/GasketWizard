@@ -90,6 +90,7 @@
             // btCancel
             // 
             this.btCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btCancel.Location = new System.Drawing.Point(31, 7);
             this.btCancel.Name = "btCancel";
             this.btCancel.Size = new System.Drawing.Size(150, 46);
@@ -124,6 +125,7 @@
             this.pbSketch.Location = new System.Drawing.Point(0, 0);
             this.pbSketch.Name = "pbSketch";
             this.pbSketch.Size = new System.Drawing.Size(557, 591);
+            this.pbSketch.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbSketch.TabIndex = 0;
             this.pbSketch.TabStop = false;
             // 
@@ -139,8 +141,10 @@
             // 
             // WizardForm
             // 
+            this.AcceptButton = this.btOk;
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btCancel;
             this.ClientSize = new System.Drawing.Size(1091, 711);
             this.Controls.Add(this.tableLayoutPanel1);
             this.MaximizeBox = false;
