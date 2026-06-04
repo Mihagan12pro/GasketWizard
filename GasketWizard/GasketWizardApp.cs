@@ -22,6 +22,10 @@ namespace GasketWizard
                 case 1:
                     this.HelloKompas();
                     break;
+                case 2:
+                    WizardForm wizardForm = new WizardForm();
+                    wizardForm.ShowDialog();
+                    break;
             }
         }
 
@@ -37,7 +41,13 @@ namespace GasketWizard
                     result = "Привет, КОМПАС-3D!";
                     command = 1;
                     break;
+
                 case 2:
+                    result = "Шайба";
+                    command = 2;
+                    break;
+
+                case 3:
                     itemType = 3;           //ENDMENU
                     command = -1;
                     break;

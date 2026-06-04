@@ -1,7 +1,6 @@
 ﻿using GasketWizard.Domain.Shims;
 using Kompas6Constants3D;
 using KompasAPI7;
-using System;
 
 namespace GasketWizard.Creators.Shims.Part
 {
@@ -76,6 +75,8 @@ namespace GasketWizard.Creators.Shims.Part
         public void Save(string path)
         {
             _path = path;
+
+            _document.SaveAs(path);
         }
 
         internal ShimPartCreator(IPartDocument document)
