@@ -43,8 +43,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\HelloKompasCommand.cs" />
+    <Compile Include="Domain\PartBase.cs" />
+    <Compile Include="Domain\Shims\Shim.cs" />
     <Compile Include="GasketWizardApp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
