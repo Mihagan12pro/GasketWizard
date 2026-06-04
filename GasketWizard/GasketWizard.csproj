@@ -31,6 +31,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Kompas6Constants">
+      <HintPath>..\..\..\..\..\..\Program Files\ASCON\KOMPAS-3D v23 Study\SDK\Samples\CSharp\Common\Kompas6Constants.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Kompas6Constants3D">
+      <HintPath>..\..\..\..\..\..\Program Files\ASCON\KOMPAS-3D v23 Study\SDK\Samples\CSharp\Common\Kompas6Constants3D.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="KompasAPI7">
+      <HintPath>..\..\..\..\..\..\Program Files\ASCON\KOMPAS-3D v23 Study\SDK\Samples\CSharp\Common\KompasAPI7.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Windows.Forms" />
@@ -43,8 +55,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\HelloKompasCommand.cs" />
+    <Compile Include="Creators\ICreator.cs" />
+    <Compile Include="Creators\Shims\IShimCreator.cs" />
+    <Compile Include="Creators\Shims\Part\ShimPartCreator.cs" />
     <Compile Include="Domain\PartBase.cs" />
     <Compile Include="Domain\Shims\Shim.cs" />
+    <Compile Include="Factory\ShimsFactory.cs" />
     <Compile Include="GasketWizardApp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
