@@ -1,4 +1,5 @@
 ﻿using GasketWizard.Domain.Shims;
+using Kompas6Constants3D;
 using KompasAPI7;
 using System;
 
@@ -8,14 +9,63 @@ namespace GasketWizard.Creators.Shims.Part
     {
         private string _path;
 
+        private Shim _shim;
+
         private IPartDocument _document;
 
         private IPart7 _shimPart;
 
-        public bool Create(Shim partModel)
+        private IExtrusion ExtrudeSketch1(Sketch sketch)
         {
+            IExtrusion extrusion = (_shimPart as IModelContainer).Extrusions.Add(ksObj3dTypeEnum.o3d_baseExtrusion);
+
+            extrusion.ExtrusionType[true] = ksEndTypeEnum.etBlind;
+            extrusion.Direction = ksDirectionTypeEnum.dtMiddlePlane;
+            extrusion.Sketch = sketch;
+            extrusion.Depth[true] = _shim.Width;
+
+            extrusion.Update();
+
+            return extrusion;
+        }
+
+        private ISketch AddSketch1()
+        {
+            ISketch sketch = (_shimPart as IModelContainer).Sketchs.Add();
+            sketch.Plane = _shimPart.DefaultObject[ksObj3dTypeEnum.o3d_planeXOY];
+
+            sketch.Update();
+
+            IKompasDocument2D document2d = sketch.BeginEdit();
+
+            IViewsAndLayersManager viewsAndLayersManager = document2d.ViewsAndLayersManager;
+            IView view = viewsAndLayersManager.Views.ActiveView;
+            IDrawingContainer drawingContainer = (IDrawingContainer)view;
+
+            ICircle internalCircle = drawingContainer.Circles.Add();
+            internalCircle.Xc = 0;
+            internalCircle.Yc = 0;
+            internalCircle.Radius = _shim.InternalDiameter / 2;
+            internalCircle.Update();
+
+            ICircle externalCircle = drawingContainer.Circles.Add();
+            externalCircle.Xc = 0;
+            externalCircle.Yc = 0;
+            externalCircle.Radius = _shim.ExternalDiameter / 2;
+            externalCircle.Update();
+
+            sketch.EndEdit();
+
+            return sketch;
+        }
+
+        public bool Create(Shim shim)
+        {
+            _shim = shim;
             _shimPart = _document.TopPart;
 
+            ISketch sketch1 = AddSketch1();
+            IExtrusion sketch1Extrusion = ExtrudeSketch1((Sketch)sketch1);
 
             return true;
         }

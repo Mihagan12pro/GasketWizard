@@ -1,4 +1,5 @@
 ﻿using GasketWizard.Creators.Shims.Part;
+using GasketWizard.Domain.Shims;
 using GasketWizard.Factory;
 using Kompas6Constants;
 using KompasAPI7;
@@ -15,6 +16,15 @@ namespace GasketWizard.Tests.Parts
     [TestClass]
     public class ShimTests
     {
+        private Shim _shim = new Shim()
+        {
+            InternalDiameter = 20,
+
+            ExternalDiameter = 22,
+
+            Width = 2
+        };
+
         [TestMethod]
         public void TestCreating()
         {
@@ -27,8 +37,7 @@ namespace GasketWizard.Tests.Parts
 
             ShimsFactory shimsFactory = new ShimsFactory();
             ShimPartCreator partCreator = shimsFactory.CreateShimPart((IPartDocument)kompas.Documents.Add(DocumentTypeEnum.ksDocumentPart));
-
-
+            partCreator.Create(_shim);
         }
     }
 }
