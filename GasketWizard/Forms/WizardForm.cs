@@ -15,6 +15,8 @@ namespace GasketWizard
         {
             InitializeComponent();
 
+            tbSavingPath.Text = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
             _dbContext = new StandartSizesDbContext();
         }
 
@@ -27,6 +29,21 @@ namespace GasketWizard
             Type type = partBase.GetType();
 
             Text = ((DisplayNameAttribute)type.GetCustomAttribute(typeof(DisplayNameAttribute))).DisplayName;
+        }
+
+        private void btSelectSavingFolder_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog dialog = new FolderBrowserDialog();
+
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                tbSavingPath.Text = dialog.SelectedPath;
+            }
+        }
+
+        private void WizardForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

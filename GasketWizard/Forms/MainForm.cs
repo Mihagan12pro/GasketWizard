@@ -16,17 +16,12 @@ namespace GasketWizard
         {
             InitializeComponent();
 
-            tbSavingPath.Text = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            tvCatalog.ExpandAll();
         }
 
-        private void btSelectSavingFolder_Click(object sender, EventArgs e)
+        private void MainForm_Load(object sender, EventArgs e)
         {
-            FolderBrowserDialog dialog = new FolderBrowserDialog();
 
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                tbSavingPath.Text = dialog.SelectedPath;
-            }
         }
     }
 }
