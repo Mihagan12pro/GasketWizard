@@ -21,13 +21,16 @@ namespace GasketWizard
             switch (command)
             {
                 case 1:
-                    this.HelloKompas();
-                    break;
+                    {
+                        this.HelloKompas();
+                        break;
+                    }
                 case 2:
-                    WizardForm wizardForm = new WizardForm();
-                    wizardForm.SetParameters(Resource.shim, new Shim());
-                    wizardForm.ShowDialog();
-                    break;
+                    {
+                        MainForm mainForm = new MainForm();
+                        mainForm.ShowDialog();
+                        break;
+                    }
             }
         }
 
@@ -45,7 +48,7 @@ namespace GasketWizard
                     break;
 
                 case 2:
-                    result = "Шайба";
+                    result = "Открыть каталог...";
                     command = 2;
                     break;
 

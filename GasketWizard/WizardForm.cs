@@ -1,22 +1,21 @@
 ﻿using GasketWizard.Domain;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace GasketWizard
 {
     public partial class WizardForm : Form
     {
+        private StandartSizesDbContext _dbContext;
+
         public WizardForm()
         {
             InitializeComponent();
+
+            _dbContext = new StandartSizesDbContext();
         }
 
         public void SetParameters(
