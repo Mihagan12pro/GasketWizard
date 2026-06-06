@@ -74,6 +74,7 @@
             this.tvCatalog.Size = new System.Drawing.Size(395, 676);
             this.tvCatalog.TabIndex = 0;
             this.tvCatalog.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvCatalog_AfterSelect);
+            this.tvCatalog.DoubleClick += new System.EventHandler(this.tvCatalog_DoubleClick);
             // 
             // pbSketch
             // 
