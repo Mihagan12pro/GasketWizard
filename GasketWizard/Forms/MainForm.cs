@@ -18,10 +18,5 @@ namespace GasketWizard
 
             tvCatalog.ExpandAll();
         }
-
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }
