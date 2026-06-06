@@ -73,7 +73,7 @@
             treeNode2});
             this.tvCatalog.Size = new System.Drawing.Size(395, 676);
             this.tvCatalog.TabIndex = 0;
-            this.tvCatalog.MouseClick += new System.Windows.Forms.MouseEventHandler(this.tvCatalog_MouseClick);
+            this.tvCatalog.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvCatalog_AfterSelect);
             // 
             // pbSketch
             // 

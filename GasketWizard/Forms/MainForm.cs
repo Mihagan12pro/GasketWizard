@@ -20,7 +20,7 @@ namespace GasketWizard
             tvCatalog.ExpandAll();
         }
 
-        private void tvCatalog_MouseClick(object sender, MouseEventArgs e)
+        private void tvCatalog_AfterSelect(object sender, TreeViewEventArgs e)
         {
             if (sender is TreeView treeView)
             {
