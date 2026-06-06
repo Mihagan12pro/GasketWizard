@@ -10,10 +10,15 @@ namespace GasketWizard.Utils.Mappers
     {
         public static PartBase Map(string nodeText)
         {
-            Type type = Assembly.GetExecutingAssembly()
+            Assembly assembly = Assembly.GetExecutingAssembly();
+
+            Type type = assembly
                 .GetTypes()
                 .Where(t => t.BaseType == typeof(PartBase))
-                .First(t => ((DisplayNameAttribute)t.GetCustomAttribute<DisplayNameAttribute>()).DisplayName == nodeText);
+                .FirstOrDefault(t => (t.GetCustomAttribute<DisplayNameAttribute>()).DisplayName == nodeText);
+
+            if (type == null)
+                return null;
 
             var obj = Activator.CreateInstance(type);
 

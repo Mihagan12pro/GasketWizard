@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GasketWizard.Utils.Mappers;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,6 +18,14 @@ namespace GasketWizard
             InitializeComponent();
 
             tvCatalog.ExpandAll();
+        }
+
+        private void tvCatalog_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (sender is TreeView treeView)
+            {
+                pbSketch.Image = MapPartWithSketch.Map(treeView.SelectedNode.Text);
+            }
         }
     }
 }

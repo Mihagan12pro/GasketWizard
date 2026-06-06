@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Шайбы");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Шайба");
             System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Каталог", new System.Windows.Forms.TreeNode[] {
             treeNode1});
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -66,20 +66,23 @@
             this.tvCatalog.Location = new System.Drawing.Point(0, 0);
             this.tvCatalog.Name = "tvCatalog";
             treeNode1.Name = "NodeShim";
-            treeNode1.Text = "Шайбы";
+            treeNode1.Text = "Шайба";
             treeNode2.Name = "NodeRoot";
             treeNode2.Text = "Каталог";
             this.tvCatalog.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode2});
             this.tvCatalog.Size = new System.Drawing.Size(395, 676);
             this.tvCatalog.TabIndex = 0;
+            this.tvCatalog.MouseClick += new System.Windows.Forms.MouseEventHandler(this.tvCatalog_MouseClick);
             // 
             // pbSketch
             // 
             this.pbSketch.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pbSketch.Image = global::GasketWizard.Properties.Resources._default;
             this.pbSketch.Location = new System.Drawing.Point(0, 0);
             this.pbSketch.Name = "pbSketch";
             this.pbSketch.Size = new System.Drawing.Size(809, 676);
+            this.pbSketch.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbSketch.TabIndex = 0;
             this.pbSketch.TabStop = false;
             // 

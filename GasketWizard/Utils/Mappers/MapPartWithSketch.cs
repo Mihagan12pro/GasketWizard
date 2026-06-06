@@ -1,28 +1,48 @@
 ﻿using GasketWizard.Domain;
 using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Globalization;
+using System.Linq;
+using System.Reflection;
 using System.Resources;
 
 namespace GasketWizard.Utils.Mappers
 {
     public static class MapPartWithSketch
     {
+        public static Bitmap Map(string nodeText)
+        {
+            var part = MapNodeTextWithPart.Map(nodeText);
+
+            return Map(part);
+        }
+
         public static Bitmap Map(PartBase part)
         {
-            Type type = part.GetType();
+            Bitmap bitmap = null;
 
-            ResourceSet resources = Resource.ResourceManager.GetResourceSet(
-                CultureInfo.InvariantCulture,
-                false,
-                false);
+            try
+            {
+                Type type = part.GetType();
 
-            var resource = resources.GetObject(type.Name, true);
+                ResourceSet resources = Resource.ResourceManager.GetResourceSet(
+                    CultureInfo.InvariantCulture,
+                    false,
+                    false);
 
-            if (resource == null || resource.GetType() != typeof(Bitmap))
-                throw new InvalidOperationException("Not found!");
+                var resource = resources.GetObject(type.Name, true);
+                if (resource == null || resource.GetType() != typeof(Bitmap))
+                    throw new InvalidOperationException("Not found!");
 
-            return (Bitmap)resource;
+                bitmap = (Bitmap)resource;
+            }
+            catch (NullReferenceException)
+            {
+                bitmap = Resource.Default;
+            }
+
+            return bitmap;
         }
     }
 }
