@@ -79,14 +79,16 @@
     <Compile Include="Creators\ICreator.cs" />
     <Compile Include="Creators\Shims\IShimCreator.cs" />
     <Compile Include="Creators\Shims\Part\ShimPartCreator.cs" />
+    <Compile Include="Domain\AvaliableDocuments\IAvaliableAssembleDocument.cs" />
+    <Compile Include="Domain\AvaliableDocuments\IAvaliablePartDocument.cs" />
     <Compile Include="Domain\PartBase.cs" />
     <Compile Include="Domain\Shims\Shim.cs" />
     <Compile Include="Factory\ShimsFactory.cs" />
     <Compile Include="GasketWizardApp.cs" />
-    <Compile Include="MainForm.cs">
+    <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.Designer.cs">
+    <Compile Include="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -101,15 +103,15 @@
       <DependentUpon>Resource.resx</DependentUpon>
     </Compile>
     <Compile Include="Databases\StandartSizesDbContext.cs" />
-    <Compile Include="WizardForm.cs">
+    <Compile Include="Forms\WizardForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="WizardForm.Designer.cs">
+    <Compile Include="Forms\WizardForm.Designer.cs">
       <DependentUpon>WizardForm.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="MainForm.resx">
+    <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -120,7 +122,7 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="WizardForm.resx">
+    <EmbeddedResource Include="Forms\WizardForm.resx">
       <DependentUpon>WizardForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
