@@ -43,9 +43,12 @@
             // 
             // splitContainer1
             // 
+            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Location = new System.Drawing.Point(15, 16);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(25);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -55,8 +58,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.pbSketch);
-            this.splitContainer1.Size = new System.Drawing.Size(1222, 680);
-            this.splitContainer1.SplitterDistance = 399;
+            this.splitContainer1.Size = new System.Drawing.Size(1189, 647);
+            this.splitContainer1.SplitterDistance = 388;
             this.splitContainer1.SplitterWidth = 10;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -71,7 +74,7 @@
             treeNode2.Text = "Каталог";
             this.tvCatalog.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode2});
-            this.tvCatalog.Size = new System.Drawing.Size(395, 676);
+            this.tvCatalog.Size = new System.Drawing.Size(384, 643);
             this.tvCatalog.TabIndex = 0;
             this.tvCatalog.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvCatalog_AfterSelect);
             this.tvCatalog.DoubleClick += new System.EventHandler(this.tvCatalog_DoubleClick);
@@ -82,7 +85,7 @@
             this.pbSketch.Image = global::GasketWizard.Properties.Resources._default;
             this.pbSketch.Location = new System.Drawing.Point(0, 0);
             this.pbSketch.Name = "pbSketch";
-            this.pbSketch.Size = new System.Drawing.Size(809, 676);
+            this.pbSketch.Size = new System.Drawing.Size(787, 643);
             this.pbSketch.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbSketch.TabIndex = 0;
             this.pbSketch.TabStop = false;

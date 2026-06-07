@@ -105,12 +105,16 @@
             // lvSizes
             // 
             this.lvSizes.Dock = System.Windows.Forms.DockStyle.Fill;
+            // this.btSelectSavingFolder.Click += new System.EventHandler(this.btSelectSavingFolder_Click);
             this.lvSizes.HideSelection = false;
             this.lvSizes.Location = new System.Drawing.Point(0, 0);
             this.lvSizes.Name = "lvSizes";
             this.lvSizes.Size = new System.Drawing.Size(437, 493);
             this.lvSizes.TabIndex = 0;
             this.lvSizes.UseCompatibleStateImageBehavior = false;
+            this.lvSizes.GridLines = true;
+            this.lvSizes.MultiSelect = false;
+            this.lvSizes.SelectedIndexChanged += new System.EventHandler(this.lvSizes_SelectedIndexChanged);
             // 
             // tableLayoutPanel2
             // 

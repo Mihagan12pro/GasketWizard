@@ -17,6 +17,7 @@ namespace GasketWizard
 
             tbSavingPath.Text = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
+            btOk.Enabled = false;
             _dbContext = new StandartSizesDbContext();
         }
 
@@ -38,6 +39,15 @@ namespace GasketWizard
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 tbSavingPath.Text = dialog.SelectedPath;
+            }
+        }
+
+        private void lvSizes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (sender is ListView listView)
+            {
+                if (listView.SelectedIndices[0] != -1)
+                    btOk.Enabled = true;
             }
         }
 
