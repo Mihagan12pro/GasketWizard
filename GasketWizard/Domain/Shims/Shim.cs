@@ -1,9 +1,11 @@
-﻿using GasketWizard.Domain.AvaliableDocuments;
+﻿using GasketWizard.Attributes;
+using GasketWizard.Domain.AvaliableDocuments;
 using System.ComponentModel;
 
 namespace GasketWizard.Domain.Shims
 {
     [DisplayName("Шайба")]
+    [PartGroup("Shims")]
     public class Shim : PartBase, IAvaliablePartDocument
     {
         /// <summary>

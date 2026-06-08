@@ -33,7 +33,7 @@ namespace GasketWizard
         {
             if (sender is TreeView treeView)
             {
-                PartBase partBase = MapNodeTextWithPart.Map(treeView.SelectedNode.Text);
+                PartBase partBase = MapDisplayNameWithPart.Map(treeView.SelectedNode.Text);
 
                 if (partBase != null)
                 {

@@ -13,7 +13,7 @@ namespace GasketWizard.Utils.Mappers
     {
         public static Bitmap Map(string nodeText)
         {
-            var part = MapNodeTextWithPart.Map(nodeText);
+            var part = MapDisplayNameWithPart.Map(nodeText);
 
             return Map(part);
         }

@@ -1,4 +1,6 @@
-﻿namespace GasketWizard
+﻿using System.Windows.Forms;
+
+namespace GasketWizard
 {
     partial class WizardForm
     {
@@ -105,6 +107,8 @@
             // lvSizes
             // 
             this.lvSizes.Dock = System.Windows.Forms.DockStyle.Fill;
+            lvSizes.View = View.Details;
+            lvSizes.GridLines = true;
             // this.btSelectSavingFolder.Click += new System.EventHandler(this.btSelectSavingFolder_Click);
             this.lvSizes.HideSelection = false;
             this.lvSizes.Location = new System.Drawing.Point(0, 0);

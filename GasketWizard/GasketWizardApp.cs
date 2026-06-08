@@ -1,5 +1,4 @@
 ﻿using GasketWizard.Commands;
-using GasketWizard.Domain.Shims;
 using Microsoft.Win32;
 using System;
 using System.Runtime.InteropServices;
