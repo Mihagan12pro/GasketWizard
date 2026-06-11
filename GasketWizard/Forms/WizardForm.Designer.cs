@@ -33,7 +33,6 @@ namespace GasketWizard
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.pbSketch = new System.Windows.Forms.PictureBox();
-            this.lvSizes = new System.Windows.Forms.ListView();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.btOk = new System.Windows.Forms.Button();
             this.btCancel = new System.Windows.Forms.Button();
@@ -42,6 +41,7 @@ namespace GasketWizard
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.btSelectSavingFolder = new System.Windows.Forms.Button();
             this.tbSavingPath = new System.Windows.Forms.TextBox();
+            this.tblSizes = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -51,6 +51,7 @@ namespace GasketWizard
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tblSizes)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -88,7 +89,7 @@ namespace GasketWizard
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.lvSizes);
+            this.splitContainer1.Panel2.Controls.Add(this.tblSizes);
             this.splitContainer1.Size = new System.Drawing.Size(1012, 497);
             this.splitContainer1.SplitterDistance = 561;
             this.splitContainer1.SplitterWidth = 10;
@@ -103,22 +104,6 @@ namespace GasketWizard
             this.pbSketch.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbSketch.TabIndex = 0;
             this.pbSketch.TabStop = false;
-            // 
-            // lvSizes
-            // 
-            this.lvSizes.Dock = System.Windows.Forms.DockStyle.Fill;
-            lvSizes.View = View.Details;
-            lvSizes.GridLines = true;
-            // this.btSelectSavingFolder.Click += new System.EventHandler(this.btSelectSavingFolder_Click);
-            this.lvSizes.HideSelection = false;
-            this.lvSizes.Location = new System.Drawing.Point(0, 0);
-            this.lvSizes.Name = "lvSizes";
-            this.lvSizes.Size = new System.Drawing.Size(437, 493);
-            this.lvSizes.TabIndex = 0;
-            this.lvSizes.UseCompatibleStateImageBehavior = false;
-            this.lvSizes.GridLines = true;
-            this.lvSizes.MultiSelect = false;
-            this.lvSizes.SelectedIndexChanged += new System.EventHandler(this.lvSizes_SelectedIndexChanged);
             // 
             // tableLayoutPanel2
             // 
@@ -155,6 +140,7 @@ namespace GasketWizard
             this.btCancel.TabIndex = 1;
             this.btCancel.Text = "Отмена";
             this.btCancel.UseVisualStyleBackColor = true;
+            this.btCancel.Click += new System.EventHandler(this.btCancel_Click);
             // 
             // tableLayoutPanel3
             // 
@@ -218,6 +204,18 @@ namespace GasketWizard
             this.tbSavingPath.Size = new System.Drawing.Size(489, 31);
             this.tbSavingPath.TabIndex = 1;
             // 
+            // tblSizes
+            // 
+            this.tblSizes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.tblSizes.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tblSizes.Location = new System.Drawing.Point(0, 0);
+            this.tblSizes.Name = "tblSizes";
+            this.tblSizes.RowHeadersWidth = 82;
+            tblSizes.AutoGenerateColumns = false;
+            this.tblSizes.RowTemplate.Height = 33;
+            this.tblSizes.Size = new System.Drawing.Size(437, 493);
+            this.tblSizes.TabIndex = 0;
+            // 
             // WizardForm
             // 
             this.AcceptButton = this.btOk;
@@ -243,6 +241,7 @@ namespace GasketWizard
             this.tableLayoutPanel3.PerformLayout();
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tblSizes)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -255,11 +254,11 @@ namespace GasketWizard
         private System.Windows.Forms.Button btCancel;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.PictureBox pbSketch;
-        private System.Windows.Forms.ListView lvSizes;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.CheckBox cbSave;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.Button btSelectSavingFolder;
         private System.Windows.Forms.TextBox tbSavingPath;
+        private DataGridView tblSizes;
     }
 }

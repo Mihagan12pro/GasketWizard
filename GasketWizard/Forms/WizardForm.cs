@@ -5,6 +5,7 @@ using GasketWizard.Utils.Mappers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Reflection;
@@ -36,7 +37,37 @@ namespace GasketWizard
             Text = ((DisplayNameAttribute)type.GetCustomAttribute(typeof(DisplayNameAttribute))).DisplayName;
 
             var name = partBase.GetType().Name;
-            var sizes = _sizesDb.GetAll(name);
+            var parts = _sizesDb.GetAll(name);
+
+            var idColumn = new DataGridViewTextBoxColumn()
+            {
+                Name = type.BaseType.GetProperties().First().Name,
+                HeaderText = type.BaseType.GetProperties().First().GetCustomAttribute<DisplayNameAttribute>().DisplayName,
+                DataPropertyName = type.BaseType.GetProperties().First().Name
+            };
+            tblSizes.Columns.Add(idColumn);
+
+            foreach (var prop in type.GetProperties())
+            {
+                if (prop.Name != type.BaseType.GetProperties().First().Name)
+                {
+                    tblSizes.Columns.Add(new DataGridViewTextBoxColumn
+                    {
+                        Name = prop.Name,
+                        HeaderText = prop.GetCustomAttribute<DisplayNameAttribute>().DisplayName,
+                        DataPropertyName = prop.Name
+                    });
+                }
+            }
+
+            foreach (var part in parts)
+            {
+                //tblSizes.Rows.ad
+            }
+            //BindingSource bindingSource = new BindingSource();
+            //bindingSource.DataSource = sizes;
+
+            //tblSizes.DataSource = bindingSource;
         }
 
         private void btSelectSavingFolder_Click(object sender, EventArgs e)
@@ -59,6 +90,11 @@ namespace GasketWizard
         }
 
         private void WizardForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btCancel_Click(object sender, EventArgs e)
         {
 
         }

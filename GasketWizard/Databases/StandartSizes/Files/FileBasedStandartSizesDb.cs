@@ -14,8 +14,6 @@ namespace GasketWizard.Databases.StandartSizes.Files
     {
         public IEnumerable<PartBase> GetAll(string name)
         {
-            //Dictionary<string, List<string>> keyValues = new Dictionary<string, List<string>>();
-
             Type type = Assembly.GetExecutingAssembly()
                                 .GetTypes()
                                 .FirstOrDefault(t => t.Name == name);
@@ -54,7 +52,7 @@ namespace GasketWizard.Databases.StandartSizes.Files
                         );
                 }
 
-                for(int i = 1; i < parts.Length; i++)
+                for(int i = 0; i < parts.Length; i++)
                 {
                     PartBase part = (PartBase)Activator.CreateInstance(type);
 
@@ -87,8 +85,5 @@ namespace GasketWizard.Databases.StandartSizes.Files
 
             return parts;
         }
-
-        private bool EmptyString(string s)
-            => s.Length == 0;
     }
 }
