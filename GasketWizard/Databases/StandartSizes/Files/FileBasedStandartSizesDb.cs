@@ -7,6 +7,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Xml.Linq;
 
 namespace GasketWizard.Databases.StandartSizes.Files
 {
@@ -19,6 +20,7 @@ namespace GasketWizard.Databases.StandartSizes.Files
                                 .FirstOrDefault(t => t.Name == name);
 
             PartBase[] parts = null;
+
             if (type != null)
             {
                 string group = type.GetCustomAttribute<PartGroupAttribute>().Group;
@@ -84,6 +86,63 @@ namespace GasketWizard.Databases.StandartSizes.Files
             }
 
             return parts;
+        }
+
+        public PartBase GetById(int id, string name)
+        {
+            Type type = Assembly.GetExecutingAssembly()
+                                .GetTypes()
+                                .First(t => t.Name == name);
+
+            string group = type.GetCustomAttribute<PartGroupAttribute>().Group;
+
+            DirectoryInfo rootDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent;
+
+            string path = Path.Combine(
+                rootDirectory.FullName,
+                "Databases",
+                "StandartSizes",
+                "Files",
+                group,
+                $"{name}.txt"
+            );
+
+            var header = File.ReadAllLines(path)
+                             .ElementAt(0)
+                             .Split(' ')
+                             .Where(i => i.Length > 0)
+                             .ToArray();
+
+            var line = File.ReadLines(path)
+                           .ElementAtOrDefault(id)
+                           .Split(' ')
+                           .Where(i => i.Length > 0)
+                           .ToArray();
+
+            PartBase part = (PartBase)Activator.CreateInstance(type); 
+
+            for(int i = 0; i < header.Length; i++)
+            {
+                PropertyInfo property = type.GetProperties()
+                    .First(p => p.GetCustomAttribute<DisplayNameAttribute>().DisplayName == header[i]);
+
+                object value;
+
+                if (property.PropertyType == typeof(double))
+                {
+                    double.TryParse(line[i], NumberStyles.AllowDecimalPoint, new CultureInfo("en-US"), out double result);
+
+                    value = result;
+                }
+                else if (property.PropertyType == typeof(int))
+                    value = Convert.ToInt32(line[i]);
+                else
+                    value = line[i];
+
+                property.SetValue(part, value);
+            }
+
+            return part;
         }
     }
 }

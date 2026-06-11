@@ -12,6 +12,7 @@ namespace GasketWizard
     public partial class WizardForm : Form
     {
         private IStandartSizesDb _sizesDb = new FileBasedStandartSizesDb();
+        private Type partType;
 
         public WizardForm()
         {
@@ -28,17 +29,17 @@ namespace GasketWizard
         {
             pbSketch.Image = image;
 
-            Type type = partBase.GetType();
+            partType = partBase.GetType();
 
-            Text = ((DisplayNameAttribute)type.GetCustomAttribute(typeof(DisplayNameAttribute))).DisplayName;
+            Text = ((DisplayNameAttribute)partType.GetCustomAttribute(typeof(DisplayNameAttribute))).DisplayName;
 
             var name = partBase.GetType().Name;
             var parts = _sizesDb.GetAll(name);
 
-            PropertyInfo idProperty = type.GetProperty("Id");
+            PropertyInfo idProperty = partType.GetProperty("Id");
             lvSizes.Columns.Add(idProperty.GetCustomAttribute<DisplayNameAttribute>().DisplayName);
             
-            foreach (var property in type.GetProperties())
+            foreach (var property in partType.GetProperties())
             {
                 if (property != idProperty)
                 {
@@ -50,7 +51,7 @@ namespace GasketWizard
             {
                 ListViewItem item = new ListViewItem(part.Id.ToString());
 
-                foreach (var property in type.GetProperties())
+                foreach (var property in partType.GetProperties())
                 {
                     if (property != idProperty)
                     {
@@ -90,6 +91,8 @@ namespace GasketWizard
         private void btOk_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
+
+            _sizesDb.GetById(lvSizes.SelectedIndices[0] + 1, partType.Name);
         }
     }
 }
