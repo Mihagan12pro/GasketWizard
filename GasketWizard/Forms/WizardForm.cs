@@ -1,13 +1,9 @@
 ﻿using GasketWizard.Databases.StandartSizes;
 using GasketWizard.Databases.StandartSizes.Files;
 using GasketWizard.Domain;
-using GasketWizard.Utils.Mappers;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
 
@@ -39,35 +35,31 @@ namespace GasketWizard
             var name = partBase.GetType().Name;
             var parts = _sizesDb.GetAll(name);
 
-            var idColumn = new DataGridViewTextBoxColumn()
+            PropertyInfo idProperty = type.GetProperty("Id");
+            lvSizes.Columns.Add(idProperty.GetCustomAttribute<DisplayNameAttribute>().DisplayName);
+            
+            foreach (var property in type.GetProperties())
             {
-                Name = type.BaseType.GetProperties().First().Name,
-                HeaderText = type.BaseType.GetProperties().First().GetCustomAttribute<DisplayNameAttribute>().DisplayName,
-                DataPropertyName = type.BaseType.GetProperties().First().Name
-            };
-            tblSizes.Columns.Add(idColumn);
-
-            foreach (var prop in type.GetProperties())
-            {
-                if (prop.Name != type.BaseType.GetProperties().First().Name)
+                if (property != idProperty)
                 {
-                    tblSizes.Columns.Add(new DataGridViewTextBoxColumn
-                    {
-                        Name = prop.Name,
-                        HeaderText = prop.GetCustomAttribute<DisplayNameAttribute>().DisplayName,
-                        DataPropertyName = prop.Name
-                    });
+                    lvSizes.Columns.Add(property.GetCustomAttribute<DisplayNameAttribute>().DisplayName);
                 }
             }
 
             foreach (var part in parts)
             {
-                //tblSizes.Rows.ad
-            }
-            //BindingSource bindingSource = new BindingSource();
-            //bindingSource.DataSource = sizes;
+                ListViewItem item = new ListViewItem(part.Id.ToString());
 
-            //tblSizes.DataSource = bindingSource;
+                foreach (var property in type.GetProperties())
+                {
+                    if (property != idProperty)
+                    {
+                        item.SubItems.Add(property.GetValue(part).ToString());
+                    }
+                }
+
+                lvSizes.Items.Add(item);
+            }
         }
 
         private void btSelectSavingFolder_Click(object sender, EventArgs e)
@@ -82,11 +74,7 @@ namespace GasketWizard
 
         private void lvSizes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (sender is ListView listView)
-            {
-                if (listView.SelectedIndices[0] != -1)
-                    btOk.Enabled = true;
-            }
+            btOk.Enabled = lvSizes.SelectedIndices.Count > 0;
         }
 
         private void WizardForm_Load(object sender, EventArgs e)
@@ -97,6 +85,11 @@ namespace GasketWizard
         private void btCancel_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btOk_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.OK;
         }
     }
 }
