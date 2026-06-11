@@ -2,6 +2,8 @@
 using GasketWizard.Domain;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -10,14 +12,15 @@ namespace GasketWizard.Databases.StandartSizes.Files
 {
     public class FileBasedStandartSizesDb : IStandartSizesDb
     {
-        public Dictionary<string, List<string>> GetAll(string name)
+        public IEnumerable<PartBase> GetAll(string name)
         {
-            Dictionary<string, List<string>> keyValues = new Dictionary<string, List<string>>();
+            //Dictionary<string, List<string>> keyValues = new Dictionary<string, List<string>>();
 
             Type type = Assembly.GetExecutingAssembly()
                                 .GetTypes()
                                 .FirstOrDefault(t => t.Name == name);
 
+            PartBase[] parts = null;
             if (type != null)
             {
                 string group = type.GetCustomAttribute<PartGroupAttribute>().Group;
@@ -32,38 +35,57 @@ namespace GasketWizard.Databases.StandartSizes.Files
                     group,
                     $"{name}.txt"
                 );
-                FileInfo sizesFile = new FileInfo(path);
-                
-                using (StreamReader  reader = new StreamReader(sizesFile.FullName))
+
+                var lines = File.ReadAllLines(path)
+                    .Select(l => l.Split(' ').Where(i => i.Length > 0))
+                    .ToArray();
+
+                parts = new PartBase[lines.Length - 1];
+
+                var header = lines[0]
+                    .ToArray();
+
+                PropertyInfo[] propertyInfos = new PropertyInfo[type.GetProperties().Length];
+                for(int i = 0; i < type.GetProperties().Length; i++)
                 {
-                    var headers = reader.ReadLine()
-                        .Split(' ')
-                        .ToList();
+                    propertyInfos[i] = type.GetProperties()
+                        .FirstOrDefault(
+                            p => p.GetCustomAttribute<DisplayNameAttribute>().DisplayName == header[i]
+                        );
+                }
 
-                    headers.RemoveAll(EmptyString);
+                for(int i = 1; i < parts.Length; i++)
+                {
+                    PartBase part = (PartBase)Activator.CreateInstance(type);
 
-                    foreach (string header in headers)
+                    string[] line = lines[i + 1]
+                        .ToArray();
+
+                    for(int j = 0; j < line.Length; j++)
                     {
-                        keyValues.Add(header, new List<string>());
-                    }
+                        PropertyInfo property = propertyInfos[j];
 
-                    foreach(string line in reader.ReadToEnd().Replace("\r","").Split('\n'))
-                    {
-                        var numbers = line.Split(' ').ToList();
+                        object value;
 
-                        numbers.RemoveAll(EmptyString);
-
-                        for(int i = 0; i < headers.Count; i++)
+                        if (property.PropertyType == typeof(double))
                         {
-                            keyValues[headers[i]].Add(numbers[i]);
+                            double.TryParse(line[j], NumberStyles.AllowDecimalPoint, new CultureInfo("en-US"), out double result);
+
+                            value = result;
                         }
+                        else if (property.PropertyType == typeof(int))
+                            value = Convert.ToInt32(line[j]);
+                        else
+                            value = line[j];
+
+                        property.SetValue(part, value);
                     }
 
-                    reader.Close();
+                    parts[i] = part;
                 }
             }
 
-            return keyValues;
+            return parts;
         }
 
         private bool EmptyString(string s)

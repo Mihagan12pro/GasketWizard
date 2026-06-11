@@ -5,6 +5,6 @@ namespace GasketWizard.Databases.StandartSizes
 {
     public interface IStandartSizesDb
     {
-        Dictionary<string, List<string>> GetAll(string name);
+        IEnumerable<PartBase> GetAll(string name);
     }
 }
