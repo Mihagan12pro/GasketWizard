@@ -9,6 +9,6 @@ namespace GasketWizard.Creators
 
         void Save(string path);
 
-        string GetGilePath();
+        string GetFilePath();
     }
 }

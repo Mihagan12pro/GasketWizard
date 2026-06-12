@@ -1,10 +1,14 @@
-﻿using GasketWizard.Databases.StandartSizes;
+﻿using GasketWizard.Creators;
+using GasketWizard.Databases.StandartSizes;
 using GasketWizard.Databases.StandartSizes.Files;
 using GasketWizard.Domain;
+using Kompas6API5;
 using System;
 using System.ComponentModel;
 using System.Drawing;
+using System.Linq;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace GasketWizard
@@ -92,7 +96,24 @@ namespace GasketWizard
         {
             DialogResult = DialogResult.OK;
 
-            _sizesDb.GetById(lvSizes.SelectedIndices[0] + 1, partType.Name);
+            var part = _sizesDb.GetById(lvSizes.SelectedIndices[0] + 1, partType.Name);
+            
+            KompasObject kompasObject = (KompasObject)Marshal.GetActiveObject("KOMPAS.Application.5");
+            var obj = CreatorsProvider.FindCreator(part);
+
+            Type creatorsInterface = typeof(ICreator<>);
+
+            
+
+
+            if ( obj != null && obj.GetType().GetInterfaces().First(i => i.Name.Contains("Creator")) != null)
+            {
+                var isCreated = ((ICreator<PartBase>)obj).Create(part);
+                
+                return;
+            }
+
+            kompasObject.ksMessage("Ошибка!");
         }
     }
 }

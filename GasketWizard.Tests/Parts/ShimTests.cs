@@ -5,8 +5,6 @@ using Kompas6Constants;
 using KompasAPI7;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Runtime.InteropServices;
-using System.Security.Claims;
 
 namespace GasketWizard.Tests.Parts
 {

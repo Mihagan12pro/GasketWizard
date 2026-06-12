@@ -33,6 +33,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Kompas6API5">
+      <HintPath>..\..\..\..\..\..\Program Files\ASCON\KOMPAS-3D v23 Study\SDK\Samples\CSharp\Common\Kompas6API5.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="Kompas6Constants">
       <HintPath>..\..\..\..\..\..\Program Files\ASCON\KOMPAS-3D v23 Study\SDK\Samples\CSharp\Common\Kompas6Constants.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
@@ -62,17 +66,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\ModelTypeAttributes.cs" />
     <Compile Include="Attributes\PartGroupAttribute.cs" />
     <Compile Include="Commands\HelloKompasCommand.cs" />
+    <Compile Include="Creators\CreatorsProvider.cs" />
     <Compile Include="Creators\ICreator.cs" />
     <Compile Include="Creators\Shims\IShimCreator.cs" />
-    <Compile Include="Creators\Shims\Part\ShimPartCreator.cs" />
+    <Compile Include="Creators\Shims\ShimPartCreator.cs" />
     <Compile Include="Databases\StandartSizes\Files\FileBasedStandartSizesDb.cs" />
     <Compile Include="Databases\StandartSizes\IStandartSizesDb.cs" />
     <Compile Include="Domain\AvaliableDocuments\IAvaliableAssembleDocument.cs" />
     <Compile Include="Domain\AvaliableDocuments\IAvaliablePartDocument.cs" />
     <Compile Include="Domain\PartBase.cs" />
     <Compile Include="Domain\Shims\Shim.cs" />
+    <Compile Include="Enums\ModelType.cs" />
     <Compile Include="Factory\ShimsFactory.cs" />
     <Compile Include="GasketWizardApp.cs" />
     <Compile Include="Forms\MainForm.cs">
@@ -130,6 +137,7 @@
   <ItemGroup>
     <Content Include="Databases\StandartSizes\Files\Shims\Shim.txt" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.119.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets" Condition="Exists('..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.119.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

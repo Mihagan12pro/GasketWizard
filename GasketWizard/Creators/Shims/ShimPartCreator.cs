@@ -69,7 +69,7 @@ namespace GasketWizard.Creators.Shims.Part
             return true;
         }
 
-        public string GetGilePath()
+        public string GetFilePath()
             => _path;
 
         public void Save(string path)
@@ -79,7 +79,7 @@ namespace GasketWizard.Creators.Shims.Part
             _document.SaveAs(path);
         }
 
-        internal ShimPartCreator(IPartDocument document)
+        public ShimPartCreator(IPartDocument document)
         {
             _document = document;
         }
