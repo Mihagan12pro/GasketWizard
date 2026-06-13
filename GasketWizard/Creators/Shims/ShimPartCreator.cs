@@ -4,12 +4,8 @@ using KompasAPI7;
 
 namespace GasketWizard.Creators.Shims.Part
 {
-    public class ShimPartCreator : IShimCreator
+    public class ShimPartCreator : ShimCreator
     {
-        private string _path;
-
-        private Shim _shim;
-
         private IPartDocument _document;
 
         private IPart7 _shimPart;
@@ -21,7 +17,7 @@ namespace GasketWizard.Creators.Shims.Part
             extrusion.ExtrusionType[true] = ksEndTypeEnum.etBlind;
             extrusion.Direction = ksDirectionTypeEnum.dtMiddlePlane;
             extrusion.Sketch = sketch;
-            extrusion.Depth[true] = _shim.Width;
+            extrusion.Depth[true] = partModel.Width;
 
             extrusion.Update();
 
@@ -44,13 +40,13 @@ namespace GasketWizard.Creators.Shims.Part
             ICircle internalCircle = drawingContainer.Circles.Add();
             internalCircle.Xc = 0;
             internalCircle.Yc = 0;
-            internalCircle.Radius = _shim.InternalDiameter / 2;
+            internalCircle.Radius = partModel.InternalDiameter / 2;
             internalCircle.Update();
 
             ICircle externalCircle = drawingContainer.Circles.Add();
             externalCircle.Xc = 0;
             externalCircle.Yc = 0;
-            externalCircle.Radius = _shim.ExternalDiameter / 2;
+            externalCircle.Radius = partModel.ExternalDiameter / 2;
             externalCircle.Update();
 
             sketch.EndEdit();
@@ -58,9 +54,10 @@ namespace GasketWizard.Creators.Shims.Part
             return sketch;
         }
 
-        public bool Create(Shim shim)
+        public override bool Create()
         {
-            _shim = shim;
+            base.Create();  
+
             _shimPart = _document.TopPart;
 
             ISketch sketch1 = AddSketch1();
@@ -69,17 +66,15 @@ namespace GasketWizard.Creators.Shims.Part
             return true;
         }
 
-        public string GetFilePath()
-            => _path;
-
-        public void Save(string path)
+        public override void Save(string path)
         {
-            _path = path;
+            base.Save(path);
 
+            path = $"{path}\\Шайба.m3d";
             _document.SaveAs(path);
         }
 
-        public ShimPartCreator(IPartDocument document)
+        public ShimPartCreator(Shim shim, IPartDocument document) : base(shim)
         {
             _document = document;
         }

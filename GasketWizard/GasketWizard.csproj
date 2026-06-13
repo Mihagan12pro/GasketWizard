@@ -70,8 +70,8 @@
     <Compile Include="Attributes\PartGroupAttribute.cs" />
     <Compile Include="Commands\HelloKompasCommand.cs" />
     <Compile Include="Creators\CreatorsProvider.cs" />
-    <Compile Include="Creators\ICreator.cs" />
-    <Compile Include="Creators\Shims\IShimCreator.cs" />
+    <Compile Include="Creators\Creator.cs" />
+    <Compile Include="Creators\Shims\ShimCreator.cs" />
     <Compile Include="Creators\Shims\ShimPartCreator.cs" />
     <Compile Include="Databases\StandartSizes\Files\FileBasedStandartSizesDb.cs" />
     <Compile Include="Databases\StandartSizes\IStandartSizesDb.cs" />
@@ -81,7 +81,6 @@
     <Compile Include="Domain\Shims\Shim.cs" />
     <Compile Include="Enums\ModelType.cs" />
     <Compile Include="Extensions\PropertyInfoExtensions.cs" />
-    <Compile Include="Factory\ShimsFactory.cs" />
     <Compile Include="GasketWizardApp.cs" />
     <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>

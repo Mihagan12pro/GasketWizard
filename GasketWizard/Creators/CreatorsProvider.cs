@@ -1,52 +1,47 @@
 ﻿using GasketWizard.Domain;
 using Kompas6API5;
-using Kompas6Constants3D;
 using KompasAPI7;
 using System;
-using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
-using System.Windows.Forms;
 
 namespace GasketWizard.Creators
 {
     public static class CreatorsProvider
     {
-        public static object FindCreator(PartBase part)
+        public static bool Create(PartBase part, bool save, string savePath)
         {
-            Type creatorsInterface = typeof(ICreator<>);
-
-            var targetCreators = Assembly.GetExecutingAssembly()
-                .GetTypes()
-                .Where(t => t.IsClass && t.GetInterfaces()
-                                          .Any(i => i.IsGenericType && 
-                                           i.GetGenericTypeDefinition() == creatorsInterface));
-            
             KompasObject kompas = (KompasObject)Marshal.GetActiveObject("KOMPAS.Application.5");
             IApplication application = kompas.ksGetApplication7();
 
-            if (application.ActiveDocument == null)
-            {
-                throw new NullReferenceException("No active documents!");
-            }
+            Type partType = part.GetType();
+
+            var targetCreators = Assembly.GetExecutingAssembly()
+                .GetTypes()
+                .Where(t => t.IsClass && t.BaseType.Name.Contains(partType.Name));
 
             IKompasDocument kompasDocument = application.ActiveDocument;
 
             if (kompasDocument is IPartDocument partDoc)
             {
                 var targetCreator = targetCreators.First(c => c.Name.Contains("Part"));
-                
-                return Activator.CreateInstance(targetCreator, partDoc);
+
+                var creator = (Creator)Activator.CreateInstance(targetCreator, part, partDoc);
+
+                creator.Create();
+
+                if (save)
+                    creator.Save(savePath);
             }
             else if ((kompasDocument is IAssemblyDocument assemblyDoc))
             {
                 var targetCreator = targetCreators.First(c => c.Name.Contains("Assembly"));
 
-                return Activator.CreateInstance(targetCreator, assemblyDoc);
+                var creator = Activator.CreateInstance(targetCreator, assemblyDoc);
             }
 
-            return null;
+            return false;
         }
     }
 }

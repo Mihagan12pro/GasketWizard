@@ -91,45 +91,6 @@ namespace GasketWizard
 
             SetColumnsSize();
         }
-        //public void SetParameters(
-        //    Bitmap image,
-        //    PartBase partBase)
-        //{
-        //    pbSketch.Image = image;
-
-        //    partType = partBase.GetType();
-
-        //    Text = ((DisplayNameAttribute)partType.GetCustomAttribute(typeof(DisplayNameAttribute))).DisplayName;
-
-        //    var name = partBase.GetType().Name;
-        //    var parts = _sizesDb.GetAll(name);
-
-        //    PropertyInfo idProperty = partType.GetProperty("Id");
-        //    lvSizes.Columns.Add(idProperty.GetCustomAttribute<DisplayNameAttribute>().DisplayName);
-
-        //    foreach (var property in partType.GetProperties())
-        //    {
-        //        if (property != idProperty)
-        //        {
-        //            lvSizes.Columns.Add(property.GetCustomAttribute<DisplayNameAttribute>().DisplayName);
-        //        }
-        //    }
-
-        //    foreach (var part in parts)
-        //    {
-        //        ListViewItem item = new ListViewItem(part.Id.ToString());
-
-        //        foreach (var property in partType.GetProperties())
-        //        {
-        //            if (property != idProperty)
-        //            {
-        //                item.SubItems.Add(property.GetValue(part).ToString());
-        //            }
-        //        }
-
-        //        lvSizes.Items.Add(item);
-        //    }
-        //}
 
         private void btSelectSavingFolder_Click(object sender, EventArgs e)
         {
@@ -163,21 +124,7 @@ namespace GasketWizard
             var part = _sizesDb.GetById(lvSizes.SelectedIndices[0] + 1, _partType.Name);
 
             KompasObject kompasObject = (KompasObject)Marshal.GetActiveObject("KOMPAS.Application.5");
-            var obj = CreatorsProvider.FindCreator(part);
-
-            Type creatorsInterface = typeof(ICreator<>);
-
-
-
-
-            if (obj != null && obj.GetType().GetInterfaces().First(i => i.Name.Contains("Creator")) != null)
-            {
-                var isCreated = ((ICreator<PartBase>)obj).Create(part);
-
-                return;
-            }
-
-            kompasObject.ksMessage("Ошибка!");
+            CreatorsProvider.Create(part, cbSave.Checked, tbSavingPath.Text);
         }
 
         private void WizardForm_Resize(object sender, EventArgs e)
