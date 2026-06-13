@@ -1,4 +1,6 @@
 ﻿using GasketWizard.Commands;
+using Kompas6API5;
+using KompasAPI7;
 using Microsoft.Win32;
 using System;
 using System.Runtime.InteropServices;
@@ -26,8 +28,19 @@ namespace GasketWizard
                     }
                 case 2:
                     {
+                        KompasObject kompasObject = (KompasObject)Marshal.GetActiveObject("KOMPAS.Application.5");
+                        IApplication application = kompasObject.ksGetApplication7();
+
+                        if (application.ActiveDocument == null)
+                        {
+                            kompasObject.ksMessage("Для открытия каталога создайте новый или откройте существующий документ!");
+
+                            return;
+                        }
+
                         MainForm mainForm = new MainForm();
                         mainForm.ShowDialog();
+
                         break;
                     }
             }
