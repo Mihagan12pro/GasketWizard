@@ -1,4 +1,5 @@
 ﻿using GasketWizard.Domain.Shims;
+using KompasAPI7;
 
 namespace GasketWizard.Creators.Shims
 {
@@ -20,7 +21,7 @@ namespace GasketWizard.Creators.Shims
             return true;
         }
 
-        public ShimCreator(Shim partModel) : base(partModel)
+        public ShimCreator(Shim partModel, IKompasDocument document) : base(partModel)
         {
         }
     }

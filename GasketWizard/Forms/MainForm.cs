@@ -32,9 +32,8 @@ namespace GasketWizard
                 {
                     WizardForm wizardForm = new WizardForm(partBase.GetType());
                     wizardForm.Owner = this;
-                    //wizardForm.SetParameters(MapPartWithSketch.Map(treeView.SelectedNode.Text), partBase);
 
-                    wizardForm.ShowDialog();
+                    wizardForm.Show();
                 }
             }
         }

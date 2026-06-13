@@ -74,9 +74,9 @@ namespace GasketWizard.Creators.Shims.Part
             _document.SaveAs(path);
         }
 
-        public ShimPartCreator(Shim shim, IPartDocument document) : base(shim)
+        public ShimPartCreator(Shim shim, IKompasDocument document) : base(shim, document)
         {
-            _document = document;
+            _document = (IPartDocument)document;
         }
     }
 }

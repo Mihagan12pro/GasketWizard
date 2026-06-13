@@ -2,10 +2,8 @@
 {
     public enum ModelType
     {
-        None,
-
         Part,
 
-        Assemble
+        Assembly
     }
 }
