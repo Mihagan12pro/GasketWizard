@@ -80,6 +80,7 @@
     <Compile Include="Domain\PartBase.cs" />
     <Compile Include="Domain\Shims\Shim.cs" />
     <Compile Include="Enums\ModelType.cs" />
+    <Compile Include="Extensions\PropertyInfoExtensions.cs" />
     <Compile Include="Factory\ShimsFactory.cs" />
     <Compile Include="GasketWizardApp.cs" />
     <Compile Include="Forms\MainForm.cs">
@@ -137,7 +138,9 @@
   <ItemGroup>
     <Content Include="Databases\StandartSizes\Files\Shims\Shim.txt" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Presenters\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.119.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets" Condition="Exists('..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.119.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

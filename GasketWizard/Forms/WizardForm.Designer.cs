@@ -236,6 +236,7 @@ namespace GasketWizard
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Load += new System.EventHandler(this.WizardForm_Load);
+            this.Resize += new System.EventHandler(this.WizardForm_Resize);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
