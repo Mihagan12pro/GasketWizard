@@ -24,15 +24,5 @@ namespace GasketWizard.Utils.Mappers
 
             return (PartBase)obj;
         }
-
-        public static string Map(Type partType)
-        {
-            if (partType.BaseType == typeof(PartBase))
-            {
-                return partType.GetCustomAttribute<DisplayNameAttribute>().DisplayName;
-            }
-
-            return string.Empty;
-        }
     }
 }

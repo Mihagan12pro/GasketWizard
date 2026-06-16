@@ -10,12 +10,6 @@ namespace GasketWizard
         public MainForm()
         {
             InitializeComponent();
-
-            TreeNode globalRoot = new TreeNode("Каталог");
-
-            MessageBox.Show($"{tvCatalog.Nodes}");
-
-            tvCatalog.Nodes.Add( globalRoot );
         }
 
         private void tvCatalog_AfterSelect(object sender, TreeViewEventArgs e)

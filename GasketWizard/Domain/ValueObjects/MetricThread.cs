@@ -2,7 +2,7 @@
 
 namespace GasketWizard.Domain.ValueObjects
 {
-    public class MetricThread
+    public class MetricThread : ValueObject
     {
         public double NominalDiameter { get; set; }
 
@@ -16,14 +16,9 @@ namespace GasketWizard.Domain.ValueObjects
             }
         }
 
-        public MetricThread()
-        {
-            
-        }
-
         public MetricThread(string display)
         {
-            string[]values = display.Replace("М","").Split('X');
+            string[] values = display.Replace("М", "").Split('X');
 
 
             double.TryParse(values[0], NumberStyles.AllowDecimalPoint, new CultureInfo("en-US"), out double nominalDiameter);

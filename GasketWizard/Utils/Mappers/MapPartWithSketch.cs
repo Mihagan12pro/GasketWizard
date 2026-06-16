@@ -15,6 +15,9 @@ namespace GasketWizard.Utils.Mappers
         {
             var part = MapDisplayNameWithPart.Map(nodeText);
 
+            if (part == null)
+                return Resource.Default;
+
             return Map(part);
         }
 

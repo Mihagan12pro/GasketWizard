@@ -2,7 +2,6 @@
 using GasketWizard.Domain;
 using GasketWizard.Domain.ValueObjects;
 using System.ComponentModel;
-using System.Security.Cryptography;
 
 namespace GasketWizard.Creators.Nuts
 {

@@ -80,6 +80,8 @@
     <Compile Include="Domain\Nut\ClumpingNut2.cs" />
     <Compile Include="Domain\PartBase.cs" />
     <Compile Include="Domain\Shims\Shim.cs" />
+    <Compile Include="Domain\ValueObjects\MetricThread.cs" />
+    <Compile Include="Domain\ValueObjects\ValueObject.cs" />
     <Compile Include="Enums\ModelType.cs" />
     <Compile Include="Extensions\PropertyInfoExtensions.cs" />
     <Compile Include="GasketWizardApp.cs" />
