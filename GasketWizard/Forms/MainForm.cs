@@ -1,5 +1,4 @@
 ﻿using GasketWizard.Domain;
-using GasketWizard.Utils.Mappers;
 using System;
 using System.Windows.Forms;
 
@@ -16,7 +15,7 @@ namespace GasketWizard
         {
             if (sender is TreeView treeView)
             {
-                pbSketch.Image = MapPartWithSketch.Map(treeView.SelectedNode.Text);
+                pbSketch.Image = PartBase.MapDisplayNameWithBitmap(treeView.SelectedNode.Text);
             }
         }
 
@@ -24,15 +23,15 @@ namespace GasketWizard
         {
             if (sender is TreeView treeView)
             {
-                PartBase partBase = MapDisplayNameWithPart.Map(treeView.SelectedNode.Text);
+                //PartBase partBase = MapDisplayNameWithPart.Map(treeView.SelectedNode.Text);
 
-                if (partBase != null)
-                {
-                    WizardForm wizardForm = new WizardForm(partBase.GetType());
-                    wizardForm.Owner = this;
+                //if (partBase != null)
+                //{
+                //    WizardForm wizardForm = new WizardForm(partBase.GetType());
+                //    wizardForm.Owner = this;
 
-                    wizardForm.Show();
-                }
+                //    wizardForm.Show();
+                //}
             }
         }
 

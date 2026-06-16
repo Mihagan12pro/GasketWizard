@@ -108,8 +108,6 @@
     <Compile Include="Forms\WizardForm.Designer.cs">
       <DependentUpon>WizardForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Utils\Mappers\MapDisplayNameWithPart.cs" />
-    <Compile Include="Utils\Mappers\MapPartWithSketch.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Forms\MainForm.resx">
