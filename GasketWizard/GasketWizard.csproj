@@ -75,8 +75,9 @@
     <Compile Include="Creators\Shims\ShimPartCreator.cs" />
     <Compile Include="Databases\StandartSizes\Files\FileBasedStandartSizesDb.cs" />
     <Compile Include="Databases\StandartSizes\IStandartSizesDb.cs" />
-    <Compile Include="Domain\AvaliableDocuments\IAvaliableAssembleDocument.cs" />
-    <Compile Include="Domain\AvaliableDocuments\IAvaliablePartDocument.cs" />
+    <Compile Include="Domain\Nut\ClumpingNut.cs" />
+    <Compile Include="Domain\Nut\ClumpingNut1.cs" />
+    <Compile Include="Domain\Nut\ClumpingNut2.cs" />
     <Compile Include="Domain\PartBase.cs" />
     <Compile Include="Domain\Shims\Shim.cs" />
     <Compile Include="Enums\ModelType.cs" />

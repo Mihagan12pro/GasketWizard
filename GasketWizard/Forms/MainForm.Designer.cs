@@ -28,9 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Шайба");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Каталог", new System.Windows.Forms.TreeNode[] {
-            treeNode1});
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tvCatalog = new System.Windows.Forms.TreeView();
             this.pbSketch = new System.Windows.Forms.PictureBox();
@@ -68,12 +65,6 @@
             this.tvCatalog.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tvCatalog.Location = new System.Drawing.Point(0, 0);
             this.tvCatalog.Name = "tvCatalog";
-            treeNode1.Name = "NodeShim";
-            treeNode1.Text = "Шайба";
-            treeNode2.Name = "NodeRoot";
-            treeNode2.Text = "Каталог";
-            this.tvCatalog.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode2});
             this.tvCatalog.Size = new System.Drawing.Size(384, 643);
             this.tvCatalog.TabIndex = 0;
             this.tvCatalog.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvCatalog_AfterSelect);
@@ -102,6 +93,7 @@
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Text = "Каталог сальников";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();

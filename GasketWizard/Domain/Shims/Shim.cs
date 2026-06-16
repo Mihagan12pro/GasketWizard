@@ -1,5 +1,4 @@
 ﻿using GasketWizard.Attributes;
-using GasketWizard.Domain.AvaliableDocuments;
 using GasketWizard.Enums;
 using System.ComponentModel;
 
@@ -8,7 +7,7 @@ namespace GasketWizard.Domain.Shims
     [DisplayName("Шайба")]
     [ModelTypeAttributes(ModelType.Part)]
     [PartGroup("Shims")]
-    public class Shim : PartBase, IAvaliablePartDocument
+    public class Shim : PartBase
     {
         /// <summary>
         /// d
