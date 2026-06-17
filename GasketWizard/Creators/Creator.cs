@@ -15,10 +15,20 @@ namespace GasketWizard.Creators
 
     public abstract class Creator
     {
-        public abstract bool Create();
+        protected string path;
 
-        public abstract void Save(string path);
+        public virtual string GetFilePath()
+            => path;
 
-        public abstract string GetFilePath();
+        public virtual void Save(string path)
+        {
+            this.path = path;
+        }
+
+
+        public virtual bool Create()
+        {
+            return true;
+        }
     }
 }
