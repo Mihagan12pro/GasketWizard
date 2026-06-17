@@ -2,6 +2,7 @@
 using GasketWizard.Databases.StandartSizes;
 using GasketWizard.Databases.StandartSizes.Files;
 using GasketWizard.Domain;
+using GasketWizard.Domain.ValueObjects;
 using GasketWizard.Extensions;
 using Kompas6API5;
 using System;
@@ -79,7 +80,18 @@ namespace GasketWizard
                 {
                     if (property != _idProperty)
                     {
-                        item.SubItems.Add(property.GetValue(part).ToString());
+                        if (property.PropertyType.BaseType != typeof(ValueObject))
+                        {
+                            item.SubItems.Add(property.GetValue(part).ToString());
+                        }
+                        else
+                        {
+                            var valueObjectValue = (ValueObject)property.GetValue(part);
+                            //Type valueObjType = property.PropertyType;
+                            //PropertyInfo displayProp = valueObjType.GetProperty("Display");
+
+                            item.SubItems.Add($"{valueObjectValue.Display}");
+                        }
                     }
                 }
 
@@ -111,7 +123,7 @@ namespace GasketWizard
 
         private void btCancel_Click(object sender, EventArgs e)
         {
-
+            DialogResult = DialogResult.Cancel;
         }
 
         private void btOk_Click(object sender, EventArgs e)

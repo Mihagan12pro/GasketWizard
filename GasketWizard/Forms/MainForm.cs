@@ -9,6 +9,8 @@ namespace GasketWizard
         public MainForm()
         {
             InitializeComponent();
+
+            tvCatalog.ExpandAll();
         }
 
         private void tvCatalog_AfterSelect(object sender, TreeViewEventArgs e)
@@ -30,7 +32,7 @@ namespace GasketWizard
                     WizardForm wizardForm = new WizardForm(partType);
                     wizardForm.Owner = this;
 
-                    wizardForm.Show();
+                    wizardForm.ShowDialog();
                 }
             }
         }

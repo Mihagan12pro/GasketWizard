@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using System.Windows.Forms;
 
 namespace GasketWizard.Domain.ValueObjects
 {
@@ -8,7 +9,7 @@ namespace GasketWizard.Domain.ValueObjects
 
         public double Pitch { get; set; }
 
-        public string Display
+        public override string Display
         {
             get
             {
@@ -18,8 +19,7 @@ namespace GasketWizard.Domain.ValueObjects
 
         public MetricThread(string display)
         {
-            string[] values = display.Replace("М", "").Split('X');
-
+            string[] values = display.Replace("М", "").Replace("M", "").Split('X');
 
             double.TryParse(values[0], NumberStyles.AllowDecimalPoint, new CultureInfo("en-US"), out double nominalDiameter);
             double.TryParse(values[1], NumberStyles.AllowDecimalPoint, new CultureInfo("en-US"), out double pitch);

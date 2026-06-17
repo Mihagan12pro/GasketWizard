@@ -27,15 +27,15 @@ namespace GasketWizard.Creators.Nuts
         public double WidthAcrossCorners { get; set; }
 
         /// <summary>
-        /// S
+        /// s
         /// </summary>
-        [DisplayName("S")]
+        [DisplayName("s")]
         public double WidthAcrosFlats { get; set; }
 
         /// <summary>
-        /// L
+        /// l
         /// </summary>
-        [DisplayName("L")]
+        [DisplayName("l")]
         public double Length { get; set; }  
     }
 }

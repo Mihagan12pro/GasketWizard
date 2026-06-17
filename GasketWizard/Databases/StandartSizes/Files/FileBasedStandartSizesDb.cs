@@ -1,5 +1,6 @@
 ﻿using GasketWizard.Attributes;
 using GasketWizard.Domain;
+using GasketWizard.Domain.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -7,7 +8,6 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Xml.Linq;
 
 namespace GasketWizard.Databases.StandartSizes.Files
 {
@@ -50,8 +50,8 @@ namespace GasketWizard.Databases.StandartSizes.Files
                 {
                     propertyInfos[i] = type.GetProperties()
                         .FirstOrDefault(
-                            p => p.GetCustomAttribute<DisplayNameAttribute>().DisplayName == header[i]
-                        );
+                            p => p.GetCustomAttribute<DisplayNameAttribute>() != null && p.GetCustomAttribute<DisplayNameAttribute>().DisplayName == header[i]
+                        ); 
                 }
 
                 for(int i = 0; i < parts.Length; i++)
@@ -65,20 +65,29 @@ namespace GasketWizard.Databases.StandartSizes.Files
                     {
                         PropertyInfo property = propertyInfos[j];
 
-                        object value;
-
-                        if (property.PropertyType == typeof(double))
+                        if (property != null)
                         {
-                            double.TryParse(line[j], NumberStyles.AllowDecimalPoint, new CultureInfo("en-US"), out double result);
+                            object value;
 
-                            value = result;
+                            if (property.PropertyType == typeof(double))
+                            {
+                                double.TryParse(line[j], NumberStyles.AllowDecimalPoint, new CultureInfo("en-US"), out double result);
+
+                                value = result;
+                            }
+                            else if (property.PropertyType == typeof(int))
+                                value = Convert.ToInt32(line[j]);
+                            else if (property.PropertyType.BaseType == typeof(ValueObject))
+                            {
+                                value = Activator.CreateInstance(property.PropertyType, line[j]);
+                            }
+                            else
+                            {
+                                value = line[j];
+                            }
+
+                            property.SetValue(part, value);
                         }
-                        else if (property.PropertyType == typeof(int))
-                            value = Convert.ToInt32(line[j]);
-                        else
-                            value = line[j];
-
-                        property.SetValue(part, value);
                     }
 
                     parts[i] = part;

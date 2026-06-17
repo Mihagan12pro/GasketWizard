@@ -2,5 +2,6 @@
 {
     public abstract class ValueObject
     {
+        public abstract string Display { get; }
     }
 }

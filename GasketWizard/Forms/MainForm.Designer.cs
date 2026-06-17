@@ -30,11 +30,13 @@
         {
             System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Шайба");
             System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Нажимная гайка, исполнение 1");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Гайки", new System.Windows.Forms.TreeNode[] {
-            treeNode2});
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Каталог", new System.Windows.Forms.TreeNode[] {
-            treeNode1,
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Нажимная гайка, исполнение 2");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Гайки", new System.Windows.Forms.TreeNode[] {
+            treeNode2,
             treeNode3});
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Каталог", new System.Windows.Forms.TreeNode[] {
+            treeNode1,
+            treeNode4});
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tvCatalog = new System.Windows.Forms.TreeView();
             this.pbSketch = new System.Windows.Forms.PictureBox();
@@ -76,12 +78,14 @@
             treeNode1.Text = "Шайба";
             treeNode2.Name = "NodeClumpingNut1";
             treeNode2.Text = "Нажимная гайка, исполнение 1";
-            treeNode3.Name = "NodeNuts";
-            treeNode3.Text = "Гайки";
-            treeNode4.Name = "NodeCatalog";
-            treeNode4.Text = "Каталог";
+            treeNode3.Name = "NodeClumpingNut2";
+            treeNode3.Text = "Нажимная гайка, исполнение 2";
+            treeNode4.Name = "NodeNuts";
+            treeNode4.Text = "Гайки";
+            treeNode5.Name = "NodeCatalog";
+            treeNode5.Text = "Каталог";
             this.tvCatalog.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode4});
+            treeNode5});
             this.tvCatalog.Size = new System.Drawing.Size(384, 643);
             this.tvCatalog.TabIndex = 0;
             this.tvCatalog.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvCatalog_AfterSelect);
