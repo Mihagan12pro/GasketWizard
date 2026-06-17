@@ -89,6 +89,9 @@
     <Compile Include="Commands\HelloKompasCommand.cs" />
     <Compile Include="Creators\CreatorsProvider.cs" />
     <Compile Include="Creators\Creator.cs" />
+    <Compile Include="Creators\Nuts\ClumpingNut1Creator.cs" />
+    <Compile Include="Creators\Nuts\ClumpingNut1PartCreator.cs" />
+    <Compile Include="Creators\Nuts\ClumpingNutCreator.cs" />
     <Compile Include="Creators\Shims\ShimCreator.cs" />
     <Compile Include="Creators\Shims\ShimPartCreator.cs" />
     <Compile Include="Databases\StandartSizes\Files\FileBasedStandartSizesDb.cs" />
