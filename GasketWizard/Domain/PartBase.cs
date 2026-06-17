@@ -17,6 +17,7 @@ namespace GasketWizard.Domain
             var assembly = Assembly.GetExecutingAssembly();
 
             return assembly.GetTypes()
+                .Where(t => t.GetCustomAttribute<DisplayNameAttribute>() != null)
                 .FirstOrDefault(t => t.GetCustomAttribute<DisplayNameAttribute>().DisplayName == displayName);
         }
 
@@ -24,25 +25,19 @@ namespace GasketWizard.Domain
         {
             Bitmap bitmap = null;
 
-            try
-            {
-                var assembly = Assembly.GetExecutingAssembly();
+            var assembly = Assembly.GetExecutingAssembly();
 
-                var partType = assembly.GetTypes()
-                    .FirstOrDefault(t => t.GetCustomAttribute<DisplayNameAttribute>().DisplayName == displayName);
+            var partType = assembly.GetTypes()
+                .Where(t => t.GetCustomAttribute<DisplayNameAttribute>() != null)
+                .FirstOrDefault(t => t.GetCustomAttribute<DisplayNameAttribute>().DisplayName == displayName);
 
-                if (partType == null)
-                    return Resource.Default;
+            if (partType == null)
+                return Resource.Default;
 
-                bitmap = (Bitmap)Resource.ResourceManager.GetObject(partType.Name);
+            bitmap = (Bitmap)Resource.ResourceManager.GetObject(partType.Name);
 
-                if (bitmap == null)
-                    return Resource.Default;
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show($"{ex}");
-            }
+            if (bitmap == null)
+                return Resource.Default;
 
             return bitmap;
         }

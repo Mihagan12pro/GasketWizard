@@ -23,15 +23,15 @@ namespace GasketWizard
         {
             if (sender is TreeView treeView)
             {
-                //PartBase partBase = MapDisplayNameWithPart.Map(treeView.SelectedNode.Text);
+                Type partType = PartBase.MapDisplayNameWithPartType(treeView.SelectedNode.Text);
 
-                //if (partBase != null)
-                //{
-                //    WizardForm wizardForm = new WizardForm(partBase.GetType());
-                //    wizardForm.Owner = this;
+                if (partType != null)
+                {
+                    WizardForm wizardForm = new WizardForm(partType);
+                    wizardForm.Owner = this;
 
-                //    wizardForm.Show();
-                //}
+                    wizardForm.Show();
+                }
             }
         }
 

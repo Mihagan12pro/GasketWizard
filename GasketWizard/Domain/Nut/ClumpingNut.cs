@@ -5,7 +5,7 @@ using System.ComponentModel;
 
 namespace GasketWizard.Creators.Nuts
 {
-    [PartGroup("Гайки")]
+    [PartGroup("Nuts")]
     public abstract class ClumpingNut : PartBase
     {
         /// <summary>

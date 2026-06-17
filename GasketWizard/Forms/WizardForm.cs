@@ -1,6 +1,7 @@
 ﻿using GasketWizard.Creators;
 using GasketWizard.Databases.StandartSizes;
 using GasketWizard.Databases.StandartSizes.Files;
+using GasketWizard.Domain;
 using GasketWizard.Extensions;
 using Kompas6API5;
 using System;
@@ -38,7 +39,7 @@ namespace GasketWizard
             _partsProperties = _partType.GetProperties();
             _idProperty = _partType.GetProperty("Id");
 
-            //pbSketch.Image = MapPartWithSketch.Map(_partDisplayName);
+            pbSketch.Image = PartBase.MapDisplayNameWithBitmap(_partDisplayName);
             Text = _partDisplayName;
 
             btOk.Enabled = false;
