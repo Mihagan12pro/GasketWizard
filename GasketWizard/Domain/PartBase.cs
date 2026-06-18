@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GasketWizard.Attributes;
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace GasketWizard.Domain
     public abstract class PartBase
     {
         [DisplayName("№")]
+        [SizeType()]
         public int Id { get; set; }
 
         public static Type MapDisplayNameWithPartType(string displayName)

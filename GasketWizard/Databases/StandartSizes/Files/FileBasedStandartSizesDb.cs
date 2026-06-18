@@ -1,6 +1,7 @@
 ﻿using GasketWizard.Attributes;
 using GasketWizard.Domain;
 using GasketWizard.Domain.ValueObjects;
+using GasketWizard.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,6 +9,8 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Windows.Forms;
+using SizeType = GasketWizard.Enums.SizeType;
 
 namespace GasketWizard.Databases.StandartSizes.Files
 {
@@ -45,16 +48,11 @@ namespace GasketWizard.Databases.StandartSizes.Files
                 var header = lines[0]
                     .ToArray();
 
-                PropertyInfo[] propertyInfos = new PropertyInfo[type.GetProperties().Length];
-                for(int i = 0; i < type.GetProperties().Length; i++)
-                {
-                    propertyInfos[i] = type.GetProperties()
-                        .FirstOrDefault(
-                            p => p.GetCustomAttribute<DisplayNameAttribute>() != null && p.GetCustomAttribute<DisplayNameAttribute>().DisplayName == header[i]
-                        ); 
-                }
+                PropertyInfo[] propertyInfos = type.GetProperties()
+                    .Where(p => p.GetCustomAttribute<SizeTypeAttribute>() != null && p.GetCustomAttribute<SizeTypeAttribute>().SizeType == SizeType.Standart)
+                    .ToArray();
 
-                for(int i = 0; i < parts.Length; i++)
+                for (int i = 0; i < parts.Length; i++)
                 {
                     PartBase part = (PartBase)Activator.CreateInstance(type);
 
@@ -69,25 +67,27 @@ namespace GasketWizard.Databases.StandartSizes.Files
                         {
                             object value;
 
-                            if (property.PropertyType == typeof(double))
-                            {
-                                double.TryParse(line[j], NumberStyles.AllowDecimalPoint, new CultureInfo("en-US"), out double result);
+                        //    if (property.PropertyType == typeof(double))
+                        //    {
+                        //        double.TryParse(line[j], NumberStyles.AllowDecimalPoint, new CultureInfo("en-US"), out double result);
 
-                                value = result;
-                            }
-                            else if (property.PropertyType == typeof(int))
-                                value = Convert.ToInt32(line[j]);
-                            else if (property.PropertyType.BaseType == typeof(ValueObject))
-                            {
-                                value = Activator.CreateInstance(property.PropertyType, line[j]);
-                            }
-                            else
-                            {
-                                value = line[j];
-                            }
+                        //        value = result;
+                        //    }
+                        //    else if (property.PropertyType == typeof(int))
+                        //    {
+                        //        value = Convert.ToInt32(line[j]);
+                        //    }
+                        //    else if (property.PropertyType.BaseType == typeof(ValueObject))
+                        //    {
+                        //        value = Activator.CreateInstance(property.PropertyType, line[j]);
+                        //    }
+                        //    else
+                        //    {
+                        //        value = line[j];
+                        //    }
 
-                            property.SetValue(part, value);
-                        }
+                        //    property.SetValue(part, value);
+                        //}
                     }
 
                     parts[i] = part;
@@ -96,6 +96,7 @@ namespace GasketWizard.Databases.StandartSizes.Files
 
             return parts;
         }
+           
 
         public PartBase GetById(int id, string name)
         {

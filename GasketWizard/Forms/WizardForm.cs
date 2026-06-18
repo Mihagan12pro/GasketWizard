@@ -1,4 +1,5 @@
-﻿using GasketWizard.Creators;
+﻿using GasketWizard.Attributes;
+using GasketWizard.Creators;
 using GasketWizard.Databases.StandartSizes;
 using GasketWizard.Databases.StandartSizes.Files;
 using GasketWizard.Domain;
@@ -78,7 +79,7 @@ namespace GasketWizard
 
                 foreach (var property in _partType.GetProperties())
                 {
-                    if (property != _idProperty)
+                    if (property != _idProperty && property.GetCustomAttribute<SizeTypeAttribute>() != null && property.GetCustomAttribute<SizeTypeAttribute>().SizeType == Enums.SizeType.Standart)
                     {
                         if (property.PropertyType.BaseType != typeof(ValueObject))
                         {
@@ -87,9 +88,7 @@ namespace GasketWizard
                         else
                         {
                             var valueObjectValue = (ValueObject)property.GetValue(part);
-                            //Type valueObjType = property.PropertyType;
-                            //PropertyInfo displayProp = valueObjType.GetProperty("Display");
-
+           
                             item.SubItems.Add($"{valueObjectValue.Display}");
                         }
                     }

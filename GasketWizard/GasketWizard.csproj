@@ -86,6 +86,7 @@
   <ItemGroup>
     <Compile Include="Attributes\ModelTypeAttributes.cs" />
     <Compile Include="Attributes\PartGroupAttribute.cs" />
+    <Compile Include="Attributes\SizeTypeAttribute.cs" />
     <Compile Include="Commands\HelloKompasCommand.cs" />
     <Compile Include="Creators\CreatorsProvider.cs" />
     <Compile Include="Creators\Creator.cs" />
@@ -104,6 +105,7 @@
     <Compile Include="Domain\ValueObjects\MetricThread.cs" />
     <Compile Include="Domain\ValueObjects\ValueObject.cs" />
     <Compile Include="Enums\ModelType.cs" />
+    <Compile Include="Enums\SizeType.cs" />
     <Compile Include="Extensions\PropertyInfoExtensions.cs" />
     <Compile Include="GasketWizardApp.cs" />
     <Compile Include="Forms\MainForm.cs">

@@ -63,6 +63,7 @@
     <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Parts\ClumpingNut1Tests.cs" />
     <Compile Include="Parts\ShimTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
