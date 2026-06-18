@@ -2,6 +2,7 @@
 using GasketWizard.Domain;
 using GasketWizard.Domain.ValueObjects;
 using GasketWizard.Enums;
+using GasketWizard.Extensions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -31,10 +32,10 @@ namespace GasketWizard.Databases.StandartSizes.Files
                 DirectoryInfo rootDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent;
 
                 string path = Path.Combine(
-                    rootDirectory.FullName, 
-                    "Databases", 
-                    "StandartSizes", 
-                    "Files", 
+                    rootDirectory.FullName,
+                    "Databases",
+                    "StandartSizes",
+                    "Files",
                     group,
                     $"{name}.txt"
                 );
@@ -61,33 +62,33 @@ namespace GasketWizard.Databases.StandartSizes.Files
 
                     for(int j = 0; j < line.Length; j++)
                     {
-                        PropertyInfo property = propertyInfos[j];
+                        PropertyInfo property = propertyInfos.First(p => p.GetDisplayName() == header[j]);
 
                         if (property != null)
                         {
                             object value;
 
-                        //    if (property.PropertyType == typeof(double))
-                        //    {
-                        //        double.TryParse(line[j], NumberStyles.AllowDecimalPoint, new CultureInfo("en-US"), out double result);
+                            if (property.PropertyType == typeof(double))
+                            {
+                                double.TryParse(line[j], NumberStyles.AllowDecimalPoint, new CultureInfo("en-US"), out double result);
 
-                        //        value = result;
-                        //    }
-                        //    else if (property.PropertyType == typeof(int))
-                        //    {
-                        //        value = Convert.ToInt32(line[j]);
-                        //    }
-                        //    else if (property.PropertyType.BaseType == typeof(ValueObject))
-                        //    {
-                        //        value = Activator.CreateInstance(property.PropertyType, line[j]);
-                        //    }
-                        //    else
-                        //    {
-                        //        value = line[j];
-                        //    }
+                                value = result;
+                            }
+                            else if (property.PropertyType == typeof(int))
+                            {
+                                value = Convert.ToInt32(line[j]);
+                            }
+                            else if (property.PropertyType.BaseType == typeof(ValueObject))
+                            {
+                                value = Activator.CreateInstance(property.PropertyType, line[j]);
+                            }
+                            else
+                            {
+                                value = line[j];
+                            }
 
-                        //    property.SetValue(part, value);
-                        //}
+                            property.SetValue(part, value);
+                        }
                     }
 
                     parts[i] = part;

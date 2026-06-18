@@ -32,7 +32,8 @@ namespace GasketWizard
                     WizardForm wizardForm = new WizardForm(partType);
                     wizardForm.Owner = this;
 
-                    wizardForm.ShowDialog();
+                    if (wizardForm.ShowDialog() == DialogResult.OK)
+                        DialogResult = DialogResult.OK;
                 }
             }
         }

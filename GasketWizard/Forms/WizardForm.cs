@@ -8,6 +8,7 @@ using GasketWizard.Extensions;
 using Kompas6API5;
 using System;
 using System.ComponentModel;
+using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
@@ -24,7 +25,7 @@ namespace GasketWizard
         private readonly string _partDisplayName;
 
         private readonly PropertyInfo _idProperty;
-        private readonly PropertyInfo[] _partsProperties;
+        private readonly PropertyInfo[] _partsStandartProperties, _partsCustomProperties;
 
         public WizardForm(Type partType)
         {
@@ -38,7 +39,15 @@ namespace GasketWizard
             _partClassName = _partType.Name;
             _partDisplayName = _partType.GetCustomAttribute<DisplayNameAttribute>().DisplayName;
 
-            _partsProperties = _partType.GetProperties();
+            _partsStandartProperties = _partType.GetProperties()
+                                                .Where(p => p.GetCustomAttribute<SizeTypeAttribute>().SizeType != Enums.SizeType.Custom)
+                                                .ToArray();
+
+            _partsCustomProperties = _partType.GetProperties()
+                                                .Where(p => p.GetCustomAttribute<SizeTypeAttribute>().SizeType == Enums.SizeType.Custom)
+                                                .ToArray();
+
+
             _idProperty = _partType.GetProperty("Id");
 
             pbSketch.Image = PartBase.MapDisplayNameWithBitmap(_partDisplayName);
@@ -59,9 +68,9 @@ namespace GasketWizard
             };
             lvSizes.Columns.Add(idColumn);
 
-            foreach (var property in _partType.GetProperties())
+            foreach (var property in _partsStandartProperties)
             {
-                if (property != _idProperty)
+                if (property != _idProperty && property.GetCustomAttribute<SizeTypeAttribute>().SizeType != Enums.SizeType.Custom)
                 {
                     ColumnHeader column = new ColumnHeader()
                     {
@@ -77,9 +86,9 @@ namespace GasketWizard
             {
                 ListViewItem item = new ListViewItem(part.Id.ToString());
 
-                foreach (var property in _partType.GetProperties())
+                foreach (var property in _partsStandartProperties)
                 {
-                    if (property != _idProperty && property.GetCustomAttribute<SizeTypeAttribute>() != null && property.GetCustomAttribute<SizeTypeAttribute>().SizeType == Enums.SizeType.Standart)
+                    if (property != _idProperty)
                     {
                         if (property.PropertyType.BaseType != typeof(ValueObject))
                         {
@@ -142,7 +151,7 @@ namespace GasketWizard
 
         private void SetColumnsSize()
         {
-            int width = lvSizes.Width / _partsProperties.Length;
+            int width = lvSizes.Width / _partsStandartProperties.Length;
 
             foreach(var obj in lvSizes.Columns)
             {
