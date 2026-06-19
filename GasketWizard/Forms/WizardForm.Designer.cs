@@ -30,48 +30,49 @@ namespace GasketWizard
         /// </summary>
         private void InitializeComponent()
         {
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tblForm = new System.Windows.Forms.TableLayoutPanel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.pbSketch = new System.Windows.Forms.PictureBox();
             this.lvSizes = new System.Windows.Forms.ListView();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.tblOkCancelPanel = new System.Windows.Forms.TableLayoutPanel();
             this.btOk = new System.Windows.Forms.Button();
             this.btCancel = new System.Windows.Forms.Button();
-            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.tblSavingOptions = new System.Windows.Forms.TableLayoutPanel();
             this.cbSave = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.btSelectSavingFolder = new System.Windows.Forms.Button();
             this.tbSavingPath = new System.Windows.Forms.TextBox();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.tblForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbSketch)).BeginInit();
-            this.tableLayoutPanel2.SuspendLayout();
-            this.tableLayoutPanel3.SuspendLayout();
+            this.tblOkCancelPanel.SuspendLayout();
+            this.tblSavingOptions.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tableLayoutPanel1
+            // tblForm
             // 
-            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.tblForm.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.splitContainer1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 0, 1);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(43, 19);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(10);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1018, 663);
-            this.tableLayoutPanel1.TabIndex = 0;
+            this.tblForm.ColumnCount = 1;
+            this.tblForm.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tblForm.Controls.Add(this.splitContainer1, 0, 0);
+            this.tblForm.Controls.Add(this.tblOkCancelPanel, 0, 2);
+            this.tblForm.Controls.Add(this.tblSavingOptions, 0, 1);
+            this.tblForm.Location = new System.Drawing.Point(43, 19);
+            this.tblForm.Margin = new System.Windows.Forms.Padding(10);
+            this.tblForm.Name = "tblForm";
+            this.tblForm.RowCount = 3;
+            this.tblForm.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tblForm.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tblForm.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tblForm.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tblForm.Size = new System.Drawing.Size(1018, 663);
+            this.tblForm.TabIndex = 0;
             // 
             // splitContainer1
             // 
@@ -89,7 +90,7 @@ namespace GasketWizard
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.lvSizes);
-            this.splitContainer1.Size = new System.Drawing.Size(1012, 497);
+            this.splitContainer1.Size = new System.Drawing.Size(1012, 535);
             this.splitContainer1.SplitterDistance = 561;
             this.splitContainer1.SplitterWidth = 20;
             this.splitContainer1.TabIndex = 1;
@@ -99,7 +100,7 @@ namespace GasketWizard
             this.pbSketch.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbSketch.Location = new System.Drawing.Point(0, 0);
             this.pbSketch.Name = "pbSketch";
-            this.pbSketch.Size = new System.Drawing.Size(557, 493);
+            this.pbSketch.Size = new System.Drawing.Size(557, 531);
             this.pbSketch.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbSketch.TabIndex = 0;
             this.pbSketch.TabStop = false;
@@ -116,26 +117,26 @@ namespace GasketWizard
             this.lvSizes.Location = new System.Drawing.Point(0, 0);
             this.lvSizes.MultiSelect = false;
             this.lvSizes.Name = "lvSizes";
-            this.lvSizes.Size = new System.Drawing.Size(427, 493);
+            this.lvSizes.Size = new System.Drawing.Size(427, 531);
             this.lvSizes.TabIndex = 0;
             this.lvSizes.UseCompatibleStateImageBehavior = false;
             this.lvSizes.View = System.Windows.Forms.View.Details;
             this.lvSizes.SelectedIndexChanged += new System.EventHandler(this.lvSizes_SelectedIndexChanged);
             // 
-            // tableLayoutPanel2
+            // tblOkCancelPanel
             // 
-            this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel2.ColumnCount = 2;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Controls.Add(this.btOk, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.btCancel, 0, 0);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(646, 604);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 1;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(369, 56);
-            this.tableLayoutPanel2.TabIndex = 0;
+            this.tblOkCancelPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.tblOkCancelPanel.ColumnCount = 2;
+            this.tblOkCancelPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tblOkCancelPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tblOkCancelPanel.Controls.Add(this.btOk, 1, 0);
+            this.tblOkCancelPanel.Controls.Add(this.btCancel, 0, 0);
+            this.tblOkCancelPanel.Location = new System.Drawing.Point(646, 604);
+            this.tblOkCancelPanel.Name = "tblOkCancelPanel";
+            this.tblOkCancelPanel.RowCount = 1;
+            this.tblOkCancelPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tblOkCancelPanel.Size = new System.Drawing.Size(369, 56);
+            this.tblOkCancelPanel.TabIndex = 0;
             // 
             // btOk
             // 
@@ -160,20 +161,20 @@ namespace GasketWizard
             this.btCancel.UseVisualStyleBackColor = true;
             this.btCancel.Click += new System.EventHandler(this.btCancel_Click);
             // 
-            // tableLayoutPanel3
+            // tblSavingOptions
             // 
-            this.tableLayoutPanel3.ColumnCount = 2;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel3.Controls.Add(this.cbSave, 1, 0);
-            this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel4, 0, 0);
-            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 506);
-            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 1;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(1012, 54);
-            this.tableLayoutPanel3.TabIndex = 2;
+            this.tblSavingOptions.ColumnCount = 2;
+            this.tblSavingOptions.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tblSavingOptions.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tblSavingOptions.Controls.Add(this.cbSave, 1, 0);
+            this.tblSavingOptions.Controls.Add(this.tableLayoutPanel4, 0, 0);
+            this.tblSavingOptions.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tblSavingOptions.Location = new System.Drawing.Point(3, 544);
+            this.tblSavingOptions.Name = "tblSavingOptions";
+            this.tblSavingOptions.RowCount = 1;
+            this.tblSavingOptions.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tblSavingOptions.Size = new System.Drawing.Size(1012, 54);
+            this.tblSavingOptions.TabIndex = 2;
             // 
             // cbSave
             // 
@@ -229,7 +230,7 @@ namespace GasketWizard
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btCancel;
             this.ClientSize = new System.Drawing.Size(1091, 711);
-            this.Controls.Add(this.tableLayoutPanel1);
+            this.Controls.Add(this.tblForm);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "WizardForm";
@@ -237,15 +238,15 @@ namespace GasketWizard
             this.ShowInTaskbar = false;
             this.Load += new System.EventHandler(this.WizardForm_Load);
             this.Resize += new System.EventHandler(this.WizardForm_Resize);
-            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tblForm.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbSketch)).EndInit();
-            this.tableLayoutPanel2.ResumeLayout(false);
-            this.tableLayoutPanel3.ResumeLayout(false);
-            this.tableLayoutPanel3.PerformLayout();
+            this.tblOkCancelPanel.ResumeLayout(false);
+            this.tblSavingOptions.ResumeLayout(false);
+            this.tblSavingOptions.PerformLayout();
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
             this.ResumeLayout(false);
@@ -254,17 +255,17 @@ namespace GasketWizard
 
         #endregion
 
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.Button btOk;
-        private System.Windows.Forms.Button btCancel;
+        private System.Windows.Forms.TableLayoutPanel tblForm;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.PictureBox pbSketch;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private System.Windows.Forms.TableLayoutPanel tblSavingOptions;
         private System.Windows.Forms.CheckBox cbSave;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.Button btSelectSavingFolder;
         private System.Windows.Forms.TextBox tbSavingPath;
         private ListView lvSizes;
+        private TableLayoutPanel tblOkCancelPanel;
+        private Button btOk;
+        private Button btCancel;
     }
 }

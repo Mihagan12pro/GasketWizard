@@ -5,6 +5,7 @@ using GasketWizard.Databases.StandartSizes.Files;
 using GasketWizard.Domain;
 using GasketWizard.Domain.ValueObjects;
 using GasketWizard.Extensions;
+using GasketWizard.Forms;
 using Kompas6API5;
 using System;
 using System.ComponentModel;
@@ -46,8 +47,6 @@ namespace GasketWizard
             _partsCustomProperties = _partType.GetProperties()
                                                 .Where(p => p.GetCustomAttribute<SizeTypeAttribute>().SizeType == Enums.SizeType.Custom)
                                                 .ToArray();
-
-
             _idProperty = _partType.GetProperty("Id");
 
             pbSketch.Image = PartBase.MapDisplayNameWithBitmap(_partDisplayName);
@@ -136,12 +135,22 @@ namespace GasketWizard
 
         private void btOk_Click(object sender, EventArgs e)
         {
-            DialogResult = DialogResult.OK;
-
             var part = _sizesDb.GetById(lvSizes.SelectedIndices[0] + 1, _partType.Name);
+
+            if (_partsCustomProperties.Length > 0)
+            {
+                WizardCustomSizesForm wizardCustomSizesForm = new WizardCustomSizesForm();
+                wizardCustomSizesForm.Part = part;
+
+                if (wizardCustomSizesForm.ShowDialog() == DialogResult.Cancel)
+                {
+                    return;
+                }
+            }
 
             KompasObject kompasObject = (KompasObject)Marshal.GetActiveObject("KOMPAS.Application.5");
             CreatorsProvider.Create(part, cbSave.Checked, tbSavingPath.Text);
+            DialogResult = DialogResult.OK;
         }
 
         private void WizardForm_Resize(object sender, EventArgs e)
