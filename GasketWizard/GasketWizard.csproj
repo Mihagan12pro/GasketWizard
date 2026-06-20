@@ -90,6 +90,7 @@
     <Compile Include="Domain\ValueObjects\ValueObject.cs" />
     <Compile Include="Enums\ModelType.cs" />
     <Compile Include="Enums\SizeType.cs" />
+    <Compile Include="Extensions\ArrayExtensions.cs" />
     <Compile Include="Extensions\PropertyInfoExtensions.cs" />
     <Compile Include="Forms\WizardCustomSizesForm.cs">
       <SubType>Form</SubType>

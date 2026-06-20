@@ -48,6 +48,14 @@ namespace GasketWizard.Domain
             return bitmap;
         }
 
+        public static void SetValues(PartBase part, string[] line, string[] headers)
+        {
+            for (int i = 0; i < headers.Length; i++)
+            {
+                PartBase.SetValue(part, line[i], headers[i]);
+            }
+        }
+
         public static void SetValue(PartBase part, string lineValue, string header)
         {
             PropertyInfo property = part.GetType()
