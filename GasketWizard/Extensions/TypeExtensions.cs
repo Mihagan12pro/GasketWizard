@@ -7,6 +7,6 @@ namespace GasketWizard.Extensions
     public static class TypeExtensions
     {
         public static string GetDisplayName(this Type type)
-           => type.GetCustomAttribute<DisplayNameAttribute>().DisplayName;
+            => type.GetCustomAttribute<DisplayNameAttribute>().DisplayName;
     }
 }

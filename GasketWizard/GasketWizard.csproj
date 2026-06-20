@@ -92,6 +92,7 @@
     <Compile Include="Enums\SizeType.cs" />
     <Compile Include="Extensions\ArrayExtensions.cs" />
     <Compile Include="Extensions\PropertyInfoExtensions.cs" />
+    <Compile Include="Extensions\TypeExtensions.cs" />
     <Compile Include="Forms\WizardCustomSizesForm.cs">
       <SubType>Form</SubType>
     </Compile>
