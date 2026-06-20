@@ -108,23 +108,7 @@ namespace GasketWizard.Databases.StandartSizes.Files
 
             for(int i = 0; i < header.Length; i++)
             {
-                PropertyInfo property = type.GetProperties()
-                    .First(p => p.GetCustomAttribute<DisplayNameAttribute>().DisplayName == header[i]);
-
-                object value;
-
-                if (property.PropertyType == typeof(double))
-                {
-                    double.TryParse(line[i], NumberStyles.AllowDecimalPoint, new CultureInfo("en-US"), out double result);
-
-                    value = result;
-                }
-                else if (property.PropertyType == typeof(int))
-                    value = Convert.ToInt32(line[i]);
-                else
-                    value = line[i];
-
-                property.SetValue(part, value);
+                PartBase.SetValue(part, line[i], header[i]);
             }
 
             return part;
