@@ -1,9 +1,14 @@
 ﻿using GasketWizard.Attributes;
+using GasketWizard.Domain.ValueObjects;
+using GasketWizard.Extensions;
 using System;
 using System.ComponentModel;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 
 namespace GasketWizard.Domain
 {
@@ -41,6 +46,39 @@ namespace GasketWizard.Domain
                 return Resource.Default;
 
             return bitmap;
+        }
+
+        public static void SetValue(PartBase part, string lineValue, string header)
+        {
+            PropertyInfo property = part.GetType()
+                                        .GetProperties()
+                                        .First(p => p.GetDisplayName() == header);
+
+            if (property != null)
+            {
+                object value;
+
+                if (property.PropertyType == typeof(double))
+                {
+                    double.TryParse(lineValue, NumberStyles.AllowDecimalPoint, new CultureInfo("en-US"), out double result);
+
+                    value = result;
+                }
+                else if (property.PropertyType == typeof(int))
+                {
+                    value = Convert.ToInt32(lineValue);
+                }
+                else if (property.PropertyType.BaseType == typeof(ValueObject))
+                {
+                    value = Activator.CreateInstance(property.PropertyType, lineValue);
+                }
+                else
+                {
+                    value = lineValue;
+                }
+
+                property.SetValue(part, value);
+            }
         }
     }
 }
