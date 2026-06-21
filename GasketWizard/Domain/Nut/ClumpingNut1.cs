@@ -8,6 +8,14 @@ namespace GasketWizard.Creators.Nuts
     {
         [SizeType(Enums.SizeType.Custom)]
         [DisplayName("Высота шестиугольника")]
-        public double HexagonHeight { get; set; }   
+        public double HexagonHeight { get; set; }
+
+        [SizeType(Enums.SizeType.Custom)]
+        [DisplayName("Длина резьбы")]
+        public double ThreadLength { get; set; }
+
+        [SizeType(Enums.SizeType.Custom)]
+        [DisplayName("Длина фаски")]
+        public double ChamferLength { get; set; }
     }
 }

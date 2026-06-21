@@ -33,6 +33,7 @@ namespace GasketWizard.Forms
                 foreach (PropertyInfo p in _customSizes)
                 {
                     TableLayoutPanel tbl = new TableLayoutPanel();
+                    tbl.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
 
                     tbl.Controls.Add(new Label() { Text = p.GetDisplayName()}, 0, 0);
                     tbl.Controls.Add(new TextBox() { }, 0, 1);
@@ -52,6 +53,11 @@ namespace GasketWizard.Forms
         private void btOk_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
+        }
+
+        private void btCancel_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
