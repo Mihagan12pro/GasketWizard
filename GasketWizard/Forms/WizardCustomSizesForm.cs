@@ -2,7 +2,6 @@
 using GasketWizard.Domain;
 using GasketWizard.Extensions;
 using System;
-using System.Drawing;
 using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
@@ -23,6 +22,8 @@ namespace GasketWizard.Forms
             }
             set
             {
+                _part = value;
+
                 Type type = value.GetType();
 
                 Text = type.GetDisplayName();
@@ -42,9 +43,10 @@ namespace GasketWizard.Forms
                     tbl.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
 
                     string name = p.GetDisplayName();
+                    string propertyValue = $"{p.GetValue(Part)}";
 
                     tbl.Controls.Add(new Label() { Text = name, AutoSize = true}, 0, 0);
-                    tbl.Controls.Add(new TextBox() { }, 0, 1);
+                    tbl.Controls.Add(new TextBox() { Tag = new TextBoxTag( p, _part, p.PropertyType), Text = $"{propertyValue}" }, 0, 1);
 
                     maxLength = Math.Max(tbl.Size.Width, maxLength);
 
@@ -60,12 +62,49 @@ namespace GasketWizard.Forms
                         foreach(var c2 in tbl.Controls)
                         {
                             if (c2 is TextBox tb)
+                            {
                                 tb.Width = maxLength;
+                                tb.TextChanged += Tb_TextChanged;
+                            }
                         }
                     }
                 }
+            }
+        }
 
-                _part = value;
+        private void Tb_TextChanged(object sender, EventArgs e)
+        {
+            if (sender is TextBox tb && tb.Tag is TextBoxTag tag)
+            {
+                bool isValid = true;
+
+                object value;
+
+                if (tag.PropertyType == typeof(double))
+                {
+                    isValid = double.TryParse(tb.Text, out double result);
+
+                    value = result;
+                }
+                else //int
+                {
+                    isValid = int.TryParse(tb.Text, out int result);
+
+                    value = result;
+                }
+
+                if (!isValid)
+                {
+                    ToolTip toolTip = new ToolTip();
+                    toolTip.IsBalloon = true;
+                    toolTip.ToolTipTitle = "Ошибка!";
+                    toolTip.ToolTipIcon = ToolTipIcon.Error;
+                    toolTip.Show("Ввод некорректных данных", tb, tb.Location.X, tb.Location.Y, 1000);
+
+                    return;
+                }
+
+                tag.Property.SetValue(Part, value);
             }
         }
 
@@ -82,6 +121,25 @@ namespace GasketWizard.Forms
         private void btCancel_Click(object sender, EventArgs e)
         {
 
+        }
+    }
+
+    class TextBoxTag
+    {
+        public PropertyInfo Property { get; private set; }
+
+        public PartBase Part { get; private set; }
+
+        public Type PropertyType { get; private set; }
+
+        public TextBoxTag(
+            PropertyInfo property,
+            PartBase part,
+            Type propertyType)
+        {
+            Part = part;
+            Property = property;
+            PropertyType = propertyType;
         }
     }
 }

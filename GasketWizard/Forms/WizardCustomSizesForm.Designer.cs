@@ -159,7 +159,7 @@
             this.groupBox1.Size = new System.Drawing.Size(308, 312);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Ошибки";
+            this.groupBox1.Text = "Размеры";
             // 
             // tblSizes
             // 
