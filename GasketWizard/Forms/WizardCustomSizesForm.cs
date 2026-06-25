@@ -2,6 +2,7 @@
 using GasketWizard.Domain;
 using GasketWizard.Extensions;
 using System;
+using System.Drawing;
 using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
@@ -30,15 +31,38 @@ namespace GasketWizard.Forms
                                    .Where(p => p.GetCustomAttribute<SizeTypeAttribute>().SizeType == Enums.SizeType.Custom)
                                    .ToArray();
 
+                int row = 0;
+                int maxLength = 20;
+
                 foreach (PropertyInfo p in _customSizes)
                 {
                     TableLayoutPanel tbl = new TableLayoutPanel();
+                    tbl.AutoSize = true;
+
                     tbl.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
 
-                    tbl.Controls.Add(new Label() { Text = p.GetDisplayName()}, 0, 0);
+                    string name = p.GetDisplayName();
+
+                    tbl.Controls.Add(new Label() { Text = name, AutoSize = true}, 0, 0);
                     tbl.Controls.Add(new TextBox() { }, 0, 1);
 
-                    flpSizes.Controls.Add(tbl);
+                    maxLength = Math.Max(tbl.Size.Width, maxLength);
+
+                    tblSizes.Controls.Add(tbl, 0, row);
+
+                    row++;
+                }
+
+                foreach(var c in tblSizes.Controls)
+                {
+                    if (c is TableLayoutPanel tbl)
+                    {
+                        foreach(var c2 in tbl.Controls)
+                        {
+                            if (c2 is TextBox tb)
+                                tb.Width = maxLength;
+                        }
+                    }
                 }
 
                 _part = value;
