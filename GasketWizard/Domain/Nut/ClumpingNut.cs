@@ -42,6 +42,6 @@ namespace GasketWizard.Creators.Nuts
         /// </summary>
         [DisplayName("l")]
         [SizeType()]
-        public double Length { get; set; }  
+        public double Length { get; set; }
     }
 }

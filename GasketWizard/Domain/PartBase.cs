@@ -2,17 +2,20 @@
 using GasketWizard.Domain.ValueObjects;
 using GasketWizard.Extensions;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
 
 namespace GasketWizard.Domain
 {
-    public abstract class PartBase
+    /// <summary>
+    /// Describes part parameters and provides validation
+    /// </summary>
+    public abstract class PartBase : IValidatableObject
     {
         [DisplayName("№")]
         [SizeType()]
@@ -88,5 +91,8 @@ namespace GasketWizard.Domain
                 property.SetValue(part, value);
             }
         }
+
+        public virtual IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+            => new List<ValidationResult>();    
     }
 }

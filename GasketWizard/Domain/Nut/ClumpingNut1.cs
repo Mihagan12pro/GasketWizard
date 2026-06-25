@@ -17,5 +17,11 @@ namespace GasketWizard.Creators.Nuts
         [SizeType(Enums.SizeType.Custom)]
         [DisplayName("Длина фаски")]
         public double ChamferLength { get; set; }
+
+
+        public override bool Equals(object obj)
+        {
+            return base.Equals(obj);
+        }
     }
 }
