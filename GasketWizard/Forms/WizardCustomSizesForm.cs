@@ -99,7 +99,7 @@ namespace GasketWizard.Forms
                     toolTip.IsBalloon = true;
                     toolTip.ToolTipTitle = "Ошибка!";
                     toolTip.ToolTipIcon = ToolTipIcon.Error;
-                    toolTip.Show("Ввод некорректных данных", tb, tb.Location.X, tb.Location.Y, 1000);
+                    toolTip.Show("Ввод некорректных данных", tb, 0, -90, 1000);
 
                     return;
                 }
