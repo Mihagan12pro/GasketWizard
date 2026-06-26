@@ -1,5 +1,8 @@
 ﻿using GasketWizard.Attributes;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.Xml.Linq;
 
 namespace GasketWizard.Creators.Nuts
 {
@@ -19,9 +22,26 @@ namespace GasketWizard.Creators.Nuts
         public double ChamferLength { get; set; }
 
 
-        public override bool Equals(object obj)
+        public override IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
-            return base.Equals(obj);
+            List<ValidationResult> errors = new List<ValidationResult>();
+
+            if (HexagonHeight <= 0)
+            {
+                errors.Add(new ValidationResult("Высота шестиугольника гайки должна быть больше нуля!"));
+            }
+
+            if (ThreadLength <= 0)
+            {
+                errors.Add(new ValidationResult("Длина резьбы гайки должна быть больше нуля!"));
+            }
+
+            if (ChamferLength <= 0)
+            {
+                errors.Add(new ValidationResult("Длина фаски должна быть больше нуля!"));
+            }
+
+            return errors;
         }
     }
 }

@@ -21,6 +21,24 @@ namespace GasketWizard.Domain
         [SizeType()]
         public int Id { get; set; }
 
+        public bool HasErrors
+        {
+            get
+            {
+                _errors.Clear();
+
+                var results = new List<ValidationResult>();
+                var context = new ValidationContext(this);
+
+                _errors.AddRange(Validate(context).Select(e => e.ErrorMessage));
+
+                return _errors.Count() > 0;
+            }
+        }
+
+        public IReadOnlyList<string> Errors
+            => _errors.AsReadOnly();
+
         public static Type MapDisplayNameWithPartType(string displayName)
         {
             var assembly = Assembly.GetExecutingAssembly();
@@ -93,6 +111,12 @@ namespace GasketWizard.Domain
         }
 
         public virtual IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-            => new List<ValidationResult>();    
+        {
+            _errors.Clear();
+
+            return new List<ValidationResult>();
+        }
+
+        private List<string> _errors = new List<string>();
     }
 }

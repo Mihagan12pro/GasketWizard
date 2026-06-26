@@ -41,11 +41,11 @@ namespace GasketWizard
             _partDisplayName = _partType.GetCustomAttribute<DisplayNameAttribute>().DisplayName;
 
             _partsStandartProperties = _partType.GetProperties()
-                                                .Where(p => p.GetCustomAttribute<SizeTypeAttribute>().SizeType != Enums.SizeType.Custom)
+                                                .Where(p => p.GetCustomAttribute<SizeTypeAttribute>()!= null && p.GetCustomAttribute<SizeTypeAttribute>().SizeType != Enums.SizeType.Custom)
                                                 .ToArray();
 
             _partsCustomProperties = _partType.GetProperties()
-                                                .Where(p => p.GetCustomAttribute<SizeTypeAttribute>().SizeType == Enums.SizeType.Custom)
+                                                .Where(p => p.GetCustomAttribute<SizeTypeAttribute>() != null && p.GetCustomAttribute<SizeTypeAttribute>().SizeType == Enums.SizeType.Custom)
                                                 .ToArray();
             _idProperty = _partType.GetProperty("Id");
 

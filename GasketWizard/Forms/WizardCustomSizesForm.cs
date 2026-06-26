@@ -29,7 +29,7 @@ namespace GasketWizard.Forms
                 Text = type.GetDisplayName();
 
                 _customSizes = type.GetProperties()
-                                   .Where(p => p.GetCustomAttribute<SizeTypeAttribute>().SizeType == Enums.SizeType.Custom)
+                                   .Where(p => p.GetCustomAttribute<SizeTypeAttribute>() != null && p.GetCustomAttribute<SizeTypeAttribute>().SizeType == Enums.SizeType.Custom)
                                    .ToArray();
 
                 int row = 0;
@@ -76,6 +76,8 @@ namespace GasketWizard.Forms
         {
             if (sender is TextBox tb && tb.Tag is TextBoxTag tag)
             {
+                flpIssues.Controls.Clear();
+
                 bool isValid = true;
 
                 object value;
@@ -95,6 +97,8 @@ namespace GasketWizard.Forms
 
                 if (!isValid)
                 {
+                    btOk.Enabled = isValid;
+
                     ToolTip toolTip = new ToolTip();
                     toolTip.IsBalloon = true;
                     toolTip.ToolTipTitle = "Ошибка!";
@@ -105,6 +109,13 @@ namespace GasketWizard.Forms
                 }
 
                 tag.Property.SetValue(Part, value);
+
+                btOk.Enabled = (Part.HasErrors == false);
+
+                foreach(string error in Part.Errors)
+                {
+                    flpIssues.Controls.Add(new Label() { Text = error, AutoSize = true });
+                }
             }
         }
 
