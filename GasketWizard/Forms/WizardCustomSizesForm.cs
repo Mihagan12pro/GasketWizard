@@ -131,7 +131,18 @@ namespace GasketWizard.Forms
 
         private void btCancel_Click(object sender, EventArgs e)
         {
+            
+        }
 
+        private void WizardCustomSizesForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (btOk.Enabled && DialogResult != DialogResult.OK)
+            {
+                DialogResult result = MessageBox.Show("Вы уверены, что хотите закрыть данное окно?\nДанные, которые вы вводили, будут стерты.", "Вы уверены?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result != DialogResult.Yes) 
+                    e.Cancel = true;
+            }
         }
     }
 
