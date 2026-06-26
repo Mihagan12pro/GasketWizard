@@ -15,27 +15,31 @@ namespace GasketWizard
             InitializeComponent();
 
             Assembly assembly = Assembly.GetExecutingAssembly();
-            var typesGroups = assembly.GetTypes()
-                                .Where(t => t.GetCustomAttribute<PartGroupAttribute>() != null && !t.IsAbstract)
-                                .GroupBy(t => t.GetCustomAttribute<PartGroupAttribute>());
+            var partTypes = assembly.GetTypes()
+                                .Where(t => t.GetCustomAttribute<PartGroupAttribute>() != null && !t.IsAbstract);
 
-            TreeNode root = new TreeNode() { Text = "Каталог" };
+            var groups = partTypes.Select(t => t.GetCustomAttribute<PartGroupAttribute>().LocalizedGroup)
+                                  .Distinct();
 
-            foreach(var t in typesGroups)
+            TreeNode rootNode = new TreeNode() { Text = "Каталог" };
+
+            foreach ( var group in groups )
             {
-                TreeNode groupNode = new TreeNode() { Text = t.Key.LocalizedGroup};
+                TreeNode groupNode = new TreeNode() { Text = group };
 
-                foreach(var p in t)
+                var parts = partTypes.Where(t => t.GetCustomAttribute<PartGroupAttribute>().LocalizedGroup == group);
+
+                foreach(var part in parts)
                 {
-                    TreeNode partNode = new TreeNode() { Text = p.GetDisplayName() };
+                    TreeNode partNode = new TreeNode() { Text = part.GetDisplayName() };
 
                     groupNode.Nodes.Add(partNode);
                 }
 
-                root.Nodes.Add(groupNode);
+                rootNode.Nodes.Add(groupNode);
             }
 
-            tvCatalog.Nodes.Add(root);
+            tvCatalog.Nodes.Add(rootNode);
 
             tvCatalog.ExpandAll();
         }
