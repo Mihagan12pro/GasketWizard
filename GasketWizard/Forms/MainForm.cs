@@ -1,5 +1,9 @@
-﻿using GasketWizard.Domain;
+﻿using GasketWizard.Attributes;
+using GasketWizard.Domain;
+using GasketWizard.Extensions;
 using System;
+using System.Linq;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace GasketWizard
@@ -9,6 +13,29 @@ namespace GasketWizard
         public MainForm()
         {
             InitializeComponent();
+
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            var typesGroups = assembly.GetTypes()
+                                .Where(t => t.GetCustomAttribute<PartGroupAttribute>() != null && !t.IsAbstract)
+                                .GroupBy(t => t.GetCustomAttribute<PartGroupAttribute>());
+
+            TreeNode root = new TreeNode() { Text = "Каталог" };
+
+            foreach(var t in typesGroups)
+            {
+                TreeNode groupNode = new TreeNode() { Text = t.Key.LocalizedGroup};
+
+                foreach(var p in t)
+                {
+                    TreeNode partNode = new TreeNode() { Text = p.GetDisplayName() };
+
+                    groupNode.Nodes.Add(partNode);
+                }
+
+                root.Nodes.Add(groupNode);
+            }
+
+            tvCatalog.Nodes.Add(root);
 
             tvCatalog.ExpandAll();
         }

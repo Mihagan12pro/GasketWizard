@@ -1,15 +1,9 @@
 ﻿using GasketWizard.Creators.Nuts;
-using GasketWizard.Creators.Shims.Part;
-using GasketWizard.Domain.Shims;
 using GasketWizard.Domain.ValueObjects;
 using Kompas6Constants;
 using KompasAPI7;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GasketWizard.Tests.Parts
 {
