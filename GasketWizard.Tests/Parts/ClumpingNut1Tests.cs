@@ -14,6 +14,16 @@ namespace GasketWizard.Tests.Parts
         {
             NominalShaftDiameter = 9,
 
+            HexagonHeight = 5,
+
+            ThreadLength = 10,
+
+            ChamferLength = 2,
+
+            BigCylinderDiameter = 15,
+
+            LessCylinderDiameter = 10,
+
             WidthAcrossCorners = 21.9,
 
             WidthAcrosFlats = 19,

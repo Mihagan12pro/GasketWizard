@@ -30,7 +30,7 @@
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.tblSizes = new System.Windows.Forms.TableLayoutPanel();
+            this.flpSizes = new System.Windows.Forms.FlowLayoutPanel();
             this.dbIssues = new System.Windows.Forms.GroupBox();
             this.flpIssues = new System.Windows.Forms.FlowLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -65,7 +65,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.dbIssues);
             this.splitContainer1.Size = new System.Drawing.Size(782, 386);
-            this.splitContainer1.SplitterDistance = 391;
+            this.splitContainer1.SplitterDistance = 393;
             this.splitContainer1.SplitterWidth = 10;
             this.splitContainer1.TabIndex = 1;
             // 
@@ -74,30 +74,27 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.tblSizes);
-            this.groupBox1.Location = new System.Drawing.Point(41, 23);
+            this.groupBox1.Controls.Add(this.flpSizes);
+            this.groupBox1.Location = new System.Drawing.Point(41, 18);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(308, 339);
+            this.groupBox1.Size = new System.Drawing.Size(310, 344);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Размеры";
             // 
-            // tblSizes
+            // flpSizes
             // 
-            this.tblSizes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.flpSizes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tblSizes.ColumnCount = 1;
-            this.tblSizes.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tblSizes.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tblSizes.Location = new System.Drawing.Point(18, 32);
-            this.tblSizes.Margin = new System.Windows.Forms.Padding(5);
-            this.tblSizes.Name = "tblSizes";
-            this.tblSizes.RowCount = 1;
-            this.tblSizes.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tblSizes.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tblSizes.Size = new System.Drawing.Size(268, 279);
-            this.tblSizes.TabIndex = 0;
+            this.flpSizes.AutoScroll = true;
+            this.flpSizes.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flpSizes.Location = new System.Drawing.Point(20, 29);
+            this.flpSizes.Margin = new System.Windows.Forms.Padding(10);
+            this.flpSizes.Name = "flpSizes";
+            this.flpSizes.Size = new System.Drawing.Size(271, 298);
+            this.flpSizes.TabIndex = 0;
+            this.flpSizes.WrapContents = false;
             // 
             // dbIssues
             // 
@@ -107,7 +104,7 @@
             this.dbIssues.Controls.Add(this.flpIssues);
             this.dbIssues.Location = new System.Drawing.Point(24, 18);
             this.dbIssues.Name = "dbIssues";
-            this.dbIssues.Size = new System.Drawing.Size(290, 339);
+            this.dbIssues.Size = new System.Drawing.Size(270, 344);
             this.dbIssues.TabIndex = 1;
             this.dbIssues.TabStop = false;
             this.dbIssues.Text = "Ошибки";
@@ -123,7 +120,7 @@
             this.flpIssues.Location = new System.Drawing.Point(20, 34);
             this.flpIssues.Margin = new System.Windows.Forms.Padding(5);
             this.flpIssues.Name = "flpIssues";
-            this.flpIssues.Size = new System.Drawing.Size(250, 279);
+            this.flpIssues.Size = new System.Drawing.Size(232, 298);
             this.flpIssues.TabIndex = 1;
             // 
             // tableLayoutPanel2
@@ -187,16 +184,19 @@
             this.AcceptButton = this.btOk;
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.CancelButton = this.btCancel;
             this.ClientSize = new System.Drawing.Size(800, 487);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "WizardCustomSizesForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.WizardCustomSizesForm_FormClosing);
+            this.Load += new System.EventHandler(this.WizardCustomSizesForm_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -219,6 +219,6 @@
         private System.Windows.Forms.GroupBox dbIssues;
         private System.Windows.Forms.FlowLayoutPanel flpIssues;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TableLayoutPanel tblSizes;
+        private System.Windows.Forms.FlowLayoutPanel flpSizes;
     }
 }

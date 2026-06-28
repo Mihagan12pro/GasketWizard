@@ -38,6 +38,7 @@ namespace GasketWizard.Forms
                 foreach (PropertyInfo p in _customSizes)
                 {
                     TableLayoutPanel tbl = new TableLayoutPanel();
+                    tbl.Margin = new Padding(0, 10, 0, 10);
                     tbl.AutoSize = true;
 
                     tbl.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
@@ -50,12 +51,12 @@ namespace GasketWizard.Forms
 
                     maxLength = Math.Max(tbl.Size.Width, maxLength);
 
-                    tblSizes.Controls.Add(tbl, 0, row);
+                    flpSizes.Controls.Add(tbl);
 
                     row++;
                 }
 
-                foreach(var c in tblSizes.Controls)
+                foreach(var c in flpSizes.Controls)
                 {
                     if (c is TableLayoutPanel tbl)
                     {
@@ -114,7 +115,7 @@ namespace GasketWizard.Forms
 
                 foreach(string error in Part.Errors)
                 {
-                    flpIssues.Controls.Add(new Label() { Text = error, AutoSize = true });
+                    flpIssues.Controls.Add(new Label() { Text = error, AutoSize = true, Margin = new Padding(0, 10, 0, 10) });
                 }
             }
         }
@@ -143,6 +144,11 @@ namespace GasketWizard.Forms
                 if (result != DialogResult.Yes) 
                     e.Cancel = true;
             }
+        }
+
+        private void WizardCustomSizesForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 

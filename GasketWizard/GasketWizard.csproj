@@ -160,7 +160,12 @@
     <Content Include="images\ClumpingNut1.png" />
     <Content Include="images\ClumpingNut2.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Analyzer Include="..\..\..\..\..\..\Program Files\ASCON\KOMPAS-3D v23 Study\SDK\Samples\CSharp\Common\Kompas6API5.dll" />
+    <Analyzer Include="..\..\..\..\..\..\Program Files\ASCON\KOMPAS-3D v23 Study\SDK\Samples\CSharp\Common\Kompas6Constants.dll" />
+    <Analyzer Include="..\..\..\..\..\..\Program Files\ASCON\KOMPAS-3D v23 Study\SDK\Samples\CSharp\Common\Kompas6Constants3D.dll" />
+    <Analyzer Include="..\..\..\..\..\..\Program Files\ASCON\KOMPAS-3D v23 Study\SDK\Samples\CSharp\Common\KompasAPI7.dll" />
+  </ItemGroup>
   <ItemGroup>
     <COMReference Include="Kompas6API5">
       <Guid>{0422828C-F174-495E-AC5D-D31014DBBE87}</Guid>
