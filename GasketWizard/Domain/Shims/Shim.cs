@@ -6,7 +6,7 @@ namespace GasketWizard.Domain.Shims
 {
     [DisplayName("Шайба")]
     [ModelTypeAttributes(ModelType.Part)]
-    [PartGroup("Shims", "ru-RU:Гайка")]
+    [PartGroup("Shims", "ru-RU:Шайбы")]
     public class Shim : PartBase
     {
         /// <summary>
