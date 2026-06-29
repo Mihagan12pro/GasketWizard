@@ -81,6 +81,7 @@
     <Compile Include="Creators\Shims\ShimPartCreator.cs" />
     <Compile Include="Databases\StandartSizes\Files\FileBasedStandartSizesDb.cs" />
     <Compile Include="Databases\StandartSizes\IStandartSizesDb.cs" />
+    <Compile Include="Domain\Housing\GasketHousing.cs" />
     <Compile Include="Domain\Nut\ClumpingNut.cs" />
     <Compile Include="Domain\Nut\ClumpingNut1.cs" />
     <Compile Include="Domain\Nut\ClumpingNut2.cs" />
