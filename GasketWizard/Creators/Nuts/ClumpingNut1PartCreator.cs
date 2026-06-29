@@ -45,6 +45,7 @@ namespace GasketWizard.Creators.Nuts
         {
             base.Save(path);
 
+            path = $"{path}\\Нажимная гайка исполнения 1";
             _partDocument.SaveAs(path);
         }
 
