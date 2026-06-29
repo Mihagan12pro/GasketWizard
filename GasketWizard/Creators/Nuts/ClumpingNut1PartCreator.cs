@@ -2,6 +2,7 @@
 using Kompas6Constants;
 using Kompas6Constants3D;
 using KompasAPI7;
+using System.Linq.Expressions;
 using System.Runtime.InteropServices;
 
 namespace GasketWizard.Creators.Nuts
@@ -31,8 +32,10 @@ namespace GasketWizard.Creators.Nuts
             IExtrusion sketch3Extrusion = ExtrudeSketch3(sketch3);
 
             ISketch sketch4 = AddSketch4();
+            ICutExtrusion cutExtrusion = CutSketch4(sketch4);
+            IThread thread = AddThread(cutExtrusion);
 
-            IHole3D hole = AddHole();
+            //IHole3D hole = AddHole();
             IChamfer chamfer = AddChamfer();
 
             return true;
@@ -200,13 +203,7 @@ namespace GasketWizard.Creators.Nuts
             IModelContainer modelContainer = (_nutPart as IModelContainer);
 
             ISketch sketch = (_nutPart as IModelContainer).Sketchs.Add();
-
-            IPlane3DByOffset offsetPlane = (IPlane3DByOffset)modelContainer.AddObject(ksObj3dTypeEnum.o3d_planeOffset);
-            offsetPlane.Offset = partModel.Length;
-            offsetPlane.BasePlane = _nutPart.DefaultObject[ksObj3dTypeEnum.o3d_planeXOY];
-            offsetPlane.Update();
-            
-            sketch.Plane = offsetPlane;
+            sketch.Plane = _nutPart.DefaultObject[ksObj3dTypeEnum.o3d_planeXOY];
 
             sketch.Update();
 
@@ -216,67 +213,73 @@ namespace GasketWizard.Creators.Nuts
             IView view = viewsAndLayersManager.Views.ActiveView;
             IDrawingContainer drawingContainer = (IDrawingContainer)view;
 
-            IPoint point = drawingContainer.Points.Add();
-            point.X = 0;
-            point.Y = 0;
-            point.Update();
+            ICircle circle = drawingContainer.Circles.Add();
+            circle.Xc = 0;
+            circle.Yc = 0;
+            circle.Radius = partModel.NominalShaftDiameter / 2;
+            circle.Update();
 
             sketch.EndEdit();
 
             return sketch;
         }
 
-        private IHole3D AddHole()
+        private ICutExtrusion CutSketch4(ISketch sketch)
         {
             IModelContainer modelContainer = (_nutPart as IModelContainer);
 
-            IHole3D hole = modelContainer.Holes3D.Add();
-            hole.DepthType = ksDepthTypeEnum.ksDTReachThrough;
-            hole.Diameter = partModel.NominalShaftDiameter;
+            IPlane3DByOffset offsetPlane = (IPlane3DByOffset)modelContainer.AddObject(ksObj3dTypeEnum.o3d_planeOffset);
+            offsetPlane.Offset = partModel.Length;
+            offsetPlane.BasePlane = _nutPart.DefaultObject[ksObj3dTypeEnum.o3d_planeXOY];
+            offsetPlane.Update();
 
-            IHoleDisposal holeDisposal = (IHoleDisposal)hole;
-       
 
-            foreach (var vertexObj in modelContainer.Objects[Obj3dType.o3d_vertex])
+            ICutExtrusion cutExtrusion = (ICutExtrusion)modelContainer.Extrusions.Add(ksObj3dTypeEnum.o3d_cutExtrusion);
+            cutExtrusion.Sketch = (Sketch)sketch;
+            cutExtrusion.ExtrusionType[false] = ksEndTypeEnum.etThroughAll;
+
+            cutExtrusion.Update();
+
+            return cutExtrusion;
+        }
+
+        private IThread AddThread(IExtrusion extrusion)
+        {
+            KompasObject kompas = (KompasObject)Marshal.GetActiveObject("KOMPAS.Application.5");
+
+            IModelContainer modelContainer = (_nutPart as IModelContainer);
+
+            IThread thread = (IThread)modelContainer.AddObject(ksObj3dTypeEnum.o3d_thread);
+
+            foreach (var faceObj in modelContainer.Objects[Obj3dType.o3d_face])
             {
-                if (vertexObj is IVertex vertex && vertex.IsSketchVertex)
+                if (faceObj is IFace face && face.Owner == (IFeature7)extrusion)
                 {
-                    vertex.GetPoint(out double x, out double y, out double z);
-
-                    if (z == partModel.Length)
+                    foreach(var edgeObj in face.LimitingEdges)
                     {
-                        holeDisposal.AssociationVertex = vertex;
+                        if (edgeObj is IEdge edge)
+                        {
+                            edge.GetPoint(true, out double x, out double y, out double z);
 
-                        break;
+                            if (z == partModel.Length)
+                            {
+                                thread.BaseObject = face;
+                                thread.AutoLenght = true;
+
+                                IThreadsParameters threadsParameters = (IThreadsParameters)thread;
+                                threadsParameters.Diameter = partModel.Thread.NominalDiameter;
+                                threadsParameters.Pitch = partModel.Thread.Pitch;
+
+                                break;
+                            }
+                        }
                     }
                 }
             }
 
-            KompasObject kompas = (KompasObject)Marshal.GetActiveObject("KOMPAS.Application.5");
-
-            ksPart ksPart = kompas.TransferInterface(_nutPart, (int)ksAPITypeEnum.ksAPI5Auto, 0);
-
-            ksEntityCollection faces = ksPart.EntityCollection((short)Obj3dType.o3d_face);
-            faces.SelectByPoint(0, 0, partModel.Length);
-
-            ksEntity face = faces.First();
-
-            var face7 = kompas.TransferInterface(face, (int)ksAPITypeEnum.ksAPI7Dual, 0);
-            holeDisposal.BaseSurface = face7;
-
-            hole.ShowThread = true;
-
-            IThread thread = hole.Thread;
-            thread.Lenght = partModel.ThreadLength;
-
-            IThreadsParameters threadsParameters = (IThreadsParameters)thread;
-            threadsParameters.Diameter = partModel.NominalShaftDiameter;
-            threadsParameters.Pitch = partModel.Thread.Pitch;
-
             thread.Update();
-            hole.Update();
 
-            return hole;
+            return thread;
         }
     }
 }
