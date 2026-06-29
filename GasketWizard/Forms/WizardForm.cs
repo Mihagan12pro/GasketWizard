@@ -41,11 +41,11 @@ namespace GasketWizard
             _partDisplayName = _partType.GetCustomAttribute<DisplayNameAttribute>().DisplayName;
 
             _partsStandartProperties = _partType.GetProperties()
-                                                .Where(p => p.GetCustomAttribute<SizeTypeAttribute>()!= null && p.GetCustomAttribute<SizeTypeAttribute>().SizeType != Enums.SizeType.Custom)
+                                                .Where(p => p.GetCustomAttribute<SizeTypesAttribute>()!= null && p.GetCustomAttribute<SizeTypesAttribute>().SizeType != Enums.SizeTypes.Custom)
                                                 .ToArray();
 
             _partsCustomProperties = _partType.GetProperties()
-                                                .Where(p => p.GetCustomAttribute<SizeTypeAttribute>() != null && p.GetCustomAttribute<SizeTypeAttribute>().SizeType == Enums.SizeType.Custom)
+                                                .Where(p => p.GetCustomAttribute<SizeTypesAttribute>() != null && p.GetCustomAttribute<SizeTypesAttribute>().SizeType == Enums.SizeTypes.Custom)
                                                 .ToArray();
             _idProperty = _partType.GetProperty("Id");
 
@@ -69,7 +69,7 @@ namespace GasketWizard
 
             foreach (var property in _partsStandartProperties)
             {
-                if (property != _idProperty && property.GetCustomAttribute<SizeTypeAttribute>().SizeType != Enums.SizeType.Custom)
+                if (property != _idProperty && property.GetCustomAttribute<SizeTypesAttribute>().SizeType != Enums.SizeTypes.Custom)
                 {
                     ColumnHeader column = new ColumnHeader()
                     {

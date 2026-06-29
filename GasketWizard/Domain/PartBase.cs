@@ -18,7 +18,7 @@ namespace GasketWizard.Domain
     public abstract class PartBase : IValidatableObject
     {
         [DisplayName("№")]
-        [SizeType()]
+        [SizeTypes()]
         public int Id { get; set; }
 
         public bool HasErrors

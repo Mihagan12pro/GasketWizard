@@ -2,11 +2,7 @@
 using Kompas6Constants;
 using Kompas6Constants3D;
 using KompasAPI7;
-using stdole;
-using System.Diagnostics;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Runtime.InteropServices.WindowsRuntime;
 
 namespace GasketWizard.Creators.Nuts
 {
