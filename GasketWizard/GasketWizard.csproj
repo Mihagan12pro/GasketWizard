@@ -81,9 +81,10 @@
     <Compile Include="Creators\Shims\ShimPartCreator.cs" />
     <Compile Include="Databases\StandartSizes\Files\FileBasedStandartSizesDb.cs" />
     <Compile Include="Databases\StandartSizes\IStandartSizesDb.cs" />
-    <Compile Include="Domain\Nut\ClumpingNut.cs" />
-    <Compile Include="Domain\Nut\ClumpingNut1.cs" />
-    <Compile Include="Domain\Nut\ClumpingNut2.cs" />
+    <Compile Include="Domain\Housings\GasketHousing.cs" />
+    <Compile Include="Domain\Nuts\ClumpingNut.cs" />
+    <Compile Include="Domain\Nuts\ClumpingNut1.cs" />
+    <Compile Include="Domain\Nuts\ClumpingNut2.cs" />
     <Compile Include="Domain\PartBase.cs" />
     <Compile Include="Domain\Shims\Shim.cs" />
     <Compile Include="Domain\ValueObjects\MetricThread.cs" />
@@ -145,6 +146,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Databases\StandartSizes\Files\Housings\.gitkeeper" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -213,6 +215,7 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.119.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets" Condition="Exists('..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.119.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
