@@ -5,7 +5,7 @@ using System.ComponentModel;
 
 namespace GasketWizard.Creators.Nuts
 {
-    [PartGroup("Nuts")]
+    [PartGroup("Nuts", "ru-RU:Гайки")]
     [ModelTypeAttributes(Enums.ModelType.Part)]
     public abstract class ClumpingNut : PartBase
     {
@@ -13,35 +13,35 @@ namespace GasketWizard.Creators.Nuts
         /// Обозначение резьбы
         /// </summary>
         [DisplayName("Резьба")]
-        [SizeType()]
+        [SizeTypes()]
         public MetricThread Thread { get; set; }
 
         /// <summary>
         /// d
         /// </summary>
         [DisplayName("d")]
-        [SizeType()]
+        [SizeTypes()]
         public double NominalShaftDiameter { get; set; }
 
         /// <summary>
         /// D
         /// </summary>
         [DisplayName("D")]
-        [SizeType()]
+        [SizeTypes()]
         public double WidthAcrossCorners { get; set; }
 
         /// <summary>
         /// s
         /// </summary>
         [DisplayName("s")]
-        [SizeType()]
+        [SizeTypes()]
         public double WidthAcrosFlats { get; set; }
 
         /// <summary>
         /// l
         /// </summary>
         [DisplayName("l")]
-        [SizeType()]
-        public double Length { get; set; }  
+        [SizeTypes()]
+        public double Length { get; set; }
     }
 }

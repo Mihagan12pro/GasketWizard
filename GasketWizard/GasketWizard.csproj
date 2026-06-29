@@ -51,22 +51,6 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Kompas6API5">
-      <HintPath>..\..\..\..\..\..\Program Files\ASCON\KOMPAS-3D v23 Study\SDK\Samples\CSharp\Common\Kompas6API5.dll</HintPath>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </Reference>
-    <Reference Include="Kompas6Constants">
-      <HintPath>..\..\..\..\..\..\Program Files\ASCON\KOMPAS-3D v23 Study\SDK\Samples\CSharp\Common\Kompas6Constants.dll</HintPath>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </Reference>
-    <Reference Include="Kompas6Constants3D">
-      <HintPath>..\..\..\..\..\..\Program Files\ASCON\KOMPAS-3D v23 Study\SDK\Samples\CSharp\Common\Kompas6Constants3D.dll</HintPath>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </Reference>
-    <Reference Include="KompasAPI7">
-      <HintPath>..\..\..\..\..\..\Program Files\ASCON\KOMPAS-3D v23 Study\SDK\Samples\CSharp\Common\KompasAPI7.dll</HintPath>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -86,7 +70,7 @@
   <ItemGroup>
     <Compile Include="Attributes\ModelTypeAttributes.cs" />
     <Compile Include="Attributes\PartGroupAttribute.cs" />
-    <Compile Include="Attributes\SizeTypeAttribute.cs" />
+    <Compile Include="Attributes\SizeTypesAttribute.cs" />
     <Compile Include="Commands\HelloKompasCommand.cs" />
     <Compile Include="Creators\CreatorsProvider.cs" />
     <Compile Include="Creators\Creator.cs" />
@@ -105,8 +89,16 @@
     <Compile Include="Domain\ValueObjects\MetricThread.cs" />
     <Compile Include="Domain\ValueObjects\ValueObject.cs" />
     <Compile Include="Enums\ModelType.cs" />
-    <Compile Include="Enums\SizeType.cs" />
+    <Compile Include="Enums\SizeTypes.cs" />
+    <Compile Include="Extensions\ArrayExtensions.cs" />
     <Compile Include="Extensions\PropertyInfoExtensions.cs" />
+    <Compile Include="Extensions\TypeExtensions.cs" />
+    <Compile Include="Forms\WizardCustomSizesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\WizardCustomSizesForm.Designer.cs">
+      <DependentUpon>WizardCustomSizesForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="GasketWizardApp.cs" />
     <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
@@ -136,6 +128,9 @@
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\WizardCustomSizesForm.resx">
+      <DependentUpon>WizardCustomSizesForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -162,9 +157,61 @@
     <Content Include="Databases\StandartSizes\Files\Nuts\ClumpingNut1.txt" />
     <Content Include="Databases\StandartSizes\Files\Nuts\ClumpingNut2.txt" />
     <Content Include="Databases\StandartSizes\Files\Shims\Shim.txt" />
+    <Content Include="images\ClumpingNut1.png" />
+    <Content Include="images\ClumpingNut2.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Presenters\" />
+    <Analyzer Include="..\..\..\..\..\..\Program Files\ASCON\KOMPAS-3D v23 Study\SDK\Samples\CSharp\Common\Kompas6API5.dll" />
+    <Analyzer Include="..\..\..\..\..\..\Program Files\ASCON\KOMPAS-3D v23 Study\SDK\Samples\CSharp\Common\Kompas6Constants.dll" />
+    <Analyzer Include="..\..\..\..\..\..\Program Files\ASCON\KOMPAS-3D v23 Study\SDK\Samples\CSharp\Common\Kompas6Constants3D.dll" />
+    <Analyzer Include="..\..\..\..\..\..\Program Files\ASCON\KOMPAS-3D v23 Study\SDK\Samples\CSharp\Common\KompasAPI7.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Kompas6API5">
+      <Guid>{0422828C-F174-495E-AC5D-D31014DBBE87}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Kompas6Constants">
+      <Guid>{75C9F5D0-B5B8-4526-8681-9903C567D2ED}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Kompas6Constants3D">
+      <Guid>{2CAF168C-7961-4B90-9DA2-701419BEEFE3}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="KompasAPI7">
+      <Guid>{69AC2981-37C0-4379-84FD-5DD2F3C0A520}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="stdole">
+      <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.119.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets" Condition="Exists('..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.119.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" />

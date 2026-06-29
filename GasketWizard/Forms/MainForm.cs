@@ -1,5 +1,9 @@
-﻿using GasketWizard.Domain;
+﻿using GasketWizard.Attributes;
+using GasketWizard.Domain;
+using GasketWizard.Extensions;
 using System;
+using System.Linq;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace GasketWizard
@@ -9,6 +13,33 @@ namespace GasketWizard
         public MainForm()
         {
             InitializeComponent();
+
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            var partTypes = assembly.GetTypes()
+                                .Where(t => t.GetCustomAttribute<PartGroupAttribute>() != null && !t.IsAbstract);
+
+            var groups = partTypes.Select(t => t.GetCustomAttribute<PartGroupAttribute>().LocalizedGroup)
+                                  .Distinct();
+
+            TreeNode rootNode = new TreeNode() { Text = "Каталог" };
+
+            foreach ( var group in groups )
+            {
+                TreeNode groupNode = new TreeNode() { Text = group };
+
+                var parts = partTypes.Where(t => t.GetCustomAttribute<PartGroupAttribute>().LocalizedGroup == group);
+
+                foreach(var part in parts)
+                {
+                    TreeNode partNode = new TreeNode() { Text = part.GetDisplayName() };
+
+                    groupNode.Nodes.Add(partNode);
+                }
+
+                rootNode.Nodes.Add(groupNode);
+            }
+
+            tvCatalog.Nodes.Add(rootNode);
 
             tvCatalog.ExpandAll();
         }
@@ -32,7 +63,8 @@ namespace GasketWizard
                     WizardForm wizardForm = new WizardForm(partType);
                     wizardForm.Owner = this;
 
-                    wizardForm.ShowDialog();
+                    if (wizardForm.ShowDialog() == DialogResult.OK)
+                        DialogResult = DialogResult.OK;
                 }
             }
         }

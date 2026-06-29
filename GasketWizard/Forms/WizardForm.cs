@@ -5,9 +5,11 @@ using GasketWizard.Databases.StandartSizes.Files;
 using GasketWizard.Domain;
 using GasketWizard.Domain.ValueObjects;
 using GasketWizard.Extensions;
+using GasketWizard.Forms;
 using Kompas6API5;
 using System;
 using System.ComponentModel;
+using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
@@ -24,7 +26,7 @@ namespace GasketWizard
         private readonly string _partDisplayName;
 
         private readonly PropertyInfo _idProperty;
-        private readonly PropertyInfo[] _partsProperties;
+        private readonly PropertyInfo[] _partsStandartProperties, _partsCustomProperties;
 
         public WizardForm(Type partType)
         {
@@ -38,7 +40,13 @@ namespace GasketWizard
             _partClassName = _partType.Name;
             _partDisplayName = _partType.GetCustomAttribute<DisplayNameAttribute>().DisplayName;
 
-            _partsProperties = _partType.GetProperties();
+            _partsStandartProperties = _partType.GetProperties()
+                                                .Where(p => p.GetCustomAttribute<SizeTypesAttribute>()!= null && p.GetCustomAttribute<SizeTypesAttribute>().SizeType != Enums.SizeTypes.Custom)
+                                                .ToArray();
+
+            _partsCustomProperties = _partType.GetProperties()
+                                                .Where(p => p.GetCustomAttribute<SizeTypesAttribute>() != null && p.GetCustomAttribute<SizeTypesAttribute>().SizeType == Enums.SizeTypes.Custom)
+                                                .ToArray();
             _idProperty = _partType.GetProperty("Id");
 
             pbSketch.Image = PartBase.MapDisplayNameWithBitmap(_partDisplayName);
@@ -59,9 +67,9 @@ namespace GasketWizard
             };
             lvSizes.Columns.Add(idColumn);
 
-            foreach (var property in _partType.GetProperties())
+            foreach (var property in _partsStandartProperties)
             {
-                if (property != _idProperty)
+                if (property != _idProperty && property.GetCustomAttribute<SizeTypesAttribute>().SizeType != Enums.SizeTypes.Custom)
                 {
                     ColumnHeader column = new ColumnHeader()
                     {
@@ -77,9 +85,9 @@ namespace GasketWizard
             {
                 ListViewItem item = new ListViewItem(part.Id.ToString());
 
-                foreach (var property in _partType.GetProperties())
+                foreach (var property in _partsStandartProperties)
                 {
-                    if (property != _idProperty && property.GetCustomAttribute<SizeTypeAttribute>() != null && property.GetCustomAttribute<SizeTypeAttribute>().SizeType == Enums.SizeType.Standart)
+                    if (property != _idProperty)
                     {
                         if (property.PropertyType.BaseType != typeof(ValueObject))
                         {
@@ -127,12 +135,22 @@ namespace GasketWizard
 
         private void btOk_Click(object sender, EventArgs e)
         {
-            DialogResult = DialogResult.OK;
-
             var part = _sizesDb.GetById(lvSizes.SelectedIndices[0] + 1, _partType.Name);
+
+            if (_partsCustomProperties.Length > 0)
+            {
+                WizardCustomSizesForm wizardCustomSizesForm = new WizardCustomSizesForm();
+                wizardCustomSizesForm.Part = part;
+
+                if (wizardCustomSizesForm.ShowDialog() == DialogResult.Cancel)
+                {
+                    return;
+                }
+            }
 
             KompasObject kompasObject = (KompasObject)Marshal.GetActiveObject("KOMPAS.Application.5");
             CreatorsProvider.Create(part, cbSave.Checked, tbSavingPath.Text);
+            DialogResult = DialogResult.OK;
         }
 
         private void WizardForm_Resize(object sender, EventArgs e)
@@ -142,7 +160,7 @@ namespace GasketWizard
 
         private void SetColumnsSize()
         {
-            int width = lvSizes.Width / _partsProperties.Length;
+            int width = lvSizes.Width / _partsStandartProperties.Length;
 
             foreach(var obj in lvSizes.Columns)
             {

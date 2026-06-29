@@ -4,11 +4,11 @@ using System;
 namespace GasketWizard.Attributes
 {
     [AttributeUsage(AttributeTargets.Property)]
-    public class SizeTypeAttribute : Attribute
+    public class SizeTypesAttribute : Attribute
     {
-        public readonly SizeType SizeType;
+        public readonly SizeTypes SizeType;
 
-        public SizeTypeAttribute(SizeType sizeType = SizeType.Standart)
+        public SizeTypesAttribute(SizeTypes sizeType = SizeTypes.Standart)
         {
             SizeType = sizeType;
         }

@@ -6,28 +6,28 @@ namespace GasketWizard.Domain.Shims
 {
     [DisplayName("Шайба")]
     [ModelTypeAttributes(ModelType.Part)]
-    [PartGroup("Shims")]
+    [PartGroup("Shims", "ru-RU:Шайбы")]
     public class Shim : PartBase
     {
         /// <summary>
         /// d
         /// </summary>
         [DisplayName("d")]
-        [SizeType()]
+        [SizeTypes()]
         public double InternalDiameter { get; set; }
 
         /// <summary>
         /// D
         /// </summary>
         [DisplayName("D")]
-        [SizeType()]
+        [SizeTypes()]
         public double ExternalDiameter { get; set; }
 
         /// <summary>
         /// S
         /// </summary>
         [DisplayName("s")]
-        [SizeType()]
+        [SizeTypes()]
         public double Width { get; set; }
     }
 }
