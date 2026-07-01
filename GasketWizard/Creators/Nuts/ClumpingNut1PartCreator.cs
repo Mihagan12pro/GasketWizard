@@ -1,8 +1,6 @@
 ﻿using Kompas6API5;
-using Kompas6Constants;
 using Kompas6Constants3D;
 using KompasAPI7;
-using System.Linq.Expressions;
 using System.Runtime.InteropServices;
 
 namespace GasketWizard.Creators.Nuts
@@ -35,7 +33,6 @@ namespace GasketWizard.Creators.Nuts
             ICutExtrusion cutExtrusion = CutSketch4(sketch4);
             IThread thread = AddThread(cutExtrusion);
 
-            //IHole3D hole = AddHole();
             IChamfer chamfer = AddChamfer();
 
             return true;
@@ -45,7 +42,7 @@ namespace GasketWizard.Creators.Nuts
         {
             base.Save(path);
 
-            path = $"{path}\\Нажимная гайка исполнения 1";
+            path = $"{path}\\Нажимная гайка исполнения 1.m3d";
             _partDocument.SaveAs(path);
         }
 

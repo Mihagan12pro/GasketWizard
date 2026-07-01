@@ -2,9 +2,9 @@
 
 namespace GasketWizard.Domain.Housing
 {
-    [PartGroup("Gaskets", "ru-RU:Корпуса")]
+    [PartGroup("Sockets", "ru-RU:Гнезда")]
     [ModelTypeAttributes(Enums.ModelType.Part)]
-    public abstract class GasketHousing : PartBase
+    public abstract class GasketSocket : PartBase
     {
     }
 }

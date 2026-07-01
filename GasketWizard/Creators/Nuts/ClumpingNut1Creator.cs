@@ -1,6 +1,4 @@
-﻿using KompasAPI7;
-
-namespace GasketWizard.Creators.Nuts
+﻿namespace GasketWizard.Creators.Nuts
 {
     public abstract class ClumpingNut1Creator : ClumpingNutCreator<ClumpingNut1>
     {
