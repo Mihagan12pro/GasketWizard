@@ -90,6 +90,7 @@
     <Compile Include="Domain\Nuts\ClumpingNut2.cs" />
     <Compile Include="Domain\PartBase.cs" />
     <Compile Include="Domain\Shims\Shim.cs" />
+    <Compile Include="Domain\Sockets\SKROGasketSocket.cs" />
     <Compile Include="Domain\Sockets\SKSDGasketSocket.cs" />
     <Compile Include="Domain\ValueObjects\MetricThread.cs" />
     <Compile Include="Domain\ValueObjects\ValueObject.cs" />
@@ -163,9 +164,11 @@
     <Content Include="Databases\StandartSizes\Files\Nuts\ClumpingNut1.txt" />
     <Content Include="Databases\StandartSizes\Files\Nuts\ClumpingNut2.txt" />
     <Content Include="Databases\StandartSizes\Files\Shims\Shim.txt" />
+    <Content Include="Databases\StandartSizes\Files\Sockets\SKROGasketSocket.txt" />
     <Content Include="Databases\StandartSizes\Files\Sockets\SKSDGasketSocket.txt" />
     <Content Include="images\ClumpingNut1.png" />
     <Content Include="images\ClumpingNut2.png" />
+    <Content Include="images\SKROGasketSocket.png" />
     <Content Include="images\SKSDGasketSocket.png" />
   </ItemGroup>
   <ItemGroup>
