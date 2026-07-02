@@ -104,7 +104,7 @@
             this.dbIssues.Controls.Add(this.flpIssues);
             this.dbIssues.Location = new System.Drawing.Point(24, 18);
             this.dbIssues.Name = "dbIssues";
-            this.dbIssues.Size = new System.Drawing.Size(270, 344);
+            this.dbIssues.Size = new System.Drawing.Size(333, 344);
             this.dbIssues.TabIndex = 1;
             this.dbIssues.TabStop = false;
             this.dbIssues.Text = "Ошибки";
@@ -120,8 +120,9 @@
             this.flpIssues.Location = new System.Drawing.Point(20, 34);
             this.flpIssues.Margin = new System.Windows.Forms.Padding(5);
             this.flpIssues.Name = "flpIssues";
-            this.flpIssues.Size = new System.Drawing.Size(232, 298);
+            this.flpIssues.Size = new System.Drawing.Size(295, 298);
             this.flpIssues.TabIndex = 1;
+            this.flpIssues.WrapContents = false;
             // 
             // tableLayoutPanel2
             // 

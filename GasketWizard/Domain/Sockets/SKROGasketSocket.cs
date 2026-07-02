@@ -1,7 +1,10 @@
 ﻿using GasketWizard.Attributes;
 using GasketWizard.Domain.Housing;
 using GasketWizard.Domain.ValueObjects;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace GasketWizard.Domain.Sockets
 {
@@ -10,7 +13,7 @@ namespace GasketWizard.Domain.Sockets
     {
         [DisplayName("D")]
         [SizeTypes(Enums.SizeTypes.Standart)]
-        public double CylinderOutsideDiameter { get; set; }
+        public double BigCylinderOutsideDiameter { get; set; }
 
         [DisplayName("D1")]
         [SizeTypes(Enums.SizeTypes.Standart)]
@@ -44,5 +47,21 @@ namespace GasketWizard.Domain.Sockets
         [DisplayName("Диаметр большего выреза")]
         [SizeTypes(Enums.SizeTypes.Custom)]
         public double BigHoleDiameter { get; set; }
+
+        public override IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            List<ValidationResult> result = base.Validate(validationContext).ToList();
+
+            if (BigHoleDiameter >= BigCylinderOutsideDiameter)
+                result.Add(new ValidationResult("Параметр 'Диаметр большего выреща' должен быть меньше D!"));
+
+            if (BigHoleLength >= BigCylinderLength)
+                result.Add(new ValidationResult("Параметр 'Глубина большего выреза' должен быть меньше l!"));
+
+            if (ThreadLength > BigHoleLength)
+                result.Add(new ValidationResult("Параметр 'Глубина большего выреза' должен быть больше или равен параметру 'Длина резьбы'!"));
+
+            return result;
+        }
     }
 }

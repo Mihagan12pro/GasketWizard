@@ -35,21 +35,21 @@ namespace GasketWizard.Creators.Nuts
 
         public override IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
-            List<ValidationResult> errors = new List<ValidationResult>();
+            List<ValidationResult> errors = base.Validate(validationContext).ToList();
 
-            PropertyInfo[] props = this.GetType()
-                .GetProperties()
-                .Where(p => p.GetCustomAttribute<SizeTypesAttribute>() != null && p.GetCustomAttribute<SizeTypesAttribute>().SizeType == SizeTypes.Custom)
-                .ToArray();
+            //PropertyInfo[] props = this.GetType()
+            //    .GetProperties()
+            //    .Where(p => p.GetCustomAttribute<SizeTypesAttribute>() != null && p.GetCustomAttribute<SizeTypesAttribute>().SizeType == SizeTypes.Custom)
+            //    .ToArray();
 
 
-            foreach(PropertyInfo prop in props)
-            {
-                double value = (double)prop.GetValue(this);
+            //foreach(PropertyInfo prop in props)
+            //{
+            //    double value = (double)prop.GetValue(this);
 
-                if (value <= 0)
-                    errors.Add(new ValidationResult($"Параметр «{prop.GetDisplayName()}» должен быть больше нуля!"));
-            }
+            //    if (value <= 0)
+            //        errors.Add(new ValidationResult($"Параметр «{prop.GetDisplayName()}» должен быть больше нуля!"));
+            //}
 
             if (HexagonHeight + ThreadLength >= Length)
             {

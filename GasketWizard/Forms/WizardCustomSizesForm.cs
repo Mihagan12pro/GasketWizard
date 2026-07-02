@@ -38,6 +38,7 @@ namespace GasketWizard.Forms
                 foreach (PropertyInfo p in _customSizes)
                 {
                     TableLayoutPanel tbl = new TableLayoutPanel();
+                    tbl.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom;
                     tbl.Margin = new Padding(0, 10, 0, 10);
                     tbl.AutoSize = true;
 
