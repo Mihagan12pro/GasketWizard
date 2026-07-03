@@ -80,6 +80,8 @@
     <Compile Include="Creators\Shims\ShimCreator.cs" />
     <Compile Include="Creators\Shims\ShimPartCreator.cs" />
     <Compile Include="Creators\Sockets\GasketSocketCreator.cs" />
+    <Compile Include="Creators\Sockets\SKROGasketSocketCreator.cs" />
+    <Compile Include="Creators\Sockets\SKROGasketSocketPartCreator.cs" />
     <Compile Include="Creators\Sockets\SKSDGasketSocketCreator.cs" />
     <Compile Include="Creators\Sockets\SKSDGasketSocketPartCreator.cs" />
     <Compile Include="Databases\StandartSizes\Files\FileBasedStandartSizesDb.cs" />
