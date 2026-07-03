@@ -1,5 +1,6 @@
 ﻿using GasketWizard.Attributes;
 using GasketWizard.Domain.ValueObjects;
+using GasketWizard.Enums;
 using GasketWizard.Extensions;
 using System;
 using System.Collections.Generic;
@@ -114,7 +115,20 @@ namespace GasketWizard.Domain
         {
             _errors.Clear();
 
-            return new List<ValidationResult>();
+            List<ValidationResult> errors = new List<ValidationResult>();
+
+            PropertyInfo[] props = this.GetType()
+                .GetProperties()
+                .Where(p => p.GetCustomAttribute<SizeTypesAttribute>() != null && p.GetCustomAttribute<SizeTypesAttribute>().SizeType == SizeTypes.Custom)
+                .ToArray();
+
+            foreach(var  prop in props)
+            {
+                if (0 == (double)prop.GetValue(this))
+                    errors.Add(new ValidationResult($"Параметр '{prop.GetDisplayName()}' должен быть строго больше нуля!"));
+            }
+
+            return errors;
         }
 
         private List<string> _errors = new List<string>();
