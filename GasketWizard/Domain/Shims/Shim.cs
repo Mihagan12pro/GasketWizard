@@ -13,21 +13,21 @@ namespace GasketWizard.Domain.Shims
         /// d
         /// </summary>
         [DisplayName("d")]
-        [SizeTypes()]
+        [Size()]
         public double InternalDiameter { get; set; }
 
         /// <summary>
         /// D
         /// </summary>
         [DisplayName("D")]
-        [SizeTypes()]
+        [Size()]
         public double ExternalDiameter { get; set; }
 
         /// <summary>
         /// S
         /// </summary>
         [DisplayName("s")]
-        [SizeTypes()]
+        [Size()]
         public double Width { get; set; }
     }
 }

@@ -70,7 +70,7 @@
   <ItemGroup>
     <Compile Include="Attributes\ModelTypeAttributes.cs" />
     <Compile Include="Attributes\PartGroupAttribute.cs" />
-    <Compile Include="Attributes\SizeTypesAttribute.cs" />
+    <Compile Include="Attributes\SizeAttribute.cs" />
     <Compile Include="Commands\HelloKompasCommand.cs" />
     <Compile Include="Creators\CreatorsProvider.cs" />
     <Compile Include="Creators\Creator.cs" />

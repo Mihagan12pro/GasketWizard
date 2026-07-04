@@ -8,16 +8,16 @@ namespace GasketWizard.Domain.Sockets
     [DisplayName("Гнездо сальника типа СКСД")]
     public class SKSDGasketSocket : GasketSocket
     {
-        [SizeTypes()]
+        [Size()]
         [DisplayName("Резьба")]
         public MetricThread Thread { get; set; }
 
 
-        [SizeTypes()]
+        [Size()]
         [DisplayName("D")]
         public double Diameter { get; set; }
 
-        [SizeTypes]
+        [Size]
         [DisplayName("L")]
         public double Length { get; set; }
     }

@@ -19,7 +19,7 @@ namespace GasketWizard.Domain
     public abstract class PartBase : IValidatableObject
     {
         [DisplayName("№")]
-        [SizeTypes()]
+        [Size()]
         public int Id { get; set; }
 
         public bool HasErrors
@@ -119,7 +119,7 @@ namespace GasketWizard.Domain
 
             PropertyInfo[] props = this.GetType()
                 .GetProperties()
-                .Where(p => p.GetCustomAttribute<SizeTypesAttribute>() != null && p.GetCustomAttribute<SizeTypesAttribute>().SizeType == SizeTypes.Custom)
+                .Where(p => p.GetCustomAttribute<SizeAttribute>() != null && p.GetCustomAttribute<SizeAttribute>().SizeType == SizeTypes.Custom)
                 .ToArray();
 
             foreach(var  prop in props)

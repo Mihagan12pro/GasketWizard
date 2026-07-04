@@ -1,7 +1,6 @@
 ﻿using GasketWizard.Domain.Sockets;
 using Kompas6Constants3D;
 using KompasAPI7;
-using System;
 
 namespace GasketWizard.Creators.Sockets
 {

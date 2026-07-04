@@ -1,7 +1,6 @@
 ﻿using GasketWizard.Attributes;
 using GasketWizard.Domain;
 using GasketWizard.Domain.ValueObjects;
-using System.ComponentModel;
 
 namespace GasketWizard.Creators.Nuts
 {
@@ -12,36 +11,31 @@ namespace GasketWizard.Creators.Nuts
         /// <summary>
         /// Обозначение резьбы
         /// </summary>
-        [DisplayName("Резьба")]
-        [SizeTypes()]
+        [Size("Thread", Enums.SizeTypes.Standart, "ru-RU:Резьба")]
         public MetricThread Thread { get; set; }
 
         /// <summary>
         /// d
         /// </summary>
-        [DisplayName("d")]
-        [SizeTypes()]
+        [Size("d")]
         public double NominalShaftDiameter { get; set; }
 
         /// <summary>
         /// D
         /// </summary>
-        [DisplayName("D")]
-        [SizeTypes()]
+        [Size("D")]
         public double WidthAcrossCorners { get; set; }
 
         /// <summary>
         /// s
         /// </summary>
-        [DisplayName("s")]
-        [SizeTypes()]
+        [Size("s")]
         public double WidthAcrosFlats { get; set; }
 
         /// <summary>
         /// l
         /// </summary>
-        [DisplayName("l")]
-        [SizeTypes()]
+        [Size("l")]
         public double Length { get; set; }
     }
 }
