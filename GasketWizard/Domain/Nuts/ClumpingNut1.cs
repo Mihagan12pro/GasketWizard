@@ -12,19 +12,19 @@ namespace GasketWizard.Creators.Nuts
     [DisplayName("Нажимная гайка, исполнение 1")]
     public class ClumpingNut1 : ClumpingNut
     {
-        [Size("Hexagon height", Enums.SizeTypes.Custom, "ru-RU:Высота шестиугольника")]
+        [PartParameter("Hexagon height", Enums.SizeTypes.Custom, "ru-RU:Высота шестиугольника")]
         public double HexagonHeight { get; set; }
 
-        [Size("Thread length", Enums.SizeTypes.Custom, "ru-RU:Длина резьбы")]
+        [PartParameter("Thread length", Enums.SizeTypes.Custom, "ru-RU:Длина резьбы")]
         public double ThreadLength { get; set; }
 
-        [Size("Chamfer length", Enums.SizeTypes.Custom, "ru-RU:Длина фаски")]
+        [PartParameter("Chamfer length", Enums.SizeTypes.Custom, "ru-RU:Длина фаски")]
         public double ChamferLength { get; set; }
 
-        [Size("Big cylinder diameter", Enums.SizeTypes.Custom, "ru-RU:Диаметр большего цилиндра")]
+        [PartParameter("Big cylinder diameter", Enums.SizeTypes.Custom, "ru-RU:Диаметр большего цилиндра")]
         public double BigCylinderDiameter { get; set; }
 
-        [Size("Less cylinder diameter", Enums.SizeTypes.Custom, "ru-RU:Диаметр меньшего цилиндра")]
+        [PartParameter("Less cylinder diameter", Enums.SizeTypes.Custom, "ru-RU:Диаметр меньшего цилиндра")]
         public double LessCylinderDiameter { get; set; }
 
 

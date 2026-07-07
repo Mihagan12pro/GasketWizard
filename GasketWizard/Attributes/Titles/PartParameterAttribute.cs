@@ -6,15 +6,11 @@ using System.Globalization;
 namespace GasketWizard.Attributes
 {
     [AttributeUsage(AttributeTargets.Property)]
-    public class SizeAttribute : Attribute
+    public class PartParameterAttribute : LocalizableAttribute
     {
-        public readonly string Title;
-
         public readonly SizeTypes SizeType;
 
-        private readonly Dictionary<CultureInfo, string> _titleLocalized;
-
-        public SizeAttribute(
+        public PartParameterAttribute(
             string title, 
             SizeTypes sizeType = SizeTypes.Standart)
         {
@@ -22,19 +18,19 @@ namespace GasketWizard.Attributes
 
             SizeType = sizeType;
 
-            _titleLocalized = new Dictionary<CultureInfo, string>();
-            _titleLocalized.Add(new CultureInfo("en-US"), title);
+            localizedTitles = new Dictionary<CultureInfo, string>();
+            localizedTitles.Add(new CultureInfo("en-US"), title);
         }
 
-        public SizeAttribute(
+        public PartParameterAttribute(
             string title, 
             SizeTypes sizeType = SizeTypes.Standart,
             params string[] localizations)
         {
             Title = title;
 
-            _titleLocalized = new Dictionary<CultureInfo, string>();
-            _titleLocalized.Add(new CultureInfo("en-US"), title);
+            localizedTitles = new Dictionary<CultureInfo, string>();
+            localizedTitles.Add(new CultureInfo("en-US"), title);
 
             foreach(string localization in localizations)
             {
@@ -42,7 +38,7 @@ namespace GasketWizard.Attributes
 
                 CultureInfo culture = new CultureInfo(nameLocal[0]);
 
-                _titleLocalized[culture] = nameLocal[1];
+                localizedTitles[culture] = nameLocal[1];
             }
 
             SizeType = sizeType;

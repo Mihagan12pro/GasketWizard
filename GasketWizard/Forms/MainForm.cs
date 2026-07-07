@@ -18,7 +18,7 @@ namespace GasketWizard
             var partTypes = assembly.GetTypes()
                                 .Where(t => t.GetCustomAttribute<PartGroupAttribute>() != null && !t.IsAbstract);
 
-            var groups = partTypes.Select(t => t.GetCustomAttribute<PartGroupAttribute>().LocalizedGroup)
+            var groups = partTypes.Select(t => t.GetCustomAttribute<PartGroupAttribute>().LocalizedTitle)
                                   .Distinct();
 
             TreeNode rootNode = new TreeNode() { Text = "Каталог" };
@@ -27,7 +27,7 @@ namespace GasketWizard
             {
                 TreeNode groupNode = new TreeNode() { Text = group };
 
-                var parts = partTypes.Where(t => t.GetCustomAttribute<PartGroupAttribute>().LocalizedGroup == group);
+                var parts = partTypes.Where(t => t.GetCustomAttribute<PartGroupAttribute>().LocalizedTitle == group);
 
                 foreach(var part in parts)
                 {

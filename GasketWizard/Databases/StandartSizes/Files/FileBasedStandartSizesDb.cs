@@ -15,7 +15,7 @@ namespace GasketWizard.Databases.StandartSizes.Files
         {
             Type type = GetPartType(name);
 
-            string group = type.GetCustomAttribute<PartGroupAttribute>().Group;
+            string group = type.GetCustomAttribute<PartGroupAttribute>().Title;
             string path = GetFilePath(group, name);
 
             using (StreamReader  sr = new StreamReader(path))
@@ -47,7 +47,7 @@ namespace GasketWizard.Databases.StandartSizes.Files
             Type type = GetPartType(name);
             PartBase part = (PartBase)Activator.CreateInstance(type);
 
-            string group = type.GetCustomAttribute<PartGroupAttribute>().Group;
+            string group = type.GetCustomAttribute<PartGroupAttribute>().Title;
             string path = GetFilePath(group, name);
 
             using (StreamReader sr = new StreamReader(path))

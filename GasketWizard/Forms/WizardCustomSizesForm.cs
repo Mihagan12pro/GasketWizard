@@ -29,7 +29,7 @@ namespace GasketWizard.Forms
                 Text = type.GetDisplayName();
 
                 _customSizes = type.GetProperties()
-                                   .Where(p => p.GetCustomAttribute<SizeAttribute>() != null && p.GetCustomAttribute<SizeAttribute>().SizeType == Enums.SizeTypes.Custom)
+                                   .Where(p => p.GetCustomAttribute<PartParameterAttribute>() != null && p.GetCustomAttribute<PartParameterAttribute>().SizeType == Enums.SizeTypes.Custom)
                                    .ToArray();
 
                 int row = 0;
@@ -44,7 +44,7 @@ namespace GasketWizard.Forms
 
                     tbl.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
 
-                    string name = p.GetDisplayName();
+                    string name = p.GetCustomAttribute<PartParameterAttribute>().LocalizedTitle;
                     string propertyValue = $"{p.GetValue(Part)}";
 
                     tbl.Controls.Add(new Label() { Text = name, AutoSize = true}, 0, 0);

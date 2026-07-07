@@ -11,41 +11,32 @@ namespace GasketWizard.Domain.Sockets
     [DisplayName("Гнездо сальника типа СКРО")]
     public class SKROGasketSocket : GasketSocket
     {
-        [DisplayName("D")]
-        [Size(Enums.SizeTypes.Standart)]
+        [PartParameter("D")]
         public double BigCylinderOutsideDiameter { get; set; }
 
-        [DisplayName("D1")]
-        [Size(Enums.SizeTypes.Standart)]
+        [PartParameter("D1")]
         public double SmallCylinderOutsideDiameter { get; set; }
 
-        [DisplayName("d")]
-        [Size(Enums.SizeTypes.Standart)]
+        [PartParameter("d")]
         public double SmallCylinderInsideDiameter { get; set; }
 
-        [DisplayName("L")]
-        [Size(Enums.SizeTypes.Standart)]
+        [PartParameter("L")]
         public double Length { get; set; }
 
-        [DisplayName("l")]
-        [Size(Enums.SizeTypes.Standart)]
+        [PartParameter("l")]
         public double BigCylinderLength { get; set; }
 
-        [DisplayName("Резьба")]
-        [Size(Enums.SizeTypes.Standart)]
+        [PartParameter("Thread", Enums.SizeTypes.Standart, "ru-RU:Резьба")]
         public MetricThread Thread { get; set; }
 
 
-        [DisplayName("Длина резьбы")]
-        [Size(Enums.SizeTypes.Custom)]
+        [PartParameter("Thread length", Enums.SizeTypes.Custom, "ru-RU:Длина резьбы")]
         public double ThreadLength { get; set; }
 
-        [DisplayName("Глубина большего выреза")]
-        [Size(Enums.SizeTypes.Custom)]
+        [PartParameter("Big hole thread", Enums.SizeTypes.Custom, "ru-RU:Глубина большего выреза")]
         public double BigHoleLength { get; set; }
 
-        [DisplayName("Диаметр большего выреза")]
-        [Size(Enums.SizeTypes.Custom)]
+        [PartParameter("Big hole diameter", Enums.SizeTypes.Custom, "ru-RU:Диаметр большего выреза")]
         public double BigHoleDiameter { get; set; }
 
         public override IEnumerable<ValidationResult> Validate(ValidationContext validationContext)

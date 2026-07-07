@@ -18,8 +18,7 @@ namespace GasketWizard.Domain
     /// </summary>
     public abstract class PartBase : IValidatableObject
     {
-        [DisplayName("№")]
-        [Size()]
+        [PartParameter("№")]
         public int Id { get; set; }
 
         public bool HasErrors
@@ -82,7 +81,7 @@ namespace GasketWizard.Domain
         {
             PropertyInfo property = part.GetType()
                                         .GetProperties()
-                                        .First(p => p.GetDisplayName() == header);
+                                        .First(p => p.GetCustomAttribute<PartParameterAttribute>().Title == header);
 
             if (property != null)
             {
@@ -119,13 +118,13 @@ namespace GasketWizard.Domain
 
             PropertyInfo[] props = this.GetType()
                 .GetProperties()
-                .Where(p => p.GetCustomAttribute<SizeAttribute>() != null && p.GetCustomAttribute<SizeAttribute>().SizeType == SizeTypes.Custom)
+                .Where(p => p.GetCustomAttribute<PartParameterAttribute>() != null && p.GetCustomAttribute<PartParameterAttribute>().SizeType == SizeTypes.Custom)
                 .ToArray();
 
             foreach(var  prop in props)
             {
                 if (0 == (double)prop.GetValue(this))
-                    errors.Add(new ValidationResult($"Параметр '{prop.GetDisplayName()}' должен быть строго больше нуля!"));
+                    errors.Add(new ValidationResult($"Параметр '{prop.GetCustomAttribute<PartParameterAttribute>().LocalizedTitle}' должен быть строго больше нуля!"));
             }
 
             return errors;

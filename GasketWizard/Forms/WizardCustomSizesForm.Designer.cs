@@ -37,10 +37,6 @@
             this.btOk = new System.Windows.Forms.Button();
             this.btCancel = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.сохранятьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.параметрыСохраненияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -49,7 +45,6 @@
             this.dbIssues.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -69,7 +64,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.dbIssues);
-            this.splitContainer1.Size = new System.Drawing.Size(782, 334);
+            this.splitContainer1.Size = new System.Drawing.Size(782, 374);
             this.splitContainer1.SplitterDistance = 393;
             this.splitContainer1.SplitterWidth = 10;
             this.splitContainer1.TabIndex = 1;
@@ -82,7 +77,7 @@
             this.groupBox1.Controls.Add(this.flpSizes);
             this.groupBox1.Location = new System.Drawing.Point(41, 18);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(310, 292);
+            this.groupBox1.Size = new System.Drawing.Size(310, 332);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Размеры";
@@ -97,7 +92,7 @@
             this.flpSizes.Location = new System.Drawing.Point(20, 29);
             this.flpSizes.Margin = new System.Windows.Forms.Padding(10);
             this.flpSizes.Name = "flpSizes";
-            this.flpSizes.Size = new System.Drawing.Size(271, 246);
+            this.flpSizes.Size = new System.Drawing.Size(271, 286);
             this.flpSizes.TabIndex = 0;
             this.flpSizes.WrapContents = false;
             // 
@@ -109,7 +104,7 @@
             this.dbIssues.Controls.Add(this.flpIssues);
             this.dbIssues.Location = new System.Drawing.Point(24, 18);
             this.dbIssues.Name = "dbIssues";
-            this.dbIssues.Size = new System.Drawing.Size(327, 292);
+            this.dbIssues.Size = new System.Drawing.Size(321, 332);
             this.dbIssues.TabIndex = 1;
             this.dbIssues.TabStop = false;
             this.dbIssues.Text = "Ошибки";
@@ -125,7 +120,7 @@
             this.flpIssues.Location = new System.Drawing.Point(20, 34);
             this.flpIssues.Margin = new System.Windows.Forms.Padding(5);
             this.flpIssues.Name = "flpIssues";
-            this.flpIssues.Size = new System.Drawing.Size(289, 246);
+            this.flpIssues.Size = new System.Drawing.Size(283, 286);
             this.flpIssues.TabIndex = 1;
             this.flpIssues.WrapContents = false;
             // 
@@ -137,7 +132,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.Controls.Add(this.btOk, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.btCancel, 0, 0);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(411, 362);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(411, 402);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(10, 10, 25, 15);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
@@ -176,46 +171,13 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Controls.Add(this.splitContainer1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 1);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 52);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 12);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 435);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 475);
             this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // menuStrip1
-            // 
-            this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
-            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.файлToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 40);
-            this.menuStrip1.TabIndex = 1;
-            this.menuStrip1.Text = "menuStrip1";
-            // 
-            // файлToolStripMenuItem
-            // 
-            this.файлToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.сохранятьToolStripMenuItem,
-            this.параметрыСохраненияToolStripMenuItem});
-            this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
-            this.файлToolStripMenuItem.Size = new System.Drawing.Size(90, 36);
-            this.файлToolStripMenuItem.Text = "Файл";
-            // 
-            // сохранятьToolStripMenuItem
-            // 
-            this.сохранятьToolStripMenuItem.Name = "сохранятьToolStripMenuItem";
-            this.сохранятьToolStripMenuItem.Size = new System.Drawing.Size(359, 44);
-            this.сохранятьToolStripMenuItem.Text = "Сохранять";
-            // 
-            // параметрыСохраненияToolStripMenuItem
-            // 
-            this.параметрыСохраненияToolStripMenuItem.Name = "параметрыСохраненияToolStripMenuItem";
-            this.параметрыСохраненияToolStripMenuItem.Size = new System.Drawing.Size(359, 44);
-            this.параметрыСохраненияToolStripMenuItem.Text = "Параметры...";
             // 
             // WizardCustomSizesForm
             // 
@@ -227,9 +189,7 @@
             this.CancelButton = this.btCancel;
             this.ClientSize = new System.Drawing.Size(800, 487);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "WizardCustomSizesForm";
@@ -245,10 +205,7 @@
             this.dbIssues.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -263,9 +220,5 @@
         private System.Windows.Forms.FlowLayoutPanel flpIssues;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.FlowLayoutPanel flpSizes;
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem файлToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem сохранятьToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem параметрыСохраненияToolStripMenuItem;
     }
 }

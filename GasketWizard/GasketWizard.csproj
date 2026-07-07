@@ -68,9 +68,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\Titles\LocalizableAttribute.cs" />
     <Compile Include="Attributes\ModelTypeAttributes.cs" />
-    <Compile Include="Attributes\PartGroupAttribute.cs" />
-    <Compile Include="Attributes\SizeAttribute.cs" />
+    <Compile Include="Attributes\Titles\PartGroupAttribute.cs" />
+    <Compile Include="Attributes\Titles\PartParameterAttribute.cs" />
+    <Compile Include="Attributes\Titles\PartTitleAttribute.cs" />
     <Compile Include="Commands\HelloKompasCommand.cs" />
     <Compile Include="Creators\CreatorsProvider.cs" />
     <Compile Include="Creators\Creator.cs" />

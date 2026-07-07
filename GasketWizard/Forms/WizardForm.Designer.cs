@@ -183,7 +183,7 @@ namespace GasketWizard
             this.cbSave.Location = new System.Drawing.Point(694, 22);
             this.cbSave.Name = "cbSave";
             this.cbSave.Size = new System.Drawing.Size(315, 29);
-            this.cbSave.TabIndex = 0;
+            this.cbSave.TabIndex = 0;   
             this.cbSave.Text = "Сохранить после создания";
             this.cbSave.UseVisualStyleBackColor = true;
             // 
@@ -230,14 +230,14 @@ namespace GasketWizard
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btCancel;
             this.ClientSize = new System.Drawing.Size(1091, 711);
-            this.Controls.Add(this.tblForm);
+            this.Controls.Add(this.tblForm);    
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "WizardForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Load += new System.EventHandler(this.WizardForm_Load);
-            this.Resize += new System.EventHandler(this.WizardForm_Resize);
+            //this.Resize += new System.EventHandler(this.Ri);
             this.tblForm.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
