@@ -47,6 +47,11 @@ namespace GasketWizard.Creators.Nuts
                 errors.Add(new ValidationResult("Параметр «Диаметр большего цилиндра» должен быть строго больше параметра «Диаметр меньшего цилиндра»!"));
             }
 
+            if (LessCylinderDiameter <= NominalShaftDiameter)
+            {
+                errors.Add(new ValidationResult("Параметр «Диаметр меньшего цилиндра» должен быть строго больше параметра «d»!"));
+            }
+
             return errors;
         }
     }
