@@ -1,11 +1,7 @@
 ﻿using GasketWizard.Attributes;
-using GasketWizard.Enums;
-using GasketWizard.Extensions;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Reflection;
 
 namespace GasketWizard.Creators.Nuts
 {
@@ -19,7 +15,7 @@ namespace GasketWizard.Creators.Nuts
         public double ThreadLength { get; set; }
 
         [PartParameter("Chamfer length", Enums.SizeTypes.Custom, "ru-RU:Длина фаски")]
-        public double ChamferLength { get; set; }
+        public double ChamferLength { get; set; } = 1;
 
         [PartParameter("Big cylinder diameter", Enums.SizeTypes.Custom, "ru-RU:Диаметр большего цилиндра")]
         public double BigCylinderDiameter { get; set; }

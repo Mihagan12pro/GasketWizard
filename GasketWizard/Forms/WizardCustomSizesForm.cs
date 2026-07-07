@@ -71,6 +71,8 @@ namespace GasketWizard.Forms
                         }
                     }
                 }
+
+                btOk.Enabled = (Part.HasErrors == false);
             }
         }
 

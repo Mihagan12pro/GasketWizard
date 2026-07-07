@@ -82,10 +82,12 @@
     <Compile Include="Creators\Shims\ShimCreator.cs" />
     <Compile Include="Creators\Shims\ShimPartCreator.cs" />
     <Compile Include="Creators\Sockets\GasketSocketCreator.cs" />
-    <Compile Include="Creators\Sockets\SKROGasketSocketCreator.cs" />
-    <Compile Include="Creators\Sockets\SKROGasketSocketPartCreator.cs" />
-    <Compile Include="Creators\Sockets\SKSDGasketSocketCreator.cs" />
-    <Compile Include="Creators\Sockets\SKSDGasketSocketPartCreator.cs" />
+    <Compile Include="Creators\Sockets\SKRO\SKROGasketSocketCreator.cs" />
+    <Compile Include="Creators\Sockets\SKRO\SKROGasketSocketPartCreator.cs" />
+    <Compile Include="Creators\Sockets\SKSD\SKSDGasketSocketCreator.cs" />
+    <Compile Include="Creators\Sockets\SKSD\SKSDGasketSocketPartCreator.cs" />
+    <Compile Include="Creators\Sockets\SKSO\SKSOGasketSocketCreator.cs" />
+    <Compile Include="Creators\Sockets\SKSO\SKSOGasketSocketPartCreator.cs" />
     <Compile Include="Databases\StandartSizes\Files\FileBasedStandartSizesDb.cs" />
     <Compile Include="Databases\StandartSizes\IStandartSizesDb.cs" />
     <Compile Include="Domain\Sockets\GasketSocket.cs" />
@@ -96,6 +98,7 @@
     <Compile Include="Domain\Shims\Shim.cs" />
     <Compile Include="Domain\Sockets\SKROGasketSocket.cs" />
     <Compile Include="Domain\Sockets\SKSDGasketSocket.cs" />
+    <Compile Include="Domain\Sockets\SKSOGasketSocket.cs" />
     <Compile Include="Domain\ValueObjects\MetricThread.cs" />
     <Compile Include="Domain\ValueObjects\ValueObject.cs" />
     <Compile Include="Enums\ModelType.cs" />
@@ -155,7 +158,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Databases\StandartSizes\Files\Sockets\.gitkeeper" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -170,6 +172,7 @@
     <Content Include="Databases\StandartSizes\Files\Shims\Shim.txt" />
     <Content Include="Databases\StandartSizes\Files\Sockets\SKROGasketSocket.txt" />
     <Content Include="Databases\StandartSizes\Files\Sockets\SKSDGasketSocket.txt" />
+    <Content Include="Databases\StandartSizes\Files\Sockets\SKSOGasketSocket.txt" />
     <Content Include="images\ClumpingNut1.png" />
     <Content Include="images\ClumpingNut2.png" />
     <Content Include="images\SKROGasketSocket.png" />
@@ -228,7 +231,9 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Attributes\Validation\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.119.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets" Condition="Exists('..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.119.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

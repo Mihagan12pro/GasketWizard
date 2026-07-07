@@ -2,7 +2,6 @@
 using GasketWizard.Domain.Housing;
 using GasketWizard.Domain.ValueObjects;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
@@ -36,15 +35,9 @@ namespace GasketWizard.Domain.Sockets
         [PartParameter("Big hole thread", Enums.SizeTypes.Custom, "ru-RU:Глубина большего выреза")]
         public double BigHoleLength { get; set; }
 
-        [PartParameter("Big hole diameter", Enums.SizeTypes.Custom, "ru-RU:Диаметр большего выреза")]
-        public double BigHoleDiameter { get; set; }
-
         public override IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             List<ValidationResult> result = base.Validate(validationContext).ToList();
-
-            if (BigHoleDiameter >= BigCylinderOutsideDiameter)
-                result.Add(new ValidationResult("Параметр 'Диаметр большего выреща' должен быть меньше D!"));
 
             if (BigHoleLength >= BigCylinderLength)
                 result.Add(new ValidationResult("Параметр 'Глубина большего выреза' должен быть меньше l!"));

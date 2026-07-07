@@ -101,7 +101,7 @@ namespace GasketWizard.Creators.Sockets
             IDrawingContainer drawingContainer = (IDrawingContainer)view;
 
             ICircle circle = drawingContainer.Circles.Add();
-            circle.Radius = partModel.BigHoleDiameter / 2;
+            circle.Radius = partModel.Thread.NominalDiameter / 2;
             circle.Xc = 0;
             circle.Yc = 0;
             circle.Update();
