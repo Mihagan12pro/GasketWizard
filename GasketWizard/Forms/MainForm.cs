@@ -31,7 +31,7 @@ namespace GasketWizard
 
                 foreach(var part in parts)
                 {
-                    TreeNode partNode = new TreeNode() { Text = part.GetDisplayName() };
+                    TreeNode partNode = new TreeNode() { Text = part.GetCustomAttribute<PartTitleAttribute>().LocalizedTitle };
 
                     groupNode.Nodes.Add(partNode);
                 }

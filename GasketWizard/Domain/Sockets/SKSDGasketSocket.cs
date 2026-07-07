@@ -1,11 +1,10 @@
 ﻿using GasketWizard.Attributes;
 using GasketWizard.Domain.Housing;
 using GasketWizard.Domain.ValueObjects;
-using System.ComponentModel;
 
 namespace GasketWizard.Domain.Sockets
 {
-    [DisplayName("Гнездо сальника типа СКСД")]
+    [PartTitle("SKSD-type gasket socket", "ru-RU:Гнездо сальника типа СКСД")]
     public class SKSDGasketSocket : GasketSocket
     {
         [PartParameter("Thread", Enums.SizeTypes.Standart, "ru-RU:Резьба")]

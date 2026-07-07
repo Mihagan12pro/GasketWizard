@@ -9,7 +9,7 @@ using System.Reflection;
 
 namespace GasketWizard.Creators.Nuts
 {
-    [DisplayName("Нажимная гайка, исполнение 1")]
+    [PartTitle("Clumping nut, first embodiment", "ru-RU:Нажимная гайка, исполнение 1")]
     public class ClumpingNut1 : ClumpingNut
     {
         [PartParameter("Hexagon height", Enums.SizeTypes.Custom, "ru-RU:Высота шестиугольника")]

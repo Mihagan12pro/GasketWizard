@@ -26,7 +26,7 @@ namespace GasketWizard.Forms
 
                 Type type = value.GetType();
 
-                Text = type.GetDisplayName();
+                Text = type.GetCustomAttribute<PartTitleAttribute>().LocalizedTitle;
 
                 _customSizes = type.GetProperties()
                                    .Where(p => p.GetCustomAttribute<PartParameterAttribute>() != null && p.GetCustomAttribute<PartParameterAttribute>().SizeType == Enums.SizeTypes.Custom)

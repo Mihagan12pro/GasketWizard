@@ -4,9 +4,9 @@ using System.ComponentModel;
 
 namespace GasketWizard.Domain.Shims
 {
-    [DisplayName("Шайба")]
     [ModelTypeAttributes(ModelType.Part)]
     [PartGroup("Shims", "ru-RU:Шайбы")]
+    [PartTitle("Shim", "ru-RU:Шайба")]
     public class Shim : PartBase
     {
         /// <summary>

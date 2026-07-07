@@ -44,8 +44,8 @@ namespace GasketWizard.Domain
             var assembly = Assembly.GetExecutingAssembly();
 
             return assembly.GetTypes()
-                .Where(t => t.GetCustomAttribute<DisplayNameAttribute>() != null)
-                .FirstOrDefault(t => t.GetCustomAttribute<DisplayNameAttribute>().DisplayName == displayName);
+                .Where(t => t.GetCustomAttribute<PartTitleAttribute>() != null)
+                .FirstOrDefault(t => t.GetCustomAttribute<PartTitleAttribute>().LocalizedTitle == displayName);
         }
 
         public static Bitmap MapDisplayNameWithBitmap(string displayName)
@@ -55,8 +55,8 @@ namespace GasketWizard.Domain
             var assembly = Assembly.GetExecutingAssembly();
 
             var partType = assembly.GetTypes()
-                .Where(t => t.GetCustomAttribute<DisplayNameAttribute>() != null)
-                .FirstOrDefault(t => t.GetCustomAttribute<DisplayNameAttribute>().DisplayName == displayName);
+                .Where(t => t.GetCustomAttribute<PartTitleAttribute>() != null)
+                .FirstOrDefault(t => t.GetCustomAttribute<PartTitleAttribute>().LocalizedTitle == displayName);
 
             if (partType == null)
                 return Resource.Default;

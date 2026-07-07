@@ -1,9 +1,9 @@
-﻿using GasketWizard.Creators.Nuts;
-using System.ComponentModel;
+﻿using GasketWizard.Attributes;
+using GasketWizard.Creators.Nuts;
 
 namespace GasketWizard.Domain.Nut
 {
-    [DisplayName("Нажимная гайка, исполнение 2")]
+    [PartTitle("Clumping nut, second embodiment", "ru-RU:Нажимная гайка, исполнение 2")]
     public class ClumpingNut2 : ClumpingNut
     {
     }

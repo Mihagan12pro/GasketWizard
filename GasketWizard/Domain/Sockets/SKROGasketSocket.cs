@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace GasketWizard.Domain.Sockets
 {
-    [DisplayName("Гнездо сальника типа СКРО")]
+    [PartTitle("SKRO-type gasket socket", "ru-RU:Гнездо сальника типа СКРО")]
     public class SKROGasketSocket : GasketSocket
     {
         [PartParameter("D")]

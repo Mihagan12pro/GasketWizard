@@ -38,7 +38,7 @@ namespace GasketWizard
 
             _partType = partType;
             _partClassName = _partType.Name;
-            _partDisplayName = _partType.GetCustomAttribute<DisplayNameAttribute>().DisplayName;
+            _partDisplayName = _partType.GetCustomAttribute<PartTitleAttribute>().LocalizedTitle;
 
             _partsStandartProperties = _partType.GetProperties()
                                                 .Where(p => p.GetCustomAttribute<PartParameterAttribute>()!= null && p.GetCustomAttribute<PartParameterAttribute>().SizeType != Enums.SizeTypes.Custom)
