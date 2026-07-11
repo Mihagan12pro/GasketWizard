@@ -31,7 +31,7 @@ namespace GasketWizard.Creators.Nuts
 
             ISketch sketch4 = AddSketch4();
             ICutExtrusion cutExtrusion = CutSketch4(sketch4);
-            IThread thread = AddThread(cutExtrusion);
+            IThread thread = AddThread(sketch3Extrusion);
 
             IChamfer chamfer = AddChamfer();
 
@@ -251,27 +251,16 @@ namespace GasketWizard.Creators.Nuts
 
             foreach (var faceObj in modelContainer.Objects[Obj3dType.o3d_face])
             {
-                if (faceObj is IFace face && face.Owner == (IFeature7)extrusion)
+                if (faceObj is IFace face && face.Radius == partModel.BigCylinderDiameter / 2)
                 {
-                    foreach(var edgeObj in face.LimitingEdges)
-                    {
-                        if (edgeObj is IEdge edge)
-                        {
-                            edge.GetPoint(true, out double x, out double y, out double z);
+                    thread.BaseObject = face;
+                    thread.AutoLenght = true;
 
-                            if (z == partModel.Length)
-                            {
-                                thread.BaseObject = face;
-                                thread.AutoLenght = true;
+                    IThreadsParameters threadsParameters = (IThreadsParameters)thread;
+                    threadsParameters.Diameter = partModel.Thread.NominalDiameter;
+                    threadsParameters.Pitch = partModel.Thread.Pitch;
 
-                                IThreadsParameters threadsParameters = (IThreadsParameters)thread;
-                                threadsParameters.Diameter = partModel.Thread.NominalDiameter;
-                                threadsParameters.Pitch = partModel.Thread.Pitch;
-
-                                break;
-                            }
-                        }
-                    }
+                    break;
                 }
             }
 
