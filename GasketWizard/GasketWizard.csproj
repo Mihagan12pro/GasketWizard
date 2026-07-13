@@ -76,8 +76,10 @@
     <Compile Include="Commands\HelloKompasCommand.cs" />
     <Compile Include="Creators\CreatorsProvider.cs" />
     <Compile Include="Creators\Creator.cs" />
-    <Compile Include="Creators\Nuts\ClumpingNut1Creator.cs" />
-    <Compile Include="Creators\Nuts\ClumpingNut1PartCreator.cs" />
+    <Compile Include="Creators\Nuts\ClumpingNut1\ClumpingNut1Creator.cs" />
+    <Compile Include="Creators\Nuts\ClumpingNut1\ClumpingNut1PartCreator.cs" />
+    <Compile Include="Creators\Nuts\ClumpingNut2\ClumpingNut2Creator.cs" />
+    <Compile Include="Creators\Nuts\ClumpingNut2\ClumpingNut2PartCreator.cs" />
     <Compile Include="Creators\Nuts\ClumpingNutCreator.cs" />
     <Compile Include="Creators\Shims\ShimCreator.cs" />
     <Compile Include="Creators\Shims\ShimPartCreator.cs" />

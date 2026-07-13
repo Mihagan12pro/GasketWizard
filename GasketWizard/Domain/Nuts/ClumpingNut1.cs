@@ -8,22 +8,6 @@ namespace GasketWizard.Creators.Nuts
     [PartTitle("Clumping nut, first embodiment", "ru-RU:Нажимная гайка, исполнение 1")]
     public class ClumpingNut1 : ClumpingNut
     {
-        [PartParameter("Hexagon height", Enums.SizeTypes.Custom, "ru-RU:Высота шестиугольника")]
-        public double HexagonHeight { get; set; }
-
-        [PartParameter("Thread length", Enums.SizeTypes.Custom, "ru-RU:Длина резьбы")]
-        public double ThreadLength { get; set; }
-
-        [PartParameter("Chamfer length", Enums.SizeTypes.Custom, "ru-RU:Длина фаски")]
-        public double ChamferLength { get; set; } = 1;
-
-        [PartParameter("Big cylinder diameter", Enums.SizeTypes.Custom, "ru-RU:Диаметр большего цилиндра")]
-        public double BigCylinderDiameter { get; set; }
-
-        [PartParameter("Less cylinder diameter", Enums.SizeTypes.Custom, "ru-RU:Диаметр меньшего цилиндра")]
-        public double LessCylinderDiameter { get; set; }
-
-
         public override IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             List<ValidationResult> errors = base.Validate(validationContext).ToList();
@@ -33,19 +17,19 @@ namespace GasketWizard.Creators.Nuts
                 errors.Add(new ValidationResult("Длина резьбы и высота шестиугольника не должны быть в сумме больше длины гайки!"));
             }
 
-            if (BigCylinderDiameter >= WidthAcrossCorners)
+            if (RightCylinderDiameter >= WidthAcrossCorners)
             {
-                errors.Add(new ValidationResult("Параметр «Диаметр большего цилиндра» не должен превышать стандартный размер D!"));
+                errors.Add(new ValidationResult("Параметр «Диаметр правого цилиндра» не должен превышать стандартный размер D!"));
             }
 
-            if (LessCylinderDiameter >= BigCylinderDiameter)
+            if (RightCylinderDiameter <= LeftCylinderDiameter)
             {
-                errors.Add(new ValidationResult("Параметр «Диаметр большего цилиндра» должен быть строго больше параметра «Диаметр меньшего цилиндра»!"));
+                errors.Add(new ValidationResult("Параметр «Диаметр правого цилиндра» должен быть строго больше параметра «Диаметр левого цилиндра»!"));
             }
 
-            if (LessCylinderDiameter <= NominalShaftDiameter)
+            if (LeftCylinderDiameter <= NominalShaftDiameter)
             {
-                errors.Add(new ValidationResult("Параметр «Диаметр меньшего цилиндра» должен быть строго больше параметра «d»!"));
+                errors.Add(new ValidationResult("Параметр «Диаметр левого цилиндра» должен быть строго больше параметра «d»!"));
             }
 
             return errors;

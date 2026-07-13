@@ -37,5 +37,21 @@ namespace GasketWizard.Creators.Nuts
         /// </summary>
         [PartParameter("l")]
         public double Length { get; set; }
+
+
+        [PartParameter("Left cylinder diameter", Enums.SizeTypes.Custom, "ru-RU:Диаметр левого цилиндра")]
+        public double LeftCylinderDiameter { get; set; }
+
+        [PartParameter("Right cylinder diameter", Enums.SizeTypes.Custom, "ru-RU:Диаметр правого цилиндра")]
+        public double RightCylinderDiameter { get; set; }
+
+        [PartParameter("Thread length", Enums.SizeTypes.Custom, "ru-RU:Длина резьбы")]
+        public double ThreadLength { get; set; }
+
+        [PartParameter("Hexagon height", Enums.SizeTypes.Custom, "ru-RU:Высота шестиугольника")]
+        public double HexagonHeight { get; set; }
+
+        [PartParameter("Chamfer length", Enums.SizeTypes.Custom, "ru-RU:Длина фаски")]
+        public double ChamferLength { get; set; } = 1;
     }
 }

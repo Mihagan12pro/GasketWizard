@@ -20,9 +20,9 @@ namespace GasketWizard.Tests.Parts
 
             ChamferLength = 2,
 
-            BigCylinderDiameter = 15,
+            LeftCylinderDiameter = 15,
 
-            LessCylinderDiameter = 10,
+            RightCylinderDiameter = 10,
 
             WidthAcrossCorners = 21.9,
 
