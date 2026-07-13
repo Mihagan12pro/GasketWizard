@@ -18,8 +18,7 @@ namespace GasketWizard.Domain
     /// </summary>
     public abstract class PartBase : IValidatableObject
     {
-        [DisplayName("№")]
-        [SizeTypes()]
+        [PartParameter("№")]
         public int Id { get; set; }
 
         public bool HasErrors
@@ -45,8 +44,8 @@ namespace GasketWizard.Domain
             var assembly = Assembly.GetExecutingAssembly();
 
             return assembly.GetTypes()
-                .Where(t => t.GetCustomAttribute<DisplayNameAttribute>() != null)
-                .FirstOrDefault(t => t.GetCustomAttribute<DisplayNameAttribute>().DisplayName == displayName);
+                .Where(t => t.GetCustomAttribute<PartTitleAttribute>() != null)
+                .FirstOrDefault(t => t.GetCustomAttribute<PartTitleAttribute>().LocalizedTitle == displayName);
         }
 
         public static Bitmap MapDisplayNameWithBitmap(string displayName)
@@ -56,8 +55,8 @@ namespace GasketWizard.Domain
             var assembly = Assembly.GetExecutingAssembly();
 
             var partType = assembly.GetTypes()
-                .Where(t => t.GetCustomAttribute<DisplayNameAttribute>() != null)
-                .FirstOrDefault(t => t.GetCustomAttribute<DisplayNameAttribute>().DisplayName == displayName);
+                .Where(t => t.GetCustomAttribute<PartTitleAttribute>() != null)
+                .FirstOrDefault(t => t.GetCustomAttribute<PartTitleAttribute>().LocalizedTitle == displayName);
 
             if (partType == null)
                 return Resource.Default;
@@ -82,7 +81,7 @@ namespace GasketWizard.Domain
         {
             PropertyInfo property = part.GetType()
                                         .GetProperties()
-                                        .First(p => p.GetDisplayName() == header);
+                                        .First(p => p.GetCustomAttribute<PartParameterAttribute>().Title == header);
 
             if (property != null)
             {
@@ -119,13 +118,13 @@ namespace GasketWizard.Domain
 
             PropertyInfo[] props = this.GetType()
                 .GetProperties()
-                .Where(p => p.GetCustomAttribute<SizeTypesAttribute>() != null && p.GetCustomAttribute<SizeTypesAttribute>().SizeType == SizeTypes.Custom)
+                .Where(p => p.GetCustomAttribute<PartParameterAttribute>() != null && p.GetCustomAttribute<PartParameterAttribute>().SizeType == SizeTypes.Custom)
                 .ToArray();
 
             foreach(var  prop in props)
             {
                 if (0 == (double)prop.GetValue(this))
-                    errors.Add(new ValidationResult($"Параметр '{prop.GetDisplayName()}' должен быть строго больше нуля!"));
+                    errors.Add(new ValidationResult($"Параметр '{prop.GetCustomAttribute<PartParameterAttribute>().LocalizedTitle}' должен быть строго больше нуля!"));
             }
 
             return errors;

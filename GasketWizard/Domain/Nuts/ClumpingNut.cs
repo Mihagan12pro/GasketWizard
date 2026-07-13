@@ -1,7 +1,6 @@
 ﻿using GasketWizard.Attributes;
 using GasketWizard.Domain;
 using GasketWizard.Domain.ValueObjects;
-using System.ComponentModel;
 
 namespace GasketWizard.Creators.Nuts
 {
@@ -12,36 +11,47 @@ namespace GasketWizard.Creators.Nuts
         /// <summary>
         /// Обозначение резьбы
         /// </summary>
-        [DisplayName("Резьба")]
-        [SizeTypes()]
+        [PartParameter("Thread", Enums.SizeTypes.Standart, "ru-RU:Резьба")]
         public MetricThread Thread { get; set; }
 
         /// <summary>
         /// d
         /// </summary>
-        [DisplayName("d")]
-        [SizeTypes()]
+        [PartParameter("d")]
         public double NominalShaftDiameter { get; set; }
 
         /// <summary>
         /// D
         /// </summary>
-        [DisplayName("D")]
-        [SizeTypes()]
+        [PartParameter("D")]
         public double WidthAcrossCorners { get; set; }
 
         /// <summary>
         /// s
         /// </summary>
-        [DisplayName("s")]
-        [SizeTypes()]
+        [PartParameter("s")]
         public double WidthAcrosFlats { get; set; }
 
         /// <summary>
         /// l
         /// </summary>
-        [DisplayName("l")]
-        [SizeTypes()]
+        [PartParameter("l")]
         public double Length { get; set; }
+
+
+        [PartParameter("Left cylinder diameter", Enums.SizeTypes.Custom, "ru-RU:Диаметр левого цилиндра")]
+        public double LeftCylinderDiameter { get; set; }
+
+        [PartParameter("Right cylinder diameter", Enums.SizeTypes.Custom, "ru-RU:Диаметр правого цилиндра")]
+        public double RightCylinderDiameter { get; set; }
+
+        [PartParameter("Thread length", Enums.SizeTypes.Custom, "ru-RU:Длина резьбы")]
+        public double ThreadLength { get; set; }
+
+        [PartParameter("Hexagon height", Enums.SizeTypes.Custom, "ru-RU:Высота шестиугольника")]
+        public double HexagonHeight { get; set; }
+
+        [PartParameter("Chamfer length", Enums.SizeTypes.Custom, "ru-RU:Длина фаски")]
+        public double ChamferLength { get; set; } = 1;
     }
 }

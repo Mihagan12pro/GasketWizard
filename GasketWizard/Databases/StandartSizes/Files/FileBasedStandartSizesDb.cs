@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Resources;
 
 namespace GasketWizard.Databases.StandartSizes.Files
 {
@@ -15,7 +16,7 @@ namespace GasketWizard.Databases.StandartSizes.Files
         {
             Type type = GetPartType(name);
 
-            string group = type.GetCustomAttribute<PartGroupAttribute>().Group;
+            string group = type.GetCustomAttribute<PartGroupAttribute>().Title;
             string path = GetFilePath(group, name);
 
             using (StreamReader  sr = new StreamReader(path))
@@ -47,7 +48,7 @@ namespace GasketWizard.Databases.StandartSizes.Files
             Type type = GetPartType(name);
             PartBase part = (PartBase)Activator.CreateInstance(type);
 
-            string group = type.GetCustomAttribute<PartGroupAttribute>().Group;
+            string group = type.GetCustomAttribute<PartGroupAttribute>().Title;
             string path = GetFilePath(group, name);
 
             using (StreamReader sr = new StreamReader(path))
@@ -85,7 +86,18 @@ namespace GasketWizard.Databases.StandartSizes.Files
         }
 
         private static string GetRootDirectory()
-            => Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
+        {
+            var assembly = Assembly.GetExecutingAssembly();
+
+            string path = assembly.Location;
+
+            while(path.Contains("bin") || path.Contains("Debug") || path.Contains("Release"))
+            {
+                path = Directory.GetParent(path).FullName;
+            }
+
+            return path;
+        }
 
         private static string GetFilePath(string group, string name)
         {

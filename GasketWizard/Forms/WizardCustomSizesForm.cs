@@ -26,10 +26,10 @@ namespace GasketWizard.Forms
 
                 Type type = value.GetType();
 
-                Text = type.GetDisplayName();
+                Text = type.GetCustomAttribute<PartTitleAttribute>().LocalizedTitle;
 
                 _customSizes = type.GetProperties()
-                                   .Where(p => p.GetCustomAttribute<SizeTypesAttribute>() != null && p.GetCustomAttribute<SizeTypesAttribute>().SizeType == Enums.SizeTypes.Custom)
+                                   .Where(p => p.GetCustomAttribute<PartParameterAttribute>() != null && p.GetCustomAttribute<PartParameterAttribute>().SizeType == Enums.SizeTypes.Custom)
                                    .ToArray();
 
                 int row = 0;
@@ -44,7 +44,7 @@ namespace GasketWizard.Forms
 
                     tbl.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
 
-                    string name = p.GetDisplayName();
+                    string name = p.GetCustomAttribute<PartParameterAttribute>().LocalizedTitle;
                     string propertyValue = $"{p.GetValue(Part)}";
 
                     tbl.Controls.Add(new Label() { Text = name, AutoSize = true}, 0, 0);
@@ -71,6 +71,8 @@ namespace GasketWizard.Forms
                         }
                     }
                 }
+
+                btOk.Enabled = (Part.HasErrors == false);
             }
         }
 

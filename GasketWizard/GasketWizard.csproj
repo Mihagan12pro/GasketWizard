@@ -68,22 +68,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\Titles\LocalizableAttribute.cs" />
     <Compile Include="Attributes\ModelTypeAttributes.cs" />
-    <Compile Include="Attributes\PartGroupAttribute.cs" />
-    <Compile Include="Attributes\SizeTypesAttribute.cs" />
+    <Compile Include="Attributes\Titles\PartGroupAttribute.cs" />
+    <Compile Include="Attributes\Titles\PartParameterAttribute.cs" />
+    <Compile Include="Attributes\Titles\PartTitleAttribute.cs" />
     <Compile Include="Commands\HelloKompasCommand.cs" />
     <Compile Include="Creators\CreatorsProvider.cs" />
     <Compile Include="Creators\Creator.cs" />
-    <Compile Include="Creators\Nuts\ClumpingNut1Creator.cs" />
-    <Compile Include="Creators\Nuts\ClumpingNut1PartCreator.cs" />
+    <Compile Include="Creators\Nuts\ClumpingNut1\ClumpingNut1Creator.cs" />
+    <Compile Include="Creators\Nuts\ClumpingNut1\ClumpingNut1PartCreator.cs" />
+    <Compile Include="Creators\Nuts\ClumpingNut2\ClumpingNut2Creator.cs" />
+    <Compile Include="Creators\Nuts\ClumpingNut2\ClumpingNut2PartCreator.cs" />
     <Compile Include="Creators\Nuts\ClumpingNutCreator.cs" />
     <Compile Include="Creators\Shims\ShimCreator.cs" />
     <Compile Include="Creators\Shims\ShimPartCreator.cs" />
     <Compile Include="Creators\Sockets\GasketSocketCreator.cs" />
-    <Compile Include="Creators\Sockets\SKROGasketSocketCreator.cs" />
-    <Compile Include="Creators\Sockets\SKROGasketSocketPartCreator.cs" />
-    <Compile Include="Creators\Sockets\SKSDGasketSocketCreator.cs" />
-    <Compile Include="Creators\Sockets\SKSDGasketSocketPartCreator.cs" />
+    <Compile Include="Creators\Sockets\SKRO\SKROGasketSocketCreator.cs" />
+    <Compile Include="Creators\Sockets\SKRO\SKROGasketSocketPartCreator.cs" />
+    <Compile Include="Creators\Sockets\SKSD\SKSDGasketSocketCreator.cs" />
+    <Compile Include="Creators\Sockets\SKSD\SKSDGasketSocketPartCreator.cs" />
+    <Compile Include="Creators\Sockets\SKSO\SKSOGasketSocketCreator.cs" />
+    <Compile Include="Creators\Sockets\SKSO\SKSOGasketSocketPartCreator.cs" />
     <Compile Include="Databases\StandartSizes\Files\FileBasedStandartSizesDb.cs" />
     <Compile Include="Databases\StandartSizes\IStandartSizesDb.cs" />
     <Compile Include="Domain\Sockets\GasketSocket.cs" />
@@ -94,6 +100,7 @@
     <Compile Include="Domain\Shims\Shim.cs" />
     <Compile Include="Domain\Sockets\SKROGasketSocket.cs" />
     <Compile Include="Domain\Sockets\SKSDGasketSocket.cs" />
+    <Compile Include="Domain\Sockets\SKSOGasketSocket.cs" />
     <Compile Include="Domain\ValueObjects\MetricThread.cs" />
     <Compile Include="Domain\ValueObjects\ValueObject.cs" />
     <Compile Include="Enums\ModelType.cs" />
@@ -153,7 +160,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Databases\StandartSizes\Files\Sockets\.gitkeeper" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -168,6 +174,7 @@
     <Content Include="Databases\StandartSizes\Files\Shims\Shim.txt" />
     <Content Include="Databases\StandartSizes\Files\Sockets\SKROGasketSocket.txt" />
     <Content Include="Databases\StandartSizes\Files\Sockets\SKSDGasketSocket.txt" />
+    <Content Include="Databases\StandartSizes\Files\Sockets\SKSOGasketSocket.txt" />
     <Content Include="images\ClumpingNut1.png" />
     <Content Include="images\ClumpingNut2.png" />
     <Content Include="images\SKROGasketSocket.png" />

@@ -38,14 +38,14 @@ namespace GasketWizard
 
             _partType = partType;
             _partClassName = _partType.Name;
-            _partDisplayName = _partType.GetCustomAttribute<DisplayNameAttribute>().DisplayName;
+            _partDisplayName = _partType.GetCustomAttribute<PartTitleAttribute>().LocalizedTitle;
 
             _partsStandartProperties = _partType.GetProperties()
-                                                .Where(p => p.GetCustomAttribute<SizeTypesAttribute>()!= null && p.GetCustomAttribute<SizeTypesAttribute>().SizeType != Enums.SizeTypes.Custom)
+                                                .Where(p => p.GetCustomAttribute<PartParameterAttribute>()!= null && p.GetCustomAttribute<PartParameterAttribute>().SizeType != Enums.SizeTypes.Custom)
                                                 .ToArray();
 
             _partsCustomProperties = _partType.GetProperties()
-                                                .Where(p => p.GetCustomAttribute<SizeTypesAttribute>() != null && p.GetCustomAttribute<SizeTypesAttribute>().SizeType == Enums.SizeTypes.Custom)
+                                                .Where(p => p.GetCustomAttribute<PartParameterAttribute>() != null && p.GetCustomAttribute<PartParameterAttribute>().SizeType == Enums.SizeTypes.Custom)
                                                 .ToArray();
             _idProperty = _partType.GetProperty("Id");
 
@@ -63,17 +63,17 @@ namespace GasketWizard
 
             ColumnHeader idColumn = new ColumnHeader()
             {
-                Text = _idProperty.GetDisplayName(),
+                Text = _idProperty.GetCustomAttribute<PartParameterAttribute>().Title,
             };
             lvSizes.Columns.Add(idColumn);
 
             foreach (var property in _partsStandartProperties)
             {
-                if (property != _idProperty && property.GetCustomAttribute<SizeTypesAttribute>().SizeType != Enums.SizeTypes.Custom)
+                if (property != _idProperty && property.GetCustomAttribute<PartParameterAttribute>().SizeType != Enums.SizeTypes.Custom)
                 {
                     ColumnHeader column = new ColumnHeader()
                     {
-                        Text = property.GetDisplayName()
+                        Text = property.GetCustomAttribute<PartParameterAttribute>().LocalizedTitle
                     };
 
                     lvSizes.Columns.Add(column);
@@ -105,7 +105,7 @@ namespace GasketWizard
                 lvSizes.Items.Add(item);
             }
 
-            SetColumnsSize();
+            SetColumnsPartParameter();
         }
 
         private void btSelectSavingFolder_Click(object sender, EventArgs e)
@@ -137,6 +137,8 @@ namespace GasketWizard
         {
             var part = _sizesDb.GetById(lvSizes.SelectedIndices[0] + 1, _partType.Name);
 
+            bool save = cbSave.Checked;
+
             if (_partsCustomProperties.Length > 0)
             {
                 WizardCustomSizesForm wizardCustomSizesForm = new WizardCustomSizesForm();
@@ -149,16 +151,16 @@ namespace GasketWizard
             }
 
             KompasObject kompasObject = (KompasObject)Marshal.GetActiveObject("KOMPAS.Application.5");
-            CreatorsProvider.Create(part, cbSave.Checked, tbSavingPath.Text);
+            CreatorsProvider.Create(part, save, tbSavingPath.Text);
             DialogResult = DialogResult.OK;
         }
 
-        private void WizardForm_Resize(object sender, EventArgs e)
+        private void WizardForm_RePartParameter(object sender, EventArgs e)
         {
-            SetColumnsSize();
+            SetColumnsPartParameter();
         }
 
-        private void SetColumnsSize()
+        private void SetColumnsPartParameter()
         {
             int width = lvSizes.Width / _partsStandartProperties.Length;
 

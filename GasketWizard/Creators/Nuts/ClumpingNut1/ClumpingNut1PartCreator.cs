@@ -31,7 +31,7 @@ namespace GasketWizard.Creators.Nuts
 
             ISketch sketch4 = AddSketch4();
             ICutExtrusion cutExtrusion = CutSketch4(sketch4);
-            IThread thread = AddThread(cutExtrusion);
+            IThread thread = AddThread();
 
             IChamfer chamfer = AddChamfer();
 
@@ -105,7 +105,7 @@ namespace GasketWizard.Creators.Nuts
             ICircle circle = drawingContainer.Circles.Add();
             circle.Xc = 0;
             circle.Yc = 0;
-            circle.Radius = partModel.LessCylinderDiameter / 2;
+            circle.Radius = partModel.LeftCylinderDiameter / 2;
 
             circle.Update();
 
@@ -148,7 +148,7 @@ namespace GasketWizard.Creators.Nuts
             ICircle circle = drawingContainer.Circles.Add();
             circle.Xc = 0;
             circle.Yc = 0;
-            circle.Radius = partModel.BigCylinderDiameter / 2;
+            circle.Radius = partModel.RightCylinderDiameter / 2;
 
             circle.Update();
 
@@ -226,12 +226,6 @@ namespace GasketWizard.Creators.Nuts
         {
             IModelContainer modelContainer = (_nutPart as IModelContainer);
 
-            IPlane3DByOffset offsetPlane = (IPlane3DByOffset)modelContainer.AddObject(ksObj3dTypeEnum.o3d_planeOffset);
-            offsetPlane.Offset = partModel.Length;
-            offsetPlane.BasePlane = _nutPart.DefaultObject[ksObj3dTypeEnum.o3d_planeXOY];
-            offsetPlane.Update();
-
-
             ICutExtrusion cutExtrusion = (ICutExtrusion)modelContainer.Extrusions.Add(ksObj3dTypeEnum.o3d_cutExtrusion);
             cutExtrusion.Sketch = (Sketch)sketch;
             cutExtrusion.ExtrusionType[false] = ksEndTypeEnum.etThroughAll;
@@ -241,7 +235,7 @@ namespace GasketWizard.Creators.Nuts
             return cutExtrusion;
         }
 
-        private IThread AddThread(IExtrusion extrusion)
+        private IThread AddThread()
         {
             KompasObject kompas = (KompasObject)Marshal.GetActiveObject("KOMPAS.Application.5");
 
@@ -251,27 +245,16 @@ namespace GasketWizard.Creators.Nuts
 
             foreach (var faceObj in modelContainer.Objects[Obj3dType.o3d_face])
             {
-                if (faceObj is IFace face && face.Owner == (IFeature7)extrusion)
+                if (faceObj is IFace face && face.Radius == partModel.RightCylinderDiameter / 2)
                 {
-                    foreach(var edgeObj in face.LimitingEdges)
-                    {
-                        if (edgeObj is IEdge edge)
-                        {
-                            edge.GetPoint(true, out double x, out double y, out double z);
+                    thread.BaseObject = face;
+                    thread.AutoLenght = true;
 
-                            if (z == partModel.Length)
-                            {
-                                thread.BaseObject = face;
-                                thread.AutoLenght = true;
+                    IThreadsParameters threadsParameters = (IThreadsParameters)thread;
+                    threadsParameters.Diameter = partModel.Thread.NominalDiameter;
+                    threadsParameters.Pitch = partModel.Thread.Pitch;
 
-                                IThreadsParameters threadsParameters = (IThreadsParameters)thread;
-                                threadsParameters.Diameter = partModel.Thread.NominalDiameter;
-                                threadsParameters.Pitch = partModel.Thread.Pitch;
-
-                                break;
-                            }
-                        }
-                    }
+                    break;
                 }
             }
 

@@ -64,7 +64,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.dbIssues);
-            this.splitContainer1.Size = new System.Drawing.Size(782, 386);
+            this.splitContainer1.Size = new System.Drawing.Size(782, 374);
             this.splitContainer1.SplitterDistance = 393;
             this.splitContainer1.SplitterWidth = 10;
             this.splitContainer1.TabIndex = 1;
@@ -77,7 +77,7 @@
             this.groupBox1.Controls.Add(this.flpSizes);
             this.groupBox1.Location = new System.Drawing.Point(41, 18);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(310, 344);
+            this.groupBox1.Size = new System.Drawing.Size(310, 332);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Размеры";
@@ -92,7 +92,7 @@
             this.flpSizes.Location = new System.Drawing.Point(20, 29);
             this.flpSizes.Margin = new System.Windows.Forms.Padding(10);
             this.flpSizes.Name = "flpSizes";
-            this.flpSizes.Size = new System.Drawing.Size(271, 298);
+            this.flpSizes.Size = new System.Drawing.Size(271, 286);
             this.flpSizes.TabIndex = 0;
             this.flpSizes.WrapContents = false;
             // 
@@ -104,7 +104,7 @@
             this.dbIssues.Controls.Add(this.flpIssues);
             this.dbIssues.Location = new System.Drawing.Point(24, 18);
             this.dbIssues.Name = "dbIssues";
-            this.dbIssues.Size = new System.Drawing.Size(333, 344);
+            this.dbIssues.Size = new System.Drawing.Size(321, 332);
             this.dbIssues.TabIndex = 1;
             this.dbIssues.TabStop = false;
             this.dbIssues.Text = "Ошибки";
@@ -120,7 +120,7 @@
             this.flpIssues.Location = new System.Drawing.Point(20, 34);
             this.flpIssues.Margin = new System.Windows.Forms.Padding(5);
             this.flpIssues.Name = "flpIssues";
-            this.flpIssues.Size = new System.Drawing.Size(295, 298);
+            this.flpIssues.Size = new System.Drawing.Size(283, 286);
             this.flpIssues.TabIndex = 1;
             this.flpIssues.WrapContents = false;
             // 
@@ -132,7 +132,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.Controls.Add(this.btOk, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.btCancel, 0, 0);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(411, 414);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(411, 402);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(10, 10, 25, 15);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
@@ -171,13 +171,12 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Controls.Add(this.splitContainer1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 1);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 12);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 487);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 475);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // WizardCustomSizesForm

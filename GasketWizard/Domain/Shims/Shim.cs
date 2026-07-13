@@ -4,30 +4,27 @@ using System.ComponentModel;
 
 namespace GasketWizard.Domain.Shims
 {
-    [DisplayName("Шайба")]
     [ModelTypeAttributes(ModelType.Part)]
     [PartGroup("Shims", "ru-RU:Шайбы")]
+    [PartTitle("Shim", "ru-RU:Шайба")]
     public class Shim : PartBase
     {
         /// <summary>
         /// d
         /// </summary>
-        [DisplayName("d")]
-        [SizeTypes()]
+        [PartParameter("d")]
         public double InternalDiameter { get; set; }
 
         /// <summary>
         /// D
         /// </summary>
-        [DisplayName("D")]
-        [SizeTypes()]
+        [PartParameter("D")]
         public double ExternalDiameter { get; set; }
 
         /// <summary>
         /// S
         /// </summary>
-        [DisplayName("s")]
-        [SizeTypes()]
+        [PartParameter("s")]
         public double Width { get; set; }
     }
 }
