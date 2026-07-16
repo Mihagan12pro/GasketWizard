@@ -30,12 +30,9 @@ namespace GasketWizard.Databases.StandartSizes.Files
                     if (line == null)
                         break;
 
-                    string[] splitedLine = line.Split(' ');
-                    int.TryParse(splitedLine[0], out int res);
-
                     PartBase part = (PartBase)Activator.CreateInstance(type);
 
-                    PartBase.SetValues(part, splitedLine, headers);
+                    PartBase.SetValues(part, line.Split(' '), headers);
 
                     yield return part;
                 }
@@ -43,7 +40,7 @@ namespace GasketWizard.Databases.StandartSizes.Files
         }
            
 
-        public PartBase GetById(int id, string name)
+        public PartBase GetById(string id, string name)
         {
             Type type = GetPartType(name);
             PartBase part = (PartBase)Activator.CreateInstance(type);
@@ -66,9 +63,7 @@ namespace GasketWizard.Databases.StandartSizes.Files
                     string[] splitedLine = line.Split(' ')
                                                .RemoveEmptyStrings();
 
-                    int.TryParse(splitedLine[0], out int res);
-
-                    if (res == id)
+                    if (splitedLine[0] == id)
                     {
                         for (int i = 0; i < headers.Length; i++)
                         {

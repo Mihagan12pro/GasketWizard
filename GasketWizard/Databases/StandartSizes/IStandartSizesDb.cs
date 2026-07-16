@@ -7,6 +7,6 @@ namespace GasketWizard.Databases.StandartSizes
     {
         IEnumerable<PartBase> GetAll(string name);
 
-        PartBase GetById(int id, string name);
+        PartBase GetById(string id, string name);
     }
 }

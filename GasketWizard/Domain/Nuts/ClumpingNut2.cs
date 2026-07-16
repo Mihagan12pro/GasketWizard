@@ -8,7 +8,7 @@ namespace GasketWizard.Domain.Nut
     [PartTitle("Clumping nut, second embodiment", "ru-RU:Нажимная гайка, исполнение 2")]
     public class ClumpingNut2 : ClumpingNut
     {
-        [PartParameter("Left cylinder length", Enums.SizeTypes.Custom, "ru-RU:Длина левого цилиндра")]
+        [PartParameter("Left cylinder length", Enums.SizesTypes.Custom, "ru-RU:Длина левого цилиндра")]
         public double LeftCylinderLength { get; set; }
 
         public override IEnumerable<ValidationResult> Validate(ValidationContext validationContext)

@@ -81,6 +81,7 @@ namespace GasketWizard.Domain
         {
             PropertyInfo property = part.GetType()
                                         .GetProperties()
+                                        .Where(p => p.GetCustomAttribute<PartParameterAttribute>() != null)
                                         .First(p => p.GetCustomAttribute<PartParameterAttribute>().Title == header);
 
             if (property != null)
@@ -97,7 +98,7 @@ namespace GasketWizard.Domain
                 {
                     value = Convert.ToInt32(lineValue);
                 }
-                else if (property.PropertyType.BaseType == typeof(ValueObject))
+                else if (property.PropertyType.GetInterface(nameof(IValueObject)) != null)
                 {
                     value = Activator.CreateInstance(property.PropertyType, lineValue);
                 }
@@ -118,7 +119,7 @@ namespace GasketWizard.Domain
 
             PropertyInfo[] props = this.GetType()
                 .GetProperties()
-                .Where(p => p.GetCustomAttribute<PartParameterAttribute>() != null && p.GetCustomAttribute<PartParameterAttribute>().SizeType == SizeTypes.Custom)
+                .Where(p => p.GetCustomAttribute<PartParameterAttribute>() != null && p.GetCustomAttribute<PartParameterAttribute>().SizeType == SizesTypes.Custom)
                 .ToArray();
 
             foreach(var  prop in props)

@@ -41,11 +41,11 @@ namespace GasketWizard
             _partDisplayName = _partType.GetCustomAttribute<PartTitleAttribute>().LocalizedTitle;
 
             _partsStandartProperties = _partType.GetProperties()
-                                                .Where(p => p.GetCustomAttribute<PartParameterAttribute>()!= null && p.GetCustomAttribute<PartParameterAttribute>().SizeType != Enums.SizeTypes.Custom)
+                                                .Where(p => p.GetCustomAttribute<PartParameterAttribute>()!= null && p.GetCustomAttribute<PartParameterAttribute>().SizeType != Enums.SizesTypes.Custom)
                                                 .ToArray();
 
             _partsCustomProperties = _partType.GetProperties()
-                                                .Where(p => p.GetCustomAttribute<PartParameterAttribute>() != null && p.GetCustomAttribute<PartParameterAttribute>().SizeType == Enums.SizeTypes.Custom)
+                                                .Where(p => p.GetCustomAttribute<PartParameterAttribute>() != null && p.GetCustomAttribute<PartParameterAttribute>().SizeType == Enums.SizesTypes.Custom)
                                                 .ToArray();
             _idProperty = _partType.GetProperty("Id");
 
@@ -69,7 +69,7 @@ namespace GasketWizard
 
             foreach (var property in _partsStandartProperties)
             {
-                if (property != _idProperty && property.GetCustomAttribute<PartParameterAttribute>().SizeType != Enums.SizeTypes.Custom)
+                if (property != _idProperty && property.GetCustomAttribute<PartParameterAttribute>().SizeType != Enums.SizesTypes.Custom)
                 {
                     ColumnHeader column = new ColumnHeader()
                     {
@@ -87,15 +87,15 @@ namespace GasketWizard
 
                 foreach (var property in _partsStandartProperties)
                 {
-                    if (property != _idProperty)
+                    if (property != _idProperty && property.GetCustomAttribute<PartParameterAttribute>() != null)
                     {
-                        if (property.PropertyType.BaseType != typeof(ValueObject))
+                        if (property.PropertyType.GetInterface(nameof(IValueObject)) != typeof(IValueObject))
                         {
                             item.SubItems.Add(property.GetValue(part).ToString());
                         }
                         else
                         {
-                            var valueObjectValue = (ValueObject)property.GetValue(part);
+                            var valueObjectValue = (IValueObject)property.GetValue(part);
            
                             item.SubItems.Add($"{valueObjectValue.Display}");
                         }
@@ -135,7 +135,7 @@ namespace GasketWizard
 
         private void btOk_Click(object sender, EventArgs e)
         {
-            var part = _sizesDb.GetById(lvSizes.SelectedIndices[0] + 1, _partType.Name);
+            var part = _sizesDb.GetById((lvSizes.SelectedIndices[0] + 1).ToString(), _partType.Name);
 
             bool save = cbSave.Checked;
 

@@ -103,6 +103,16 @@ namespace GasketWizard {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap SKROGasket {
+            get {
+                object obj = ResourceManager.GetObject("SKROGasket", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap SKROGasketSocket {
             get {
                 object obj = ResourceManager.GetObject("SKROGasketSocket", resourceCulture);

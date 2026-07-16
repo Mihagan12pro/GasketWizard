@@ -7,7 +7,7 @@ namespace GasketWizard.Domain.Sockets
     [PartTitle("SKSD-type gasket socket", "ru-RU:Гнездо сальника типа СКСД")]
     public class SKSDGasketSocket : GasketSocket
     {
-        [PartParameter("Thread", Enums.SizeTypes.Standart, "ru-RU:Резьба")]
+        [PartParameter("Thread", Enums.SizesTypes.Standart, "ru-RU:Резьба")]
         public MetricThread Thread { get; set; }
 
 

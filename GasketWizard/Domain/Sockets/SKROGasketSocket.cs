@@ -25,14 +25,14 @@ namespace GasketWizard.Domain.Sockets
         [PartParameter("l")]
         public double BigCylinderLength { get; set; }
 
-        [PartParameter("Thread", Enums.SizeTypes.Standart, "ru-RU:Резьба")]
+        [PartParameter("Thread", Enums.SizesTypes.Standart, "ru-RU:Резьба")]
         public MetricThread Thread { get; set; }
 
 
-        [PartParameter("Thread length", Enums.SizeTypes.Custom, "ru-RU:Длина резьбы")]
+        [PartParameter("Thread length", Enums.SizesTypes.Custom, "ru-RU:Длина резьбы")]
         public double ThreadLength { get; set; }
 
-        [PartParameter("Big hole thread", Enums.SizeTypes.Custom, "ru-RU:Глубина большего выреза")]
+        [PartParameter("Big hole thread", Enums.SizesTypes.Custom, "ru-RU:Глубина большего выреза")]
         public double BigHoleLength { get; set; }
 
         public override IEnumerable<ValidationResult> Validate(ValidationContext validationContext)

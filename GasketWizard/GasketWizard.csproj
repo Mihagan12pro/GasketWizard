@@ -68,6 +68,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\PartChooseAttribute.cs" />
+    <Compile Include="Attributes\PartPositionInQueueAttribute.cs" />
     <Compile Include="Attributes\Titles\LocalizableAttribute.cs" />
     <Compile Include="Attributes\ModelTypeAttributes.cs" />
     <Compile Include="Attributes\Titles\PartGroupAttribute.cs" />
@@ -92,6 +94,8 @@
     <Compile Include="Creators\Sockets\SKSO\SKSOGasketSocketPartCreator.cs" />
     <Compile Include="Databases\StandartSizes\Files\FileBasedStandartSizesDb.cs" />
     <Compile Include="Databases\StandartSizes\IStandartSizesDb.cs" />
+    <Compile Include="Domain\Gaskets\GasketBase.cs" />
+    <Compile Include="Domain\Gaskets\SKROGasket.cs" />
     <Compile Include="Domain\Sockets\GasketSocket.cs" />
     <Compile Include="Domain\Nuts\ClumpingNut.cs" />
     <Compile Include="Domain\Nuts\ClumpingNut1.cs" />
@@ -102,9 +106,9 @@
     <Compile Include="Domain\Sockets\SKSDGasketSocket.cs" />
     <Compile Include="Domain\Sockets\SKSOGasketSocket.cs" />
     <Compile Include="Domain\ValueObjects\MetricThread.cs" />
-    <Compile Include="Domain\ValueObjects\ValueObject.cs" />
+    <Compile Include="Domain\ValueObjects\IValueObject.cs" />
     <Compile Include="Enums\ModelType.cs" />
-    <Compile Include="Enums\SizeTypes.cs" />
+    <Compile Include="Enums\SizesTypes.cs" />
     <Compile Include="Extensions\ArrayExtensions.cs" />
     <Compile Include="Extensions\PropertyInfoExtensions.cs" />
     <Compile Include="Extensions\TypeExtensions.cs" />
@@ -169,6 +173,7 @@
     <None Include="images\default.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Databases\StandartSizes\Files\Gaskets\SKROGasket.txt" />
     <Content Include="Databases\StandartSizes\Files\Nuts\ClumpingNut1.txt" />
     <Content Include="Databases\StandartSizes\Files\Nuts\ClumpingNut2.txt" />
     <Content Include="Databases\StandartSizes\Files\Shims\Shim.txt" />

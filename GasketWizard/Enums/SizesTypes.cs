@@ -1,6 +1,6 @@
 ﻿namespace GasketWizard.Enums
 {
-    public enum SizeTypes
+    public enum SizesTypes
     {
         Standart,
 

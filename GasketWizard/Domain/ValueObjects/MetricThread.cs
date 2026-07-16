@@ -2,13 +2,13 @@
 
 namespace GasketWizard.Domain.ValueObjects
 {
-    public class MetricThread : ValueObject
+    public class MetricThread : IValueObject
     {
         public double NominalDiameter { get; set; }
 
         public double Pitch { get; set; }
 
-        public override string Display
+        public string Display
         {
             get
             {

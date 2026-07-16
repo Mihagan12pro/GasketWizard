@@ -29,7 +29,7 @@ namespace GasketWizard.Forms
                 Text = type.GetCustomAttribute<PartTitleAttribute>().LocalizedTitle;
 
                 _customSizes = type.GetProperties()
-                                   .Where(p => p.GetCustomAttribute<PartParameterAttribute>() != null && p.GetCustomAttribute<PartParameterAttribute>().SizeType == Enums.SizeTypes.Custom)
+                                   .Where(p => p.GetCustomAttribute<PartParameterAttribute>() != null && p.GetCustomAttribute<PartParameterAttribute>().SizeType == Enums.SizesTypes.Custom)
                                    .ToArray();
 
                 int row = 0;

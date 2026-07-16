@@ -3,8 +3,8 @@
     /// <summary>
     /// Complex part parameters
     /// </summary>
-    public abstract class ValueObject
+    public interface IValueObject
     {
-        public abstract string Display { get; }
+        string Display { get; }
     }
 }

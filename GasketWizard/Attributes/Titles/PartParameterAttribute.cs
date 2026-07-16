@@ -8,11 +8,11 @@ namespace GasketWizard.Attributes
     [AttributeUsage(AttributeTargets.Property)]
     public class PartParameterAttribute : LocalizableAttribute
     {
-        public readonly SizeTypes SizeType;
+        public readonly SizesTypes SizeType;
 
         public PartParameterAttribute(
             string title, 
-            SizeTypes sizeType = SizeTypes.Standart)
+            SizesTypes sizeType = SizesTypes.Standart)
         {
             Title = title;
 
@@ -24,7 +24,7 @@ namespace GasketWizard.Attributes
 
         public PartParameterAttribute(
             string title, 
-            SizeTypes sizeType = SizeTypes.Standart,
+            SizesTypes sizeType = SizesTypes.Standart,
             params string[] localizations)
         {
             Title = title;
