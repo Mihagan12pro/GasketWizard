@@ -12,7 +12,7 @@ namespace GasketWizard.Creators
 {
     public static class CreatorsProvider
     {
-        public static bool Create(PartBase part, bool save, string savePath)
+        public static bool Create(KompasModel part, bool save, string savePath)
         {
             KompasObject kompas = (KompasObject)Marshal.GetActiveObject("KOMPAS.Application.5");
             IApplication application = kompas.ksGetApplication7();

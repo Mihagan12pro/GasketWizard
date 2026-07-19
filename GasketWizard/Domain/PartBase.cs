@@ -16,104 +16,14 @@ namespace GasketWizard.Domain
     /// <summary>
     /// Describes part parameters and provides validation
     /// </summary>
-    public abstract class PartBase : IValidatableObject
+    public abstract class PartBase : KompasModel<int>
     {
         [PartParameter("№")]
         public int Id { get; set; }
 
-        public bool HasErrors
+        public override IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
-            get
-            {
-                _errors.Clear();
-
-                var results = new List<ValidationResult>();
-                var context = new ValidationContext(this);
-
-                _errors.AddRange(Validate(context).Select(e => e.ErrorMessage));
-
-                return _errors.Count() > 0;
-            }
-        }
-
-        public IReadOnlyList<string> Errors
-            => _errors.AsReadOnly();
-
-        public static Type MapDisplayNameWithPartType(string displayName)
-        {
-            var assembly = Assembly.GetExecutingAssembly();
-
-            return assembly.GetTypes()
-                .Where(t => t.GetCustomAttribute<PartTitleAttribute>() != null)
-                .FirstOrDefault(t => t.GetCustomAttribute<PartTitleAttribute>().LocalizedTitle == displayName);
-        }
-
-        public static Bitmap MapDisplayNameWithBitmap(string displayName)
-        {
-            Bitmap bitmap = null;
-
-            var assembly = Assembly.GetExecutingAssembly();
-
-            var partType = assembly.GetTypes()
-                .Where(t => t.GetCustomAttribute<PartTitleAttribute>() != null)
-                .FirstOrDefault(t => t.GetCustomAttribute<PartTitleAttribute>().LocalizedTitle == displayName);
-
-            if (partType == null)
-                return Resource.Default;
-
-            bitmap = (Bitmap)Resource.ResourceManager.GetObject(partType.Name);
-
-            if (bitmap == null)
-                return Resource.Default;
-
-            return bitmap;
-        }
-
-        public static void SetValues(PartBase part, string[] line, string[] headers)
-        {
-            for (int i = 0; i < headers.Length; i++)
-            {
-                PartBase.SetValue(part, line[i], headers[i]);
-            }
-        }
-
-        public static void SetValue(PartBase part, string lineValue, string header)
-        {
-            PropertyInfo property = part.GetType()
-                                        .GetProperties()
-                                        .Where(p => p.GetCustomAttribute<PartParameterAttribute>() != null)
-                                        .First(p => p.GetCustomAttribute<PartParameterAttribute>().Title == header);
-
-            if (property != null)
-            {
-                object value;
-
-                if (property.PropertyType == typeof(double))
-                {
-                    double.TryParse(lineValue, NumberStyles.AllowDecimalPoint, new CultureInfo("en-US"), out double result);
-
-                    value = result;
-                }
-                else if (property.PropertyType == typeof(int))
-                {
-                    value = Convert.ToInt32(lineValue);
-                }
-                else if (property.PropertyType.GetInterface(nameof(IValueObject)) != null)
-                {
-                    value = Activator.CreateInstance(property.PropertyType, lineValue);
-                }
-                else
-                {
-                    value = lineValue;
-                }
-
-                property.SetValue(part, value);
-            }
-        }
-
-        public virtual IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-            _errors.Clear();
+            this.errors.Clear();
 
             List<ValidationResult> errors = new List<ValidationResult>();
 
@@ -122,7 +32,7 @@ namespace GasketWizard.Domain
                 .Where(p => p.GetCustomAttribute<PartParameterAttribute>() != null && p.GetCustomAttribute<PartParameterAttribute>().SizeType == SizesTypes.Custom)
                 .ToArray();
 
-            foreach(var  prop in props)
+            foreach (var prop in props)
             {
                 if (0 == (double)prop.GetValue(this))
                     errors.Add(new ValidationResult($"Параметр '{prop.GetCustomAttribute<PartParameterAttribute>().LocalizedTitle}' должен быть строго больше нуля!"));
@@ -131,6 +41,7 @@ namespace GasketWizard.Domain
             return errors;
         }
 
-        private List<string> _errors = new List<string>();
+        public override object GetId()
+            => Id;
     }
 }

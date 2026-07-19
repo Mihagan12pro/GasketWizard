@@ -12,7 +12,7 @@ namespace GasketWizard.Databases.StandartSizes.Files
 {
     public class FileBasedStandartSizesDb : IStandartSizesDb
     {
-        public IEnumerable<PartBase> GetAll(string name)
+        public IEnumerable<KompasModel> GetAll(string name)
         {
             Type type = GetPartType(name);
 
@@ -32,18 +32,18 @@ namespace GasketWizard.Databases.StandartSizes.Files
 
                     PartBase part = (PartBase)Activator.CreateInstance(type);
 
-                    PartBase.SetValues(part, line.Split(' '), headers);
+                    part.SetValues(line.Split(' '), headers);
 
                     yield return part;
                 }
             }
         }
-           
 
-        public PartBase GetById(string id, string name)
+
+        public KompasModel GetById(string id, string name)
         {
             Type type = GetPartType(name);
-            PartBase part = (PartBase)Activator.CreateInstance(type);
+            KompasModel part = (KompasModel)Activator.CreateInstance(type);
 
             string group = type.GetCustomAttribute<PartGroupAttribute>().Title;
             string path = GetFilePath(group, name);
@@ -67,7 +67,7 @@ namespace GasketWizard.Databases.StandartSizes.Files
                     {
                         for (int i = 0; i < headers.Length; i++)
                         {
-                            PartBase.SetValue(part, splitedLine[i], headers[i]);
+                            part.SetValue(splitedLine[i], headers[i]);
                         }
 
                         break;

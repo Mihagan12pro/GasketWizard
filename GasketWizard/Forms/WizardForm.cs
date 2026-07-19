@@ -6,6 +6,7 @@ using GasketWizard.Domain;
 using GasketWizard.Domain.ValueObjects;
 using GasketWizard.Extensions;
 using GasketWizard.Forms;
+using GasketWizard.Mappers;
 using Kompas6API5;
 using System;
 using System.ComponentModel;
@@ -49,7 +50,7 @@ namespace GasketWizard
                                                 .ToArray();
             _idProperty = _partType.GetProperty("Id");
 
-            pbSketch.Image = PartBase.MapDisplayNameWithBitmap(_partDisplayName);
+            pbSketch.Image = BitmapMapper.MapDisplayName(_partDisplayName);
             Text = _partDisplayName;
 
             btOk.Enabled = false;
@@ -83,7 +84,7 @@ namespace GasketWizard
 
             foreach (var part in parts)
             {
-                ListViewItem item = new ListViewItem(part.Id.ToString());
+                ListViewItem item = new ListViewItem(part.GetId().ToString());
 
                 foreach (var property in _partsStandartProperties)
                 {

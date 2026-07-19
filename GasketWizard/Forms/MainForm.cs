@@ -1,6 +1,7 @@
 ﻿using GasketWizard.Attributes;
 using GasketWizard.Domain;
 using GasketWizard.Extensions;
+using GasketWizard.Mappers;
 using System;
 using System.Linq;
 using System.Reflection;
@@ -48,7 +49,7 @@ namespace GasketWizard
         {
             if (sender is TreeView treeView)
             {
-                pbSketch.Image = PartBase.MapDisplayNameWithBitmap(treeView.SelectedNode.Text);
+                pbSketch.Image = BitmapMapper.MapDisplayName(treeView.SelectedNode.Text);
             }
         }
 
@@ -56,7 +57,7 @@ namespace GasketWizard
         {
             if (sender is TreeView treeView)
             {
-                Type partType = PartBase.MapDisplayNameWithPartType(treeView.SelectedNode.Text);
+                Type partType = PartTypeMapper.MapDisplayName(treeView.SelectedNode.Text);
 
                 if (partType != null)
                 {

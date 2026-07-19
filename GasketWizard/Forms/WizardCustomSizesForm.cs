@@ -12,9 +12,9 @@ namespace GasketWizard.Forms
     {
         private PropertyInfo[] _customSizes;
 
-        private PartBase _part;
+        private KompasModel _part;
 
-        public PartBase Part
+        public KompasModel Part
         {
             get
             {
@@ -159,13 +159,13 @@ namespace GasketWizard.Forms
     {
         public PropertyInfo Property { get; private set; }
 
-        public PartBase Part { get; private set; }
+        public KompasModel Part { get; private set; }
 
         public Type PropertyType { get; private set; }
 
         public TextBoxTag(
             PropertyInfo property,
-            PartBase part,
+            KompasModel part,
             Type propertyType)
         {
             Part = part;

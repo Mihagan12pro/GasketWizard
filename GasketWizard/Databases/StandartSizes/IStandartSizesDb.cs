@@ -5,8 +5,8 @@ namespace GasketWizard.Databases.StandartSizes
 {
     public interface IStandartSizesDb
     {
-        IEnumerable<PartBase> GetAll(string name);
+        IEnumerable<KompasModel> GetAll(string name);
 
-        PartBase GetById(string id, string name);
+        KompasModel GetById(string id, string name);
     }
 }
